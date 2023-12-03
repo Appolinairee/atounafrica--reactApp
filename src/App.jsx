@@ -10,7 +10,7 @@ const App = () => {
           <NavBar />
 
           <Routes>
-              <Route path='' key="home"/>
+              
           </Routes>
       </BrowserRouter>
     </div>

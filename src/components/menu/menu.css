@@ -1,0 +1,59 @@
+.allMenus{
+    width: 100%;
+    left: 0;
+    right: 0;
+}
+
+.allMenus .overlay{
+    z-index: 10;
+    left: 0; right: 0;
+    /* border: solid red; */
+    width: 100%;
+}
+
+.allMenus .menus{
+    padding: 80px 5px;
+    /* overflow-y: scroll; */
+    z-index: 100;
+    position: fixed;
+    width: 70%;
+    margin: 0 15%;
+}
+
+.menus .menu ul{
+    flex-direction: column;
+    justify-content: start;
+    background: var(--whiteColor);
+    border-radius: 20px;
+    margin: 0 2%;
+    padding: 0 3%;
+}
+
+.menus .menu ul li{
+    width: 100%;
+}
+
+.menus .menu ul li a{
+    flex-direction: row;
+    justify-content: start;
+    border-bottom: .5px solid var(--invisibleColor);
+    gap: 20px;
+    padding: 10px 6%;
+    width: 100%;
+}
+
+.menus .menu ul li:nth-last-child(1) a{
+    border: none;
+}
+
+.menus .menu ul li p{
+    font-size: 16px;
+}
+
+.menus .menu{
+   margin: 20px 0;
+}
+
+@media screen and (max-width: 400px) {
+    
+}

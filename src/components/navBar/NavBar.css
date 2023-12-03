@@ -67,7 +67,6 @@ ul a.menuLink .icon{
     display: flex;
     align-items: center;
     font-size: 16px;
-    /* padding: 4px 7px; */
 }
 
 ul a.menuLink.active .icon{
@@ -79,20 +78,16 @@ ul a.menuLink.active .icon{
 
 nav .messageButton{
     position: relative;
-    cursor: pointer;
+    cursor: pointer
 }
 
-nav .messageButton i{
-    
-}
-
-nav .messageButton .messageIcon{
+nav .menuLinksExtra .icon{
     position: relative;
     margin-right: 6px;
-    font-size: 16px;
+    font-size: 18px;
 }
 
-.notificationMark{
+nav .menuLinksExtra .icon span{
     position: absolute;
     top: -5px;
     right: -5px;
@@ -101,12 +96,18 @@ nav .messageButton .messageIcon{
     padding: 1px 2px;
     font-weight: bold;
     border-radius: 50%;
-    font-size: 8px;
+    font-size: 9px;
 }
-
 
 nav .menuButton, .simpleSideMenu{
     display: none;
+}
+
+nav .menuLinksExtra{
+    gap: 25px;
+    border: 2px solid var(--opacityBlackColor);
+    border-radius: 20px;
+    padding: 9px 13px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -131,10 +132,6 @@ nav .menuButton, .simpleSideMenu{
 }
 
 @media screen and (max-width: 1000px) {
-    nav .BarIndicatifButton{
-        display: none;
-    }
-
     nav .messageButton p{
         display: none;
     }
@@ -158,14 +155,6 @@ nav .menuButton, .simpleSideMenu{
         top: 0;
     }
 
-    nav .messageButton .messageIcon{
-       font-size: 15px;
-    }
-
-    nav .messageButton .messageIcon{
-       font-size: 13px;
-    }
-
     /* SimpleSideMenu: le menu d'en bas */
 
     .simpleSideMenu{
@@ -174,7 +163,7 @@ nav .menuButton, .simpleSideMenu{
 
     .simpleSideMenu ul{
         position: fixed;
-        bottom: 10px;
+        bottom: 3%;
         left: 50%;
         transform: translate(-50%, 0);
         padding: 5px 0;
@@ -195,10 +184,10 @@ nav .menuButton, .simpleSideMenu{
     }
 
     .simpleSideMenu ul a.menuLink p{
-        font-size: 12px;
+        font-size: 13px;
     }
 
-    .simpleSideMenu ul a.menuLink i{
+    .simpleSideMenu ul a.menuLink .icon{
         padding: 5px;
     }
 
@@ -208,6 +197,14 @@ nav .menuButton, .simpleSideMenu{
 
     nav .messageButton p{
         display: block;
+    }
+
+    .menuLinkExtra.menuButton{
+        display: none;
+    }
+
+    .menuExtraButton{
+        display: none;
     }
 }
 
@@ -235,16 +232,22 @@ nav .menuButton, .simpleSideMenu{
     .simpleSideMenu ul{
         border-radius: 7px 7px 0 0;
         margin: 0;
-        bottom: 0;
+        bottom: 3%;
         width: 100%;
     }
 
     .simpleSideMenu ul a.menuLink p{
-        font-size: 9px;
+        font-size: 12px;
     }
 
-    .simpleSideMenu ul a.menuLink i{
+    .simpleSideMenu ul a.menuLink .icon{
         font-size: 14px;
+    }
+
+    nav .menuLinksExtra{
+        padding: 0;
+        border: none;
+        gap: 10px;
     }
 }
 
@@ -263,6 +266,10 @@ nav .menuButton, .simpleSideMenu{
 
     nav .menuButton p, nav .messageButton p{
         display: none;
+    }
+
+    .simpleSideMenu ul a.menuLink p{
+        font-size: 11px;
     }
 }
 
