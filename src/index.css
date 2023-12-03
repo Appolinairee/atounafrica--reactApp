@@ -1,13 +1,143 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+*, ::after, ::before{
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    color: var(--color-dark);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root{
+    /* Colors */
+    --primaryColor: #00ACA4;
+    --blackColor: black;
+    --backgroundColor: #F5F5F5;
+    /* --backgroundColor: #928d8d; */
+    --whiteColor: white;
+    --invisibleColor: rgb(0, 0, 0, .2);
+    --inputColor: #F5F5F5;
+    --opacityBlackColor: rgba(0, 0, 0, 0.132);
+
+    /* Font-size */
+    --smallIndicationFont: 8px;
+
+    /* Focused Margins */
+    --largeMargin: 5%;
+    --smallMargin: 1%;
+}
+
+html{
+    scroll-behavior: smooth;
+    font-family: 'Montserrat', sans-serif;
+}
+
+html body{
+    background: var(--backgroundColor);
+    max-width: 1300px;
+    margin: auto;
+    position: relative;
+}
+
+body .app{
+    background: var(--color-body);
+    overflow-x: hidden;
+}
+
+.overlay{
+    position: absolute;
+    width: 100%; height: 100%;
+    top: 0; left: 0 ;
+    z-index: 5;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.grid{
+    display: grid;
+}
+
+.flex{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.section{
+    background: var(--whiteColor);
+    padding: auto 3%;
+    margin: initial auto;
+    max-width: 1300px;
+}
+
+.icon{
+    cursor: pointer;
+}
+
+.before, .after{
+    position: relative;
+}
+
+.before::before, .after::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+}
+
+
+/* To analyse */
+
+.actualState{
+    margin-bottom: 20px;
+    justify-content: start;
+    gap: 10px;
+    justify-content: center;
+}
+
+.actualState span{
+   border: solid var(--opacityBlackColor);
+   padding: 2px 8px;
+   border-radius: 50%;
+}
+
+.actualState h3{
+   font-size: 1.3rem;
+}
+
+.actualState i{
+   font-size: 14px;
+}
+
+.globalPadding{
+    padding: 80px 5px;
+}
+
+.input{
+    border: 1.5px solid var(--opacityBlackColor);
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    width: 100%;
+    gap: 10px;
+    justify-content: start;
+    padding: 5px 10px;
+    height: 47px;
+}
+
+.input input{
+    height: 100%;
+    margin: auto 0;
+    align-content: center
+}
+
+@media screen and (min-width: 451px) {
+    .input{
+        padding: 10px 10px;
+        height: 50px;
+    }
 }

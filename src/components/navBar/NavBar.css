@@ -1,0 +1,277 @@
+nav{
+    position: fixed;
+    left: auto; right: auto;
+    width: calc(96% - 20px);
+    margin: 10px 0%;
+    max-height: 70px;
+    padding: 20px 4%;
+    border-radius: 10px;
+    z-index: 100;
+}
+
+nav .logo img{
+    width: 120px;
+    height: 55px;
+    cursor: pointer;
+}
+
+.research{
+    height: 33px;
+}
+
+.research input{
+    background: var(--inputColor);
+    height: 33px;
+    width: 80%;
+    padding: 0 10px;
+    font-size: 15px;
+    border-radius: 5px 0 0 5px;
+    width: 100%;
+}
+
+.research .submit{
+    width: 20%;
+    background: var(--blackColor);
+    height: 33px;
+    color: var(--whiteColor);
+    max-width: 40px;
+    cursor: pointer;
+    display: flex;
+}
+
+.research .submit .icon{
+    font-size: 17px;
+    font-weight: 800;
+    width: 100%; height: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+nav .simpleMenu ul{
+    gap: 20px;
+}
+
+nav .simpleMenu ul a.menuLink{
+    gap: 6px;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+nav .simpleMenu ul a.menuLink p{
+    font-size: 17px;
+}
+
+ul a.menuLink .icon{
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    /* padding: 4px 7px; */
+}
+
+ul a.menuLink.active .icon{
+    background: var(--primaryColor);
+    color: var(--whiteColor);
+    border-radius: 50%;
+    padding: 5px 5px;
+}
+
+nav .messageButton{
+    position: relative;
+    cursor: pointer;
+}
+
+nav .messageButton i{
+    
+}
+
+nav .messageButton .messageIcon{
+    position: relative;
+    margin-right: 6px;
+    font-size: 16px;
+}
+
+.notificationMark{
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--primaryColor);
+    color: var(--whiteColor);
+    padding: 1px 2px;
+    font-weight: bold;
+    border-radius: 50%;
+    font-size: 8px;
+}
+
+
+nav .menuButton, .simpleSideMenu{
+    display: none;
+}
+
+@media screen and (max-width: 1200px) {
+    nav{
+        padding: 20px 2%;
+        margin: 5px 7px;
+        margin: 10px 2%;
+        width: calc(100% - 4%);
+    }    
+
+    nav .simpleMenu ul{
+        gap: 8px;
+    }
+    
+    nav .simpleMenu ul a.menuLink{
+        gap: 4px;
+    }
+
+    nav .simpleMenu ul a.menuLink p{
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    nav .BarIndicatifButton{
+        display: none;
+    }
+
+    nav .messageButton p{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    nav{
+        padding: 20px 4%;
+    }
+
+    nav .research{
+        width: 40%;
+    }
+
+    nav .simpleMenu{
+        display: none;
+    }
+
+    nav .simpleSideMenu{
+        position: fixed;
+        top: 0;
+    }
+
+    nav .messageButton .messageIcon{
+       font-size: 15px;
+    }
+
+    nav .messageButton .messageIcon{
+       font-size: 13px;
+    }
+
+    /* SimpleSideMenu: le menu d'en bas */
+
+    .simpleSideMenu{
+        display: block;
+    }
+
+    .simpleSideMenu ul{
+        position: fixed;
+        bottom: 10px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        padding: 5px 0;
+        margin: 5px 0;
+        width: calc(100% - 14px);
+        background: var(--whiteColor);
+        justify-content: space-around;
+        font-size: 14px;
+        border-radius: 10px;
+        max-width: 400px;
+        justify-content: space-around;
+    }
+
+    .simpleSideMenu ul a.menuLink{
+        flex-direction: column;
+        gap: 3px;
+        cursor: pointer;
+    }
+
+    .simpleSideMenu ul a.menuLink p{
+        font-size: 12px;
+    }
+
+    .simpleSideMenu ul a.menuLink i{
+        padding: 5px;
+    }
+
+    .simpleSideMenu ul li.researchBar{
+        display: none;
+    }
+
+    nav .messageButton p{
+        display: block;
+    }
+}
+
+@media screen and (max-width: 500px){
+    nav{
+        height: 60px;
+        margin: 7px 1%;
+        width: 98%;
+    }
+
+    nav .menuButton{
+        display: flex;
+        gap: 5px;
+        cursor: pointer;
+    }
+
+    nav .research{
+        display: none;
+    }   
+
+    .simpleSideMenu ul li.researchBar{
+        display: block;
+    }
+
+    .simpleSideMenu ul{
+        border-radius: 7px 7px 0 0;
+        margin: 0;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .simpleSideMenu ul a.menuLink p{
+        font-size: 9px;
+    }
+
+    .simpleSideMenu ul a.menuLink i{
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 380px){
+    nav{
+        height: 55px;
+        overflow: hidden;
+        margin: 7px 1%;
+        width: 98%;
+    }   
+
+    nav .logo img{
+        width: 120px;
+        height: 50px;
+    }
+
+    nav .menuButton p, nav .messageButton p{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 240px){
+    .simpleSideMenu ul{
+        padding: 7px 0;
+    }
+
+    .simpleSideMenu ul p{
+        display: none;
+    }
+}
