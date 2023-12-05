@@ -67,13 +67,13 @@ ul a.menuLink .icon{
     display: flex;
     align-items: center;
     font-size: 16px;
+    padding: 5px 5px;
 }
 
 ul a.menuLink.active .icon{
     background: var(--primaryColor);
     color: var(--whiteColor);
     border-radius: 50%;
-    padding: 5px 5px;
 }
 
 nav .messageButton{
@@ -108,6 +108,10 @@ nav .menuLinksExtra{
     border: 2px solid var(--opacityBlackColor);
     border-radius: 20px;
     padding: 9px 13px;
+}
+
+.menuLinkExtra.menuExtraButton{
+    display: block;
 }
 
 @media screen and (max-width: 1200px) {
@@ -174,6 +178,7 @@ nav .menuLinksExtra{
         font-size: 14px;
         border-radius: 10px;
         max-width: 400px;
+
         justify-content: space-around;
     }
 
@@ -198,15 +203,16 @@ nav .menuLinksExtra{
     nav .messageButton p{
         display: block;
     }
+}
 
-    .menuLinkExtra.menuButton{
-        display: none;
-    }
-
-    .menuExtraButton{
-        display: none;
+@media screen and (max-width: 700px){
+    nav .menuLinksExtra{
+        padding: 0;
+        border: none;
+        gap: 10px;
     }
 }
+
 
 @media screen and (max-width: 500px){
     nav{
@@ -244,11 +250,15 @@ nav .menuLinksExtra{
         font-size: 14px;
     }
 
-    nav .menuLinksExtra{
-        padding: 0;
-        border: none;
-        gap: 10px;
+    .menuExtraButton{
+        display: none;
     }
+
+    .menuLinkExtra.menuExtraButton{
+        display: none;
+    }
+    
+
 }
 
 @media screen and (max-width: 380px){

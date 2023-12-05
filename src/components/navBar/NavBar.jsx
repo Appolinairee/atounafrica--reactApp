@@ -13,6 +13,7 @@ import { FaRegUser } from "react-icons/fa";
 import { BiMessage } from "react-icons/bi";
 import { FaBars } from "react-icons/fa6";
 import { MdOutlineNotificationsActive } from "react-icons/md";
+import { FaTimes } from "react-icons/fa";
 
 export default function NavBar() {
     const [barState, setBarState] = useState (0);
@@ -52,7 +53,7 @@ export default function NavBar() {
         <nav className="flex section">
             <div className="menuButton flex" onClick={handleBar}>
                 {
-                    (barState) ? <FaBars />: <FaRegUser/>
+                    (barState) ? <FaTimes />: <FaBars/> 
                 }
                 <p>Menu</p>
             </div>
@@ -103,16 +104,17 @@ export default function NavBar() {
 
                 <div className="menuLinkExtra menuExtraButton" onClick={ handleBar }>
                     <a>
-                        <div className="icon"><FaBars /></div>
+                        <div className="icon">{
+                            (barState) ? <FaBars />: <FaRegUser/> 
+                        }</div>
                     </a>
                 </div>
             </div>
-            <SimpleMenu />
         </nav>
 
-        {
-            (barState == 1) && <Menu barState={barState} handleBar={handleBar} />
-        }
+        <SimpleMenu />
+
+        <Menu barState={barState} handleBar={handleBar} />
     </div>
   )
 }
@@ -152,8 +154,8 @@ function SimpleMenu() {
     ]
 
   return (
-    <div class="simpleSideMenu">
-        <ul class="flex">
+    <div className ="simpleSideMenu">
+        <ul className  ="flex">
             {
                 subLinks.map((link, index) => (
                     <li key={index}>
