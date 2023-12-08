@@ -1,7 +1,10 @@
 import {BrowserRouter, Routes,  Route} from 'react-router-dom';
 
-// import Components
+// import General Components
 import NavBar from "./components/navBar/NavBar";
+
+// Import Pages
+import Header from './components/Header/Header';
 
 const App = () => {
   return (
@@ -10,7 +13,7 @@ const App = () => {
           <NavBar />
 
           <Routes>
-              
+              <Route path='' element={<Header/>} />
           </Routes>
       </BrowserRouter>
     </div>

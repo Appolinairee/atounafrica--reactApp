@@ -2,7 +2,7 @@
     position: fixed;
     right: 0;
     top: 0; width: 100%;
-    transform: translateY(100vh) scale(.8);
+    transform: translateX(100%);
     height: 100vh;
     padding: 4rem 1rem 0 1rem;
     color: var(--color-white-pur);
@@ -14,7 +14,7 @@
 }
 
 .allMenus.active{
-    transform: translateY(0%) scale(1);
+    transform: translateX(0%);
 }
 
 .allMenus .overlay{

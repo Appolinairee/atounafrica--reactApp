@@ -1,0 +1,518 @@
+header{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 5px;
+    align-items: start !important;
+    justify-content: start;
+    height: fit-content;
+}
+
+header .sideBar{
+    height: 100%;
+    overflow-y: hidden;
+}
+
+header .categories{
+    flex-direction: column;
+    width: 100%;
+    padding: 30px 20px;
+    border-radius: 0 10px 0px 0;
+    align-items: start;
+    margin-bottom: 5px;
+}
+
+header .categories p.categoriesTitle{
+    font-weight: 400px;
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center
+}
+
+header .categories .category{
+    padding: 10px 5px 10px 10px;
+    white-space: nowrap;
+    justify-content: space-between;
+    gap: 20px;
+    border-radius: 5px;
+    justify-content: left;
+    width: 100%;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+header .categories .category p{
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+header .categories .category span{
+    position: absolute;
+    top: 50%; right: 10px;
+    width: fit-content;
+    transform: translate(0, -50%);
+    height: fit-content;
+    background: transparent;
+}
+
+header .categories .category.active{
+    background: var(--primaryColor);
+    color: var(--whiteColor);
+}
+
+header .categories a{
+    color: var(--primaryColor);
+    margin: 5px 10px;
+}
+
+header .sideBar .sloganSection{
+    background: var(--whiteColor);
+    padding: 20px;
+    height: 100%;  
+    border-bottom-right-radius: 10px;
+}
+
+header .sideBar .sloganSection p{
+    margin-bottom: 10px;
+}
+
+
+/* MAIN HEADER */
+
+header .headerMain{
+    border-radius: 10px 0 0 10px;
+    padding: 30px 5% ;
+    height: 100%;
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+header .headerMain h1{
+    font-weight: normal;
+    margin-bottom: 2rem;
+}
+
+header .headerMain h1 b.mia{
+    font-size: 3rem;
+}
+
+/* RECOMMANDATIONS MINIMYSE STYLES */
+
+header .headerMain .recommandations{
+    margin-top: 3rem;
+    justify-content: start;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+header .headerMain .recommandations span.verticalHeaderText{
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    font-size: 2.8rem;
+    text-transform: uppercase;
+    writing-mode: vertical-lr;
+
+}
+
+header .headerMain .recommandations .productsSlides .products{
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    margin-left: 15%;
+}
+
+header .headerMain .recommandations .productsSlides .products .product{
+    box-shadow: 1px .5px 5px var(--invisibleColor), 1px .5px 5px var(--invisibleColor);
+    border-radius: 5px;
+    padding: 0 0 10px 0;
+    width: 100%;
+}
+
+header .headerMain .recommandations .productsSlides .products .product .productImg{
+
+}
+
+header .headerMain .recommandations .productsSlides .products .product .productImg img{
+    width: 100%;
+    max-height: 250px;
+
+}
+
+header .headerMain .productInfos{
+    align-items: center;
+    gap: 10px;
+    padding: 0 10px;
+    padding-top: 5px;
+}
+
+header .headerMain .productInfos .productInfo{
+    gap: 30px;
+    margin-top: 5px;
+}
+
+header .headerMain .productInfos p.productName{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+header .headerMain .productInfos .productDetails .productCreator{
+    gap: 7px;
+    font-size: 14px;
+    justify-content: start;
+}
+
+header .headerMain .productInfos .productDetails .productCreator img{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+header .headerMain .productCreator .creatorDetails{
+    white-space: nowrap;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+header .headerMain .productInfos .productDetails .productCreator p{
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+header .headerMain .productInfos .productCreator img{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+header .headerMain .productInfos .productPrice b{
+    font-size: 17px;
+    white-space: nowrap;
+}
+
+header .headerMain .productInfos .productPrice i{
+    font-size: 12px;
+    color: var(--primaryColor);
+}
+
+
+header .headerMain .productInfos .commandButton{
+    background: var(--primaryColor);
+    padding: 7px;
+    color: var(--whiteColor);
+    border-radius: 5px;
+}
+
+header .headerMain .productsBtn{
+    justify-content: center;
+    gap: 5px;
+    margin-top: 20px;
+}
+
+header .headerMain .productsBtn span{
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    border: 1px solid var(--invisibleColor);
+}
+
+header .headerMain .productsBtn span.active{
+    width: 30px;
+    border-radius: 5px;
+    border: none;
+    background: var(--primaryColor);
+}
+
+.sloganTextres{
+    display: none;
+}
+
+
+/* RESPONSIVITY STYLES */
+
+@media screen and (max-width: 1200px) {
+    header{
+        margin: 0 2%;
+    }
+
+    header .headerMain h1 hr{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 960px){
+    header{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    header .sideBar{
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    header .sideBar .categories{
+        flex-direction: row;
+        padding: 10px;
+        gap: 1rem;
+        border-radius: 10px 10px 0 0;
+
+        overflow-x: scroll;
+    }
+
+    header .sideBar .categories::-webkit-scrollbar{
+       height: 5px;
+       display: none;
+    }
+
+    header .sideBar .categories p.categoriesTitle{
+        display: none;
+    }
+
+    header .sideBar .categories .category{
+        align-items: center;
+        padding: 10px 10px;
+        gap: 10px;
+        margin-bottom: 0px;
+    }
+
+    header .sideBar .categories .category span{
+        position: static;
+        transform: translate(0, 0);
+    }
+
+    header .headerMain .recommandations span.verticalHeaderText{
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translate(0, -50%);
+        font-size: 2.8rem;
+        text-transform: uppercase;
+        writing-mode: vertical-lr;
+    
+    }
+
+    header .sideBar .categories .seeAll{
+        position: absolute;
+        width: 50px;
+        left: calc(100% - 60px); top: 0px;
+        background: var(--whiteColor);
+        text-align: center;
+        padding: 5px;
+        border-left: 2px solid var(--blackColor);
+        font-size: 13px;
+        color: var(--blackColor);
+    }
+
+    header .sideBar .sloganSection{
+        display: none;
+    }
+
+    header .headerMain{
+        width: 100%;
+        height: auto;
+        border-radius: 0 0 10px 10px;
+    }
+
+    header .headerMain h1{
+        max-width: 600px;
+    }
+
+    header .headerMain .recommandations{
+        overflow:visible;
+        margin-top: 2rem;
+    }
+
+    header .headerMain .recommandations .productsSlides .products{
+        width: 70%;
+        max-width: none;
+    }
+
+    header .headerMain h1{
+        font-weight: normal;
+        margin-bottom: 2rem;
+    }
+    
+    header .headerMain h1 b.mia{
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 780px){
+    header .headerMain .recommandations{
+        gap: 5%;
+    }
+
+    header .headerMain .productInfos .productDetails .productCreator{
+        white-space: wrap;
+    }
+
+    header .headerMain .productInfos .productDetails .productCreator p{
+        font-size: 16px;
+    }
+
+    header .creatorDetails{
+        display: none;
+    }
+
+    header .headerMain .recommandations .productsSlides .products{
+        width: 80%;
+    }
+}
+
+
+@media screen and (max-width: 500px){
+   header{
+        transform: translateY(-10px);
+        width: 95%;
+        left: 1%;
+    }
+
+   header .headerMain .recommandations{
+        margin-top: 3rem;
+        gap: 0;
+    }
+
+    header .headerMain{
+        padding-bottom: 5px;
+        border-radius: 0 0 10px 10px;
+    }
+
+    header .headerMain .recommandations span.verticalHeaderText{
+        font-size: 2.5rem;
+    }
+
+    header .creatorDetails{
+        display: none;
+    }
+
+    header .headerMain .recommandations .productsSlides .products{
+        width: 100%;
+        max-width: fit-content;
+    }
+
+    header .headerMain .recommandations .productsSlides .products .product .productImg{
+        width: 100%;
+        height: 150px;
+    }
+    
+    header .headerMain .recommandations .productsSlides .products .product .productImg img{
+            width: 100%;
+        height: 100%;
+    }
+
+    header .headerMain form.research{
+        width: 100%;
+    }
+
+    header .headerMain form.research{
+        height: 45px;
+    }
+
+    .sloganTextres{
+        display: flex;
+        margin-top: 1rem;
+        white-space: nowrap;
+        align-items: end;
+        font-size: 15px;
+    }
+
+    .sloganTextres img{
+            width: 50px;
+            height: 45px;
+    }
+}
+
+@media screen and (max-width: 450px){
+   header{
+        transform: translateY(-17px);
+        margin: 0 1%;
+        width: 98%;
+    }
+
+    header .headerMain{
+        border-radius: 7px 7px 20px;
+    }
+
+    header .categories{
+        display: none;
+    }
+
+    header .headerMain h1{
+       font-size: 1.7rem;
+        margin-bottom: 1rem;
+    }
+
+    header .headerMain .recommandations{
+        margin-top: 3rem;
+        gap: 2%;
+        align-items: start;
+    }
+
+    header .headerMain .recommandations span.verticalHeaderText{
+        font-size: 1.8rem;
+    }
+
+    header .headerMain .recommandations .productsSlides .products{
+        width: 85%;
+        margin-left: 15%;
+    }
+
+    header .headerMain .productsBtn{
+        margin-left: 15%;
+    }
+    
+    header .headerMain .recommandations .productsSlides .products .product{
+        box-shadow: 1px .5px 5px var(--invisibleColor), 1px .5px 5px var(--invisibleColor);
+        border-radius: 5px;
+        padding: 0 0 10px 0;
+    }
+
+    header .headerMain .productInfos .commandButton{
+        display: none;
+    }
+
+    header .headerMain .productsBtn{
+        justify-content: center;
+        gap: 5px;
+        margin-top: 20px;
+    }
+
+    header .headerMain .productInfos .productPrice{
+        display: flex;
+        gap: 15px;
+    }
+    
+    header .headerMain .productInfos .productPrice i{
+        
+    }
+}
+
+
+@media screen and (max-width: 380px){
+    header .headerMain{
+        transform: translateY(-6px);
+    }
+
+    header .headerMain .productInfos .productCreator img{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 240px){
+    .simpleSideMenu ul{
+        padding: 7px 0;
+    }
+
+    .simpleSideMenu ul p{
+        display: none;
+    }
+}

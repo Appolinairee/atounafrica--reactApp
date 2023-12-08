@@ -1,0 +1,51 @@
+header .research{
+    align-items: center;
+    width: 80%;
+    border: 1.5px solid var(--invisibleColor);
+    height: 50px;
+    padding-left: 10px;
+    border-radius: 20px;
+    position: relative;
+}
+
+header .research .icon{
+    font-size: 17px;
+    color: var(--invisibleColor);
+    font-size: 20px;
+}
+
+header .research input{
+    width: 100%;
+    background: transparent;
+    font-size: 17px;
+    height: 100%;
+}
+
+header .research button.submit{
+    background: transparent;
+}
+
+header .research button.submit p{
+    position: absolute;
+    top: 7%;
+    right: 3px;
+    background: var(--primaryColor);
+    color: var(--whiteColor);
+    width: 25%;
+    min-width: 100px;
+    padding: 10px 0;
+    height: 86%;
+    align-items: center;
+    border-radius: 20px;
+    font-size: 18px;
+}
+
+@media screen and (max-width: 500px){
+    header .headerMain form.research{
+        width: 100%;
+    }
+
+    header .headerMain form.research{
+        height: 45px;
+    }
+}

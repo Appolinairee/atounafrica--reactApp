@@ -1,7 +1,7 @@
 nav{
     position: fixed;
-    left: auto; right: auto;
-    width: calc(96% - 20px);
+    left: 3%; 
+    width: 94%;
     margin: 10px 0%;
     max-height: 70px;
     padding: 20px 4%;
@@ -117,9 +117,6 @@ nav .menuLinksExtra{
 @media screen and (max-width: 1200px) {
     nav{
         padding: 20px 2%;
-        margin: 5px 7px;
-        margin: 10px 2%;
-        width: calc(100% - 4%);
     }    
 
     nav .simpleMenu ul{
@@ -217,8 +214,9 @@ nav .menuLinksExtra{
 @media screen and (max-width: 500px){
     nav{
         height: 60px;
-        margin: 7px 1%;
-        width: 98%;
+        margin: 7px 0;
+        left: 2%;
+        width: 96%;
     }
 
     nav .menuButton{

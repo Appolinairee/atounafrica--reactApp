@@ -73,6 +73,8 @@ body .app{
 
 .icon{
     cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
 .before, .after{
@@ -112,10 +114,6 @@ body .app{
    font-size: 14px;
 }
 
-.globalPadding{
-    padding: 80px 5px;
-}
-
 .input{
     border: 1.5px solid var(--opacityBlackColor);
     display: flex;
@@ -132,6 +130,11 @@ body .app{
     height: 100%;
     margin: auto 0;
     align-content: center
+}
+
+.topSection{
+    padding-top: 90px;
+    margin: 0 3%;
 }
 
 @media screen and (min-width: 451px) {
