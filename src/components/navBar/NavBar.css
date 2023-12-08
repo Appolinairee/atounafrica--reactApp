@@ -175,6 +175,7 @@ nav .menuLinksExtra{
         font-size: 14px;
         border-radius: 10px;
         max-width: 400px;
+        z-index: 110;
 
         justify-content: space-around;
     }
@@ -263,8 +264,6 @@ nav .menuLinksExtra{
     nav{
         height: 55px;
         overflow: hidden;
-        margin: 7px 1%;
-        width: 98%;
     }   
 
     nav .logo img{

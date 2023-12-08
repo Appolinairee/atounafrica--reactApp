@@ -1,0 +1,22 @@
+.hProductCreator{
+    gap: 10px;
+    white-space: nowrap;
+    text-align: left;
+}
+
+.hProductCreator span{
+    font-size: 12px;
+}
+
+.hProductCreator span, .hProductCreator p{
+   overflow: hidden;
+   text-overflow: ellipsis;
+   max-width: 150px;
+   font-size: 14px;
+}
+
+.hProductCreator img{
+    width: 45px;
+    height: 42px;
+    border-radius: 50%;
+}

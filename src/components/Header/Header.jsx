@@ -2,7 +2,7 @@ import Research from "./Research/Research";
 import "./Header.css";
 
 // Header Icons
-import { MdShoppingCart } from "react-icons/md";
+import { MdShoppingCart } from "react-icons/md";    
 
 // Product Images
 import Product1 from "../../assets/photos(exemples)/OIP (3).jpg";
@@ -114,7 +114,7 @@ function Header() {
             <div className="sloganTextres flex">
                 <span>Sois Africain, Sois Authentique</span>
 
-                <img src="../assets/images/madeInAfrica.png" alt="Le Made In Africa" />
+                <img src={MIA} alt="Le Made In Africa" />
             </div>
         </div>
 
@@ -134,7 +134,7 @@ function Header() {
                     ))
                 }
     
-                <a href="#" className="seeAll before">Tout voir</a>
+                <a href="#" className="seeAll before">Tout</a>
             </div>
 
             <div className="sloganSection">
@@ -143,10 +143,9 @@ function Header() {
                 <div className="sloganText flex">
                     <span>Sois Africain  <br /> Sois Authentique</span>
 
-                    <img src={MIA} alt="" />
+                    <img src={MIA} alt="Hello" />
                 </div>
 
-                
             </div>
         </div>
     </header>

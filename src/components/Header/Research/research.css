@@ -19,6 +19,8 @@ header .research input{
     background: transparent;
     font-size: 17px;
     height: 100%;
+    /* border: solid; */
+    padding-right: 20%;
 }
 
 header .research button.submit{
@@ -33,7 +35,9 @@ header .research button.submit p{
     color: var(--whiteColor);
     width: 25%;
     min-width: 100px;
-    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 86%;
     align-items: center;
     border-radius: 20px;
@@ -47,5 +51,18 @@ header .research button.submit p{
 
     header .headerMain form.research{
         height: 45px;
+    }
+
+}
+
+@media screen and (max-width: 400px){
+    header .research{
+        height: 40px !important;
+    }
+
+    header .research button.submit p{
+        width: 20%;
+        min-width: 80px;
+        font-size: 17px;
     }
 }

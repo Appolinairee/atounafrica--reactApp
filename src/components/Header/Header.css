@@ -102,7 +102,6 @@ header .headerMain .recommandations{
     margin-top: 3rem;
     justify-content: start;
     align-items: center;
-    overflow: hidden;
     position: relative;
 }
 
@@ -114,7 +113,10 @@ header .headerMain .recommandations span.verticalHeaderText{
     font-size: 2.8rem;
     text-transform: uppercase;
     writing-mode: vertical-lr;
+}
 
+header .headerMain .recommandations .productsSlides{
+    height: 100%;
 }
 
 header .headerMain .recommandations .productsSlides .products{
@@ -122,6 +124,7 @@ header .headerMain .recommandations .productsSlides .products{
     max-width: 500px;
     height: 100%;
     margin-left: 15%;
+    height: 100%;
 }
 
 header .headerMain .recommandations .productsSlides .products .product{
@@ -132,7 +135,7 @@ header .headerMain .recommandations .productsSlides .products .product{
 }
 
 header .headerMain .recommandations .productsSlides .products .product .productImg{
-
+    
 }
 
 header .headerMain .recommandations .productsSlides .products .product .productImg img{
@@ -268,11 +271,6 @@ header .headerMain .productsBtn span.active{
         overflow-x: scroll;
     }
 
-    header .sideBar .categories::-webkit-scrollbar{
-       height: 5px;
-       display: none;
-    }
-
     header .sideBar .categories p.categoriesTitle{
         display: none;
     }
@@ -303,12 +301,14 @@ header .headerMain .productsBtn span.active{
     header .sideBar .categories .seeAll{
         position: absolute;
         width: 50px;
-        left: calc(100% - 60px); top: 0px;
+        left: calc(100% - 60px); top: 10px;
         background: var(--whiteColor);
         text-align: center;
         padding: 5px;
         border-left: 2px solid var(--blackColor);
-        font-size: 13px;
+        /* margin-left: 20px; */
+        display: flex;
+        align-items: center;
         color: var(--blackColor);
     }
 
@@ -347,6 +347,14 @@ header .headerMain .productsBtn span.active{
 }
 
 @media screen and (max-width: 780px){
+    header .headerMain h1{
+        font-size: 1.6rem;
+    }
+
+    header .headerMain h1 br{
+        display: none;
+    }
+
     header .headerMain .recommandations{
         gap: 5%;
     }
@@ -395,17 +403,15 @@ header .headerMain .productsBtn span.active{
     }
 
     header .headerMain .recommandations .productsSlides .products{
-        width: 100%;
         max-width: fit-content;
     }
 
     header .headerMain .recommandations .productsSlides .products .product .productImg{
-        width: 100%;
-        height: 150px;
+        height: 180px;
     }
     
     header .headerMain .recommandations .productsSlides .products .product .productImg img{
-            width: 100%;
+            /* width: 100%; */
         height: 100%;
     }
 
@@ -434,8 +440,6 @@ header .headerMain .productsBtn span.active{
 @media screen and (max-width: 450px){
    header{
         transform: translateY(-17px);
-        margin: 0 1%;
-        width: 98%;
     }
 
     header .headerMain{
@@ -447,7 +451,7 @@ header .headerMain .productsBtn span.active{
     }
 
     header .headerMain h1{
-       font-size: 1.7rem;
+       font-size: 1.4rem;
         margin-bottom: 1rem;
     }
 
@@ -504,6 +508,17 @@ header .headerMain .productsBtn span.active{
 
     header .headerMain .productInfos .productCreator img{
         display: none;
+    }
+
+}
+
+@media screen and (max-width: 300px){
+    .sloganTextres{
+        font-size: 13px;
+    }
+
+    .sloganTextres img{
+            display: none;
     }
 }
 
