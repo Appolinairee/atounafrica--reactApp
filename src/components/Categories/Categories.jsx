@@ -1,3 +1,4 @@
+import { NavLink, Link } from "react-router-dom";
 import "./categories.css";
 import { MdShoppingCart } from "react-icons/md";
 
@@ -46,11 +47,13 @@ const Categories = () => {
         <div className="categories flex">
             {
                 Categories.map((category, index) => (
-                    <div key={index} className="category active">
-                        <div className="icon"> {category.icon} </div>
-                        <p> {category.name} </p>
-                        <span>{category.number}</span>
-                    </div>
+                    <Link to="/research">
+                        <div key={index} className="category active">
+                            <div className="icon"> {category.icon} </div>
+                            <p> {category.name} </p>
+                            <span>{category.number}</span>
+                        </div>
+                    </Link>
                 ))
             }
         </div>
