@@ -4,64 +4,64 @@ import Creator from "../Creator/Creator";
 
 const Product = () => {
   return (
-        <div class="hProduct">
-                <div class="hProductContent">
-                     <div class="hProductText flex">
+        <div className="hProduct">
+                <div className="hProductContent">
+                     <div className="hProductText flex">
                          <p>Lorem ipsum dolor sit amet Lorem, ipsum dolor..</p>
                          <span><b>5000</b> Fcfa</span>
                      </div>
      
-                     <div class="hProductImage">
+                     <div className="hProductImage">
                          <img src={ProductImage} alt="" />
                      </div>
      
-                     <div class="description">
+                     <div className="description">
                          <p>
                              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis quos vel consequuntur tempora amet ipsam deleniti quibusdam voluptatum libero perspiciatis.
                          </p>
-                         <span class="readMore">Lire Plus</span>
+                         <span className="readMore">Lire Plus</span>
                      </div>
      
-                     <div class="hProductDetails flex">
+                     <div className="hProductDetails flex">
                          <Creator creatorImage={CreatorImage}/>
-                         <button class="button button1 flex">
+                         <button className="button button1 flex">
                              <p>Commander</p>
-                             <i class="fa fa-arrow-right"></i>
+                             <i className="fa fa-arrow-right"></i>
                          </button>
                      </div>
                 </div>
      
-                <div class="hProductInteracts flex">
-                     <div class="interact">
-                         <div class="flex">
-                             <i class="fa fa-heart-o"></i>
+                <div className="hProductInteracts flex">
+                     <div className="interact">
+                         <div className="flex">
+                             <i className="fa fa-heart-o"></i>
                              <span>12</span>
                          </div>
      
                          <p>J'aime</p>
                      </div>
      
-                     <div class="interact">
-                         <div class="flex">
-                             <i class="fa fa-comment"></i>
+                     <div className="interact">
+                         <div className="flex">
+                             <i className="fa fa-comment"></i>
                              <span>12</span>
                          </div>
      
                          <p>Avis</p>
                      </div>
      
-                     <div class="interact">
-                         <div class="flex">
-                             <i class="fa-solid fa-eye"></i>
+                     <div className="interact">
+                         <div className="flex">
+                             <i className="fa-solid fa-eye"></i>
                              <span>12</span>
                          </div>
                          
                          <p>Détails</p>
                      </div>
      
-                     <div class="interact">
-                         <div class="flex">
-                             <i class="fa-solid fa-share"></i>
+                     <div className="interact">
+                         <div className="flex">
+                             <i className="fa-solid fa-share"></i>
                              <span>12</span>
                          </div>
                          

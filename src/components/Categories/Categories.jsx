@@ -40,13 +40,13 @@ const Categories = () => {
     ]
 
   return (
-    <div class="categorieSection section">
+    <div className="categorieSection section">
         <h4>Parcourez nos Catégories</h4>
 
-        <div class="categories flex">
+        <div className="categories flex">
             {
-                Categories.map((category) => (
-                    <div class="category active">
+                Categories.map((category, index) => (
+                    <div key={index} className="category active">
                         <div className="icon"> {category.icon} </div>
                         <p> {category.name} </p>
                         <span>{category.number}</span>

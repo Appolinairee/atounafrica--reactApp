@@ -2,7 +2,7 @@ import "./creator.css";
 
 const Creator = ({creatorImage}) => {
   return (
-    <div class="hProductCreator flex">
+    <div className="hProductCreator flex">
         <img src={creatorImage} alt="" />
      
         <div>

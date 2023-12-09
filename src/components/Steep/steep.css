@@ -1,0 +1,57 @@
+.clickSection{
+    text-align: center;
+    background: var(--whiteColor);
+    padding: 20px 10px;
+    margin-bottom: 40px;
+}
+.clickSection h4{
+    font-size: 1.6rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.clickSection .clicks{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 25px;
+}
+
+
+.clickSection .clicks .click{
+    text-transform: capitalize;
+}
+
+.clickSection .clicks .click img{
+    width: 100%;
+    max-width: 200px;
+    max-height: 200px;
+    height: auto;
+}
+
+.clickSection p.slogan{
+    margin: 2rem 0 0;
+}
+
+@media screen and (max-width: 700px) {
+    .clickSection .clicks{
+        grid-template-columns: 1fr 1fr;
+        row-gap: 25px;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .clickSection{
+        margin: 2rem 5%;
+    }
+
+    .clickSection h4{
+        font-size: 2rem;
+     }
+}
+
+@media screen and (max-width: 300px) {
+    .clickSection .clicks{
+        grid-template-columns: 1fr;
+        row-gap: 25px;
+    }
+}
