@@ -20,8 +20,6 @@ function Research() {
 
   return (
     <form action="" className="flex research">
-      {searchValue}
-
       <div className="icon">
         <IoSearch />
       </div>

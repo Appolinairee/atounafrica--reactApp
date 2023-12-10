@@ -1,4 +1,4 @@
-header .research{
+.research{
     align-items: center;
     width: 80%;
     border: 1.5px solid var(--invisibleColor);
@@ -8,13 +8,13 @@ header .research{
     position: relative;
 }
 
-header .research .icon{
+.research .icon{
     font-size: 17px;
     color: var(--invisibleColor);
     font-size: 20px;
 }
 
-header .research input{
+.research input{
     width: 100%;
     background: transparent;
     font-size: 17px;
@@ -23,11 +23,11 @@ header .research input{
     padding-right: 20%;
 }
 
-header .research button.submit{
+.research button.submit{
     background: transparent;
 }
 
-header .research button.submit p{
+.research button.submit p{
     position: absolute;
     top: 7%;
     right: 3px;
@@ -45,22 +45,22 @@ header .research button.submit p{
 }
 
 @media screen and (max-width: 500px){
-    header .headerMain form.research{
+    .headerMain form.research{
         width: 100%;
     }
 
-    header .headerMain form.research{
+    .headerMain form.research{
         height: 45px;
     }
 
 }
 
 @media screen and (max-width: 400px){
-    header .research{
+    .research{
         height: 40px !important;
     }
 
-    header .research button.submit p{
+    .research button.submit p{
         width: 20%;
         min-width: 80px;
         font-size: 17px;

@@ -10,8 +10,7 @@
     padding: 15px 0;
 }
 
-
-.categoriesSection form{
+/* .categoriesSection form{
     width: 90%;
     margin-left: 5%;
     height: 43px;
@@ -20,19 +19,16 @@
 .categoriesSection form button.submit p{
     padding: 8px;
     width: 90px;
-}
+} */
 
 .categoriesSection .categorieSection .categories{
     display: grid;
     gap: 10%;
     grid-template-columns: 1fr 1fr;
     overflow: visible;
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
 }
 
-
-
-/*  */
 .categoriesSection .categorieSection{
     margin: 10px 0 0;
 }
@@ -74,13 +70,19 @@
     max-width: 100px;
 }
 
+.categoriesSection .research{
+    width: 95%;
+    max-width: 500px;
+    margin: auto;
+}
+
 @media screen and (max-width: 400px) {
     .categoriesSection .categorieSection .categories{
         gap: 5%;
         grid-template-columns: 1fr;
         overflow: visible;
-        margin-bottom: 13rem;
-        padding: 0 5%;
+        margin-bottom: 10rem;
+        padding: 0;
     }
     
     .categoriesSection .categorieSection .categories .category{
@@ -132,7 +134,8 @@
 
 @media screen and (min-width: 700px){
     .categoriesSectionDiv{
-        max-width: 700px;
-        margin: auto;
+        margin: 0 5%;
+    /* margin: 0 var(--smallMargin); */
+
     }   
 } 

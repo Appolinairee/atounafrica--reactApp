@@ -36,5 +36,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "css-loader": "^6.8.1",
+    "postcss-loader": "^7.3.3",
+    "webpack": "^5.89.0"
   }
 }

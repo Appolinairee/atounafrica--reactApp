@@ -47,8 +47,8 @@ const Categories = () => {
         <div className="categories flex">
             {
                 Categories.map((category, index) => (
-                    <Link to="/research">
-                        <div key={index} className="category active">
+                    <Link key={index} to="/research">
+                        <div className="category active">
                             <div className="icon"> {category.icon} </div>
                             <p> {category.name} </p>
                             <span>{category.number}</span>

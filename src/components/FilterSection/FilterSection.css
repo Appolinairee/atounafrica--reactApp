@@ -62,3 +62,24 @@
         padding: 10px 5px;
     }
 }
+
+@media (max-width: 400px){
+    .productFilters .productFiltersList span, .filterButton{
+        padding: 5px 7px;
+        font-size: 14px;
+    }
+
+    .productFilters .productFiltersList span.active, .filterButton{
+        background: var(--primaryColor);
+        color: var(--whiteColor);
+    }
+    
+    .productFilters .filterButton p{
+       display: none;
+    }
+
+    .productFilters .filterButton{
+        margin-left: 10px;
+        padding: 7px;
+    }
+}

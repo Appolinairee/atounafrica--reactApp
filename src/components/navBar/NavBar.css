@@ -15,11 +15,11 @@ nav .logo img{
     cursor: pointer;
 }
 
-.research{
+nav .research{
     height: 33px;
 }
 
-.research input{
+nav .research input{
     background: var(--inputColor);
     height: 33px;
     width: 80%;
@@ -29,7 +29,7 @@ nav .logo img{
     width: 100%;
 }
 
-.research .submit{
+nav .research .submit{
     width: 20%;
     background: var(--blackColor);
     height: 33px;
@@ -39,7 +39,7 @@ nav .logo img{
     display: flex;
 }
 
-.research .submit .icon{
+nav .research .submit .icon{
     font-size: 17px;
     font-weight: 800;
     width: 100%; height: 100%;
@@ -143,7 +143,7 @@ nav .menuLinksExtra{
         padding: 20px 4%;
     }
 
-    nav .research{
+    nav nav .research{
         width: 40%;
     }
 
@@ -194,7 +194,7 @@ nav .menuLinksExtra{
         padding: 5px;
     }
 
-    .simpleSideMenu ul li.researchBar{
+    .simpleSideMenu ul linav .researchBar{
         display: none;
     }
 
@@ -230,7 +230,7 @@ nav .menuLinksExtra{
         display: none;
     }   
 
-    .simpleSideMenu ul li.researchBar{
+    .simpleSideMenu ul linav .researchBar{
         display: block;
     }
 

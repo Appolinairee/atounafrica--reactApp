@@ -1,13 +1,13 @@
 import "./creator.css";
 
-const Creator = ({creatorImage}) => {
+const Creator = ({image, name, location}) => {
   return (
     <div className="hProductCreator flex">
-        <img src={creatorImage} alt="" />
+        <img src={image} alt="" />
      
         <div>
-            <p>King of Soto fgf fnfhfj fufjhfgh</p>
-            <span>Calavi</span>
+            <p>{name}</p>
+            <span>{location}</span>
         </div>
     </div>
   )
