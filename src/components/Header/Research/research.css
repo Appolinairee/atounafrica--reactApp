@@ -45,11 +45,11 @@
 }
 
 @media screen and (max-width: 500px){
-    .headerMain form.research{
+    form.research{
         width: 100%;
     }
 
-    .headerMain form.research{
+     form.research{
         height: 45px;
     }
 

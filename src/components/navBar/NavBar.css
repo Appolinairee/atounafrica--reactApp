@@ -15,11 +15,11 @@ nav .logo img{
     cursor: pointer;
 }
 
-nav .research{
+nav .navResearch{
     height: 33px;
 }
 
-nav .research input{
+nav .navResearch input{
     background: var(--inputColor);
     height: 33px;
     width: 80%;
@@ -29,7 +29,7 @@ nav .research input{
     width: 100%;
 }
 
-nav .research .submit{
+nav .navResearch .submit{
     width: 20%;
     background: var(--blackColor);
     height: 33px;
@@ -39,7 +39,7 @@ nav .research .submit{
     display: flex;
 }
 
-nav .research .submit .icon{
+nav .navResearch .submit .icon{
     font-size: 17px;
     font-weight: 800;
     width: 100%; height: 100%;
@@ -143,7 +143,7 @@ nav .menuLinksExtra{
         padding: 20px 4%;
     }
 
-    nav nav .research{
+    nav nav .navResearch{
         width: 40%;
     }
 
@@ -194,7 +194,7 @@ nav .menuLinksExtra{
         padding: 5px;
     }
 
-    .simpleSideMenu ul linav .researchBar{
+    .simpleSideMenu ul linav .navResearchBar{
         display: none;
     }
 
@@ -212,7 +212,7 @@ nav .menuLinksExtra{
 }
 
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 590px){
     nav{
         height: 60px;
         margin: 7px 0;
@@ -226,11 +226,11 @@ nav .menuLinksExtra{
         cursor: pointer;
     }
 
-    nav .research{
+    nav .navResearch{
         display: none;
     }   
 
-    .simpleSideMenu ul linav .researchBar{
+    .simpleSideMenu ul linav .navResearchBar{
         display: block;
     }
 

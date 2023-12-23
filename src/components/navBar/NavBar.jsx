@@ -62,7 +62,7 @@ export default function NavBar() {
                 <img src={Logo} alt="Logo d'Atoun Africa" />
             </div>
 
-            <div className="research">
+            <div className="navResearch">
                 <form action="" className="flex">
                     <input type="search" name="" id="" placeholder="Rechercher" />
                     <button type="submit" className="submit">

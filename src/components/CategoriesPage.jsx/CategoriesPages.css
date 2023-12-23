@@ -24,7 +24,7 @@
 .categoriesSection .categorieSection .categories{
     display: grid;
     gap: 10%;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     overflow: visible;
     margin-bottom: 2rem;
 }
@@ -74,6 +74,21 @@
     width: 95%;
     max-width: 500px;
     margin: auto;
+}
+
+@media screen and (max-width: 500px) {
+    .categoriesSection .categorieSection .categories{
+        display: grid;
+        gap: 10%;
+        overflow-y: visible;
+        grid-template-columns: 1fr;
+        margin-bottom: 2rem;
+        max-width: 100%;
+    }
+
+    .categoriesSection .categorieSection .categories a{
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 400px) {

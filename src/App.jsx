@@ -7,6 +7,7 @@ import NavBar from "./components/navBar/NavBar";
 import Home from './pages/Home';
 import ProductResult from './components/ProductResults/ProductResult';
 import CategoriesPages from './components/CategoriesPage.jsx/CategoriesPages';
+import ProductCollection from './components/ProductCollection/ProductCollection';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
               <Route path='' element={<Home />} />
               <Route path='/research' element={<ProductResult />} />
               <Route path='/categories' element={<CategoriesPages />} />
+              <Route path='/commande' element={<ProductCollection />} />
           </Routes>
       </BrowserRouter>
     </div>
