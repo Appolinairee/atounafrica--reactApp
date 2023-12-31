@@ -2,7 +2,6 @@ import { NavLink, Link } from "react-router-dom";
 import "./categories.css";
 import { MdShoppingCart } from "react-icons/md";
 
-
 const Categories = () => {
     const Categories = [
         {

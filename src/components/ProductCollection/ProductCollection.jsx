@@ -8,26 +8,26 @@ import ProductPresentation from "../ProductPresentation/ProductPresentation";
 
 const ProductCollection = () => {
   return (
-    <div className='productCollection'>
+    <div className='productCollection topSection'>
       {/* <!-- Steeps of Order --> */}
         <div className="stepsSection">
             <div className="steps flex">
-                <div className="steep active">
+                <div className="steep flex active">
                     <div className="icon"><MdShoppingCart /></div>
                     <p>Commander</p>
                 </div>
     
-                <div className="steep">
+                <div className="steep flex">
                     <div className="icon"><FaTruckFast /></div>
                     <p>Choix Livraison</p>
                 </div>
     
-                <div className="steep">
+                <div className="steep flex">
                     <div className="icon"><RiSecurePaymentFill /></div>
                     <p>Paiement</p>
                 </div>
     
-                <div className="steep">
+                <div className="steep flex">
                     <div className="icon"><FaRegStar /></div>
                     <p>Réception</p>
                 </div>

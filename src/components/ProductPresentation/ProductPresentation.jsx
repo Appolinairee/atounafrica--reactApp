@@ -1,9 +1,15 @@
 import "./ProductPresentation.css";
 
-import ProductImage1 from "../../assets/photos(exemples)/OIP (3).jpeg"
-import ProductImage2 from "../../assets/photos(exemples)/mobilier.png"
-import ProductImage3 from "../../assets/photos(exemples)/mobilier.png"
-import ProductImage4 from "../../assets/photos(exemples)/mobilier.png"
+import ProductImage1 from "../../assets/photos(exemples)/OIP (3).jpeg";
+import ProductImage2 from "../../assets/photos(exemples)/mobilier.png";
+import ProductImage3 from "../../assets/photos(exemples)/mobilier.png";
+import ProductImage4 from "../../assets/photos(exemples)/mobilier.png";
+
+import Creator from "../../assets/photos(exemples)/OIP (2).jpg";
+
+import { FaRegStar } from "react-icons/fa";
+import { FaStarHalfAlt } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 
 const ProductPresentation = () => {
   return (
@@ -20,11 +26,11 @@ const ProductPresentation = () => {
                 <div className="prices flex">
                     <p>Prix unitaire:  <b> 5000</b>Fcfa</p>
                     <div className="stars flex">
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star"></i>
-                        <i className="fa-solid fa-star-half-stroke"></i>
-                        <i className="fa-regular fa-star-half-stroke"></i>
+                        <div className="icon"><FaStar /></div>
+                        <div className="icon"><FaStar /></div>
+                        <div className="icon"><FaStarHalfAlt /></div>
+                        <div className="icon"><FaRegStar /></div>
+                        <div className="icon"><FaRegStar /></div>
                     </div>
                 </div>
             </div>
@@ -66,11 +72,6 @@ const ProductPresentation = () => {
                 </div>
             </div>
 
-            <div className="button button3 before">
-                <span></span>
-                <p>commander</p>
-            </div>
-
             <div className="productDetails">
                 <div className="detailState flex">
                     <p>description</p>
@@ -82,7 +83,7 @@ const ProductPresentation = () => {
                     <div className="productAvis">
                         <div className="avisContent flex">
                             <div className="avisProfil">
-                                <img src="../assets/photos(exemples)/OIP (3).jpeg" alt="" />
+                                <img src={ProductImage1} alt="" />
                             </div>
 
                             <div className="avisText">
@@ -93,7 +94,7 @@ const ProductPresentation = () => {
 
                     <div className="avisContent flex">
                         <div className="avisProfil">
-                            <img src="../../assets/photos(exemples)/OIP (3).jpeg" alt="" />
+                            <img src={ProductImage1} alt="" />
                         </div>
 
                         <div className="avisText">
@@ -104,7 +105,7 @@ const ProductPresentation = () => {
 
                     <div className="avisContent flex">
                         <div className="avisProfil">
-                            <img src="../assets/photos(exemples)/OIP (3).jpeg" alt="" />
+                            <img src={ProductImage1} alt="" />
                         </div>
 
                         <div className="avisText">
@@ -123,13 +124,18 @@ const ProductPresentation = () => {
                 
 
                 <div className="hProductCreator flex">
-                    <img src="../../assets/photos(exemples)/OIP (2).jpg" alt="" />
+                    <img src={Creator} alt="Creator Image" />
                     
                     <div>
                         <p>King of Soto fgf fnfhfj fufjhfgh ERYHRYR</p>
                         <span>Calavi</span>
                     </div>
                 </div>
+            </div>
+
+            <div className="button">
+                <span></span>
+                <p>commander</p>
             </div>
         </div>
   )

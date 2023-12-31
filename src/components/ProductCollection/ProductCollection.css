@@ -1,6 +1,5 @@
 /* Step styles */
 .stepsSection{
-    padding: 90px 0 10px;
     max-width: 700px;
     margin: 0 auto;
 }
@@ -10,12 +9,14 @@
     flex-wrap: nowrap;
     background: var(--whiteColor);
     padding: 15px 5%;
-    margin: 0 3%;
-    border-radius: 10px 10px 0 0;
+    border-radius: 10px 10px 0 0
 }
 
 .steps .steep{
     padding: 10px;
+    gap: 10px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
     border-left: 1px solid rgba(0, 0, 0, 0.097);
 }
 
@@ -46,16 +47,24 @@
 
 @media screen and (max-width: 700px) {
     .stepsSection{
-        padding: 80px 0 10px;
+        /* padding: 80px 0 10px; */
     }
 
     .steps{
-        padding: 10px 5%;
+        padding: 0px 5%;
         border-radius: 10px 10px 0 0;
+    }
+
+    .steps .steep{
+        flex-direction: column;
+        gap: 0;
+        padding-left: auto;
+        justify-content: center;
     }
 
     .steps .steep p{
         font-size: 15px;
+        text-align: center
     }
 
     .steps .steep .icon{
@@ -65,13 +74,14 @@
 
 @media screen and (max-width: 450px) {
     .stepsSection{
-        padding: 70px 0 0;
+        padding: 0;
+        /* border: solid; */
     }
 
     .steps{
-        padding: 0px 2%;
         border-radius: 10px 10px 0 0;
         margin: 0;
+        padding: 0;
     }
 
     .steps .steep .icon{
@@ -85,4 +95,45 @@
 
 @media screen and (max-width: 500px) {
     
+}
+
+/* Actual state */
+.actualState{
+    gap: 1rem;
+}
+
+.actualState span{
+   border: solid var(--opacityBlackColor);
+   padding: 2px 8px;
+   border-radius: 50%;
+}
+
+.actualState h3{
+   font-size: 1.8rem;
+   white-space: no-wrap;
+}
+
+.actualState i{
+   font-size: 14px;
+}
+
+@media screen and (max-width: 500px) {
+    .actualState h3{
+        font-size: 1.4rem;
+        white-space: nowrap;
+     }
+}
+
+@media screen and (max-width: 450px) {
+    .actualState{
+        gap: 15px;
+        justify-content: center;
+        align-items: start;
+    }
+
+    .actualState h3{
+        font-size: 1.1rem;
+        white-space: wrap;
+        text-align: left;
+     }
 }

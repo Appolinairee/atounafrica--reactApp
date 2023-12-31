@@ -19,8 +19,8 @@
     background: transparent;
     font-size: 17px;
     height: 100%;
-    /* border: solid; */
     padding-right: 20%;
+    padding-left: 10px;
 }
 
 .research button.submit{
