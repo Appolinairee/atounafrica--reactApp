@@ -93,8 +93,15 @@
     }
 }
 
-@media screen and (max-width: 500px) {
-    
+@media screen and (max-width: 380px) {
+    .steps .steep{
+       padding-left: 3px;
+       padding-right: 3px;
+    }
+
+    .steps .steep p{
+        font-size: 10px;
+    }
 }
 
 /* Actual state */

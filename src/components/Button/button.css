@@ -3,7 +3,7 @@ button.button{
     font-size: 16px;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
 }
 
 button.button.button1{
@@ -66,8 +66,33 @@ button.button.button1 i{
     font-weight: bold;
 }
 
-@media screen and (max-width: 500px) {
+.button.fixedButton{
+    position: fixed;
+    top: 80%; left: 50%;
+    width: 90%;
+    max-width: 400px;
+    transform: translateX(-50%);
+    padding: 11px 20px;
+    font-size: 19px;
+    background: var(--primaryColor);
+    text-align: center;
+    color: var(--whiteColor);
+    border-radius: 10px;
+    justify-content: center;
+}
+
+@media screen and (max-width: 450px) {
     .button.button4{
         font-size: 16px;
+    }
+
+    .button.fixedButton{
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .button.fixedButton{
+       top: 90%;
     }
 }

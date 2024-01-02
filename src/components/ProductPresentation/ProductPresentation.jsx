@@ -10,15 +10,16 @@ import Creator from "../../assets/photos(exemples)/OIP (2).jpg";
 import { FaRegStar } from "react-icons/fa";
 import { FaStarHalfAlt } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
+import { IoArrowForward } from "react-icons/io5";
+import Button from "../Button/Button";
+import ProductCollection from "../ProductCollection/ProductCollection";
+import SteepTitle from "../SteepTitle/SteepTitle";
 
 const ProductPresentation = () => {
   return (
-    // <!-- Product Content -->
+    <ProductCollection>
         <div className="productSection">
-            <div className="actualState flex">
-                <span>1</span>
-                <h3>Votre Produit: Commandez-le!</h3>
-            </div>
+            <SteepTitle title="Votre Produit: Commandez-le!" index="1" />
 
             <div className="productInfosText">
                 <p className="name">Nom du produit de l'entreprise</p>
@@ -39,7 +40,7 @@ const ProductPresentation = () => {
                 <div className="productGalerie_main">
                     <img src={ProductImage1} alt="Image principale du produit" />
                 </div>
-
+ 
                 <div className="productGalerie_seconds flex">
                     <div className="productGalerie_second">
                         <img src={ProductImage2} alt="" />
@@ -133,11 +134,9 @@ const ProductPresentation = () => {
                 </div>
             </div>
 
-            <div className="button">
-                <span></span>
-                <p>commander</p>
-            </div>
+            <Button buttonClass="button fixedButton" buttonContent="Commandez" buttonIcon ={<IoArrowForward />} />
         </div>
+    </ProductCollection>
   )
 }
 

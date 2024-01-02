@@ -6,7 +6,7 @@ import { RiSecurePaymentFill } from "react-icons/ri";
 import { FaRegStar } from "react-icons/fa";
 import ProductPresentation from "../ProductPresentation/ProductPresentation";
 
-const ProductCollection = () => {
+const ProductCollection = ({children}) => {
   return (
     <div className='productCollection topSection'>
       {/* <!-- Steeps of Order --> */}
@@ -34,7 +34,7 @@ const ProductCollection = () => {
             </div>
         </div>
 
-        <ProductPresentation />
+        {children}
     </div>
   )
 }

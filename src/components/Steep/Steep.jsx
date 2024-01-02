@@ -6,7 +6,6 @@ import Steep1 from "../../assets/photos(exemples)/SteepImages/undraw_discover.pn
 import Steep2 from "../../assets/photos(exemples)/SteepImages/undraw_Meeting.png";
 import Steep3 from "../../assets/photos(exemples)/SteepImages/undraw_payments.png";
 import Steep4 from "../../assets/photos(exemples)/SteepImages/undraw_serve.png";
-
 import { IoArrowForward } from "react-icons/io5";
 
 const Steep = () => {

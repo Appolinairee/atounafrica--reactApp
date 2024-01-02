@@ -1,0 +1,51 @@
+.orders{
+    display: grid;
+    row-gap: 40px;
+}
+
+.orders .order{
+    border: 2px solid rgba(0, 0, 0, 0.245);
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+.orders .order .orderDetails{
+    padding-bottom: 7px;
+    line-height: 25px;
+}
+
+.orders .order .orderDetails img{
+    width: 80px;
+}
+
+.orders .order .orderDetails p{
+    font-size: 16px;
+    max-width: 150px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.orders .order .orderState{
+    border-top: 1px solid rgba(0, 0, 0, 0.245);
+    padding-top: 7px;
+}
+
+.orders .order .orderState{
+    border-top: 2px solid rgba(0, 0, 0, 0.245);
+    padding-top: 7px;
+}
+
+.orders .order .orderButtons{
+    gap: 10%;
+    margin-top: 10px;
+}
+
+.orders .order .orderButtons p{
+    border: 1px solid  rgba(0, 0, 0, 0.245);
+    border-radius: 30px;
+    padding: 0px 10px;
+    font-size: 13px;
+    align-items: center;
+    gap: 5px;
+}
