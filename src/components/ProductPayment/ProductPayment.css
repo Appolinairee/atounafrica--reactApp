@@ -5,21 +5,27 @@
 }
 
 .paymentsSection .orderPaymentType{
-    margin: 30px 15px 20px;
-    padding: 0 5%;
+    margin: 30px 7% 20px;
+    max-width: 350px;
 }
 
 .paymentsSection .orderPaymentType p{
    font-size: 15px;
+   cursor: pointer;
+   white-space: nowrap;
+}
+
+.paymentsSection .orderPaymentType p.typeActive{
+    font-weight: bold;
 }
 
 .paymentsSection .orderPaymentType p.typeActive::after{
     background: var(--primaryColor);
-    width: 9px;
-    height: 9px;
+    width: 30px;
+    height: 3px;
     top: calc(100% + 1px);
-    left: calc(50% - 5px);
-    border-radius: 50%;
+    left: calc(50% - 15px);
+    border-radius: 7px;
 }
 
 .paymentsSection .orderState .orderPrices{
@@ -33,7 +39,7 @@
 
 .paymentsSection .orderPaymentDetails{
     margin: 30px 0;
-    padding: 0 5%;
+    padding: 0 5%;  
 }
 
 .paymentsSection .orderPaymentDetails li .icon{
@@ -51,13 +57,58 @@
     align-items: start;
     gap: 10px;
     margin-bottom: 20px;
+    justify-content: start;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.233), -2px -2px 3px rgba(0, 0, 0, 0.133);
+    border-radius: 5px;
+    padding: 7px 5%;
 }
 
 .paymentsSection .orderPaymentDetails ul li p{
     font-size: 15px;
+
 }
 
 .paymentsSection .orderPaymentDetails ul li i{
     color: var(--primaryColor);
     margin-top: 5px;
+}
+
+@media screen and (min-width: 450px) {
+    .paymentsSection .orderPaymentType{
+        margin: 30px auto 20px;
+        padding: 0 5%;
+    }
+
+    .paymentsSection .orderPaymentDetails ul li p{
+        font-size: 105%;
+    }
+}
+
+@media screen and (min-width: 450px) {
+    .paymentsSection .orderPaymentType{
+        margin: 30px auto 20px;
+        padding: 0 5%;
+    }
+
+    .paymentsSection .orderPaymentDetails ul li p{
+        font-size: 105%;
+    }
+
+    .paymentsSection .orderPaymentDetails ul li{
+        padding: 10px 5%;
+        border-radius: 10px;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .paymentsSection .orderPaymentDetails ul{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5%;
+    }
+
+    .paymentsSection .orderPaymentDetails ul li{
+        padding: 10px 5%;
+        border-radius: 10px;
+    }
 }

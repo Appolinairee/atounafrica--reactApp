@@ -1,33 +1,38 @@
 import "./Orders.css";
 import Product from "../../assets/photos(exemples)/mobilier.png";
+import { useState } from "react";
 
-const Orders = () => {
+const Orders = ({state}) => {
+
+    const [cardState, setCardState] = useState(state);
+
     return (
-        <div class="orders">
-            <div class="order">
-                <div class="orderDetails flex">
-                    <div class="orderDetailsText">
+        <div className="orders">
+            <div className={cardState? "order orderActive": "order"}>
+                <div className="orderDetails flex">
+                    <div className="orderDetailsText">
                         <p>Nom du produit commandé</p>
                         <span>Prix total: <b>10.000 Fcfa</b></span>
                     </div>
        
-                    <div class="orderImage">
+                    <div className="orderImage">
                                    <img src={Product} alt="Image de commande" />
                                </div>
                            </div>
-       
-                           <div class="orderState">
-                               {/* <p>Statut: En cours de <b>livraison</b></p>
-                               <div class="orderButtons flex">
-                                   <p class="orderDetails flex"> <span>Plus</span> <i class="fa-regular fa-eye"></i></p>
-                                   <button class="button button2">Suivre la livraison</button>
-                               </div> */}
+                           <div className="orderState">
+                               <p>Statut: En cours de <b>livraison</b></p>
+                               <div className="orderButtons flex">
+                                   <p className="orderDetails flex" onClick={()=>{setCardState(!cardState)}}> <span>
+                                        {cardState ? "Moins": "Plus"}
+                                    </span> <i className="fa-regular fa-eye"></i></p>
+                                   <button className="button">Suivre la livraison</button>
+                               </div>
                                
                                {/* <!-- Prices States --> */}
-                               <div class="orderPrices">
-                                    <p class="orderPriceUnit">Prix Produit(s): 10000 Fcfa</p>
-                                    <p class="orderPriceLivr">Prix unitaire: 2000 Fcfa</p>
-                                    <p class="orderAll">Total: <b>12000 Fcfa</b></p>
+                               <div className="orderPrices">
+                                    <p className="orderPriceUnit">Prix Produit(s): 10000 Fcfa</p>
+                                    <p className="orderPriceLivr">Frais livraison: 2000 Fcfa</p>
+                                    <p className="orderAll">Total: <b>12000 Fcfa</b></p>
                                </div>
                            </div>
                        </div>

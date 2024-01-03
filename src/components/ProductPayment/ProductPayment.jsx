@@ -10,13 +10,13 @@ const ProductPayment = () => {
   return (
     <ProductCollection>
        <div className="paymentsSection">
-                <SteepTitle title="Paiement" index="2" />
+                <SteepTitle title="Paiement à Atoun" index="2" />
 
                 <div className="ordersSection">
                     <div className="orderPaymentType flex">
                         <p className="typeActive after">En espèce</p>
                         <p>Par Cotisation</p>
-                    </div>
+                    </div> 
 
                    <Orders />
 

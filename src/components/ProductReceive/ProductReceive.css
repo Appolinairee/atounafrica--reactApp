@@ -1,0 +1,23 @@
+.receiveContent{
+    background: var(--whiteColor);
+    border-radius: 8px;
+    padding: 20px 3%;
+}
+
+.receiveForm{
+    margin: 2rem 0;
+    text-align: center;
+    background: var(--whiteColor);
+}
+
+.receiveForm h4{
+    margin-bottom: 20px;
+}
+
+.receiveForm form textarea{
+    width: 90%;
+    margin: 0 auto;
+    padding: 15px;
+    border: 2px solid var(--opacityBlackColor);
+    border-radius: 20px 20px 0 20px;
+}
