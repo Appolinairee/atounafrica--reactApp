@@ -1,8 +1,9 @@
 import "./Orders.css";
 import Product from "../../assets/photos(exemples)/mobilier.png";
 import { useState } from "react";
+import { FaEye } from "react-icons/fa";
 
-const Orders = ({state}) => {
+const Orders = ({children, state}) => {
 
     const [cardState, setCardState] = useState(state);
 
@@ -16,16 +17,20 @@ const Orders = ({state}) => {
                     </div>
        
                     <div className="orderImage">
-                                   <img src={Product} alt="Image de commande" />
-                               </div>
-                           </div>
-                           <div className="orderState">
-                               <p>Statut: En cours de <b>livraison</b></p>
+                        <img src={Product} alt="Image de commande" />
+                    </div>
+                </div>
+
+                <div className="orderState">
+                    <p>Statut: En cours de <b>livraison</b></p>
                                <div className="orderButtons flex">
                                    <p className="orderDetails flex" onClick={()=>{setCardState(!cardState)}}> <span>
                                         {cardState ? "Moins": "Plus"}
-                                    </span> <i className="fa-regular fa-eye"></i></p>
-                                   <button className="button">Suivre la livraison</button>
+                                    </span> </p>
+                                   <button className="button">
+                                        Suivre la livraison
+                                        <div className="icon"><FaEye /></div>
+                                    </button>
                                </div>
                                
                                {/* <!-- Prices States --> */}
@@ -34,8 +39,8 @@ const Orders = ({state}) => {
                                     <p className="orderPriceLivr">Frais livraison: 2000 Fcfa</p>
                                     <p className="orderAll">Total: <b>12000 Fcfa</b></p>
                                </div>
-                           </div>
-                       </div>
+                </div>
+            </div>
    
         </div>
     )

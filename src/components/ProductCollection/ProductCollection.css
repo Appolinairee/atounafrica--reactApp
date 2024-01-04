@@ -135,7 +135,6 @@
     .actualState{
         gap: 15px;
         justify-content: center;
-        align-items: start;
     }
 
     .actualState h3{

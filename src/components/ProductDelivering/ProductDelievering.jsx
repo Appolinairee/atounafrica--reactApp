@@ -69,7 +69,9 @@ const ProductDeliever = () => {
             </form>
 
                <div className="deliverPrices">
-                    <p>Frais de livraison: <b>En attente du livreur</b> (dans au plus 20 minutes) </p>
+                    <p>Date et Heure: <b>En attente de confirmation</b> </p> <br />
+                    <p>Lieu de livraison: <b>Bokpa</b> </p> <br />
+                    <p>Frais de livraison: <b>En attente du livreur</b></p>
                     <br />
                     <p>Prix total: <b>(5000 + ...)</b> Fcfa </p>
                </div>

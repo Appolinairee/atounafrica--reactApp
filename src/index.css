@@ -95,14 +95,14 @@ body .app{
 
 .actualState{
     margin-bottom: 20px;
-    justify-content: start;
     gap: 10px;
     justify-content: center;
+    align-items: center;
 }
 
-.actualState span{
+.actualState span.icon{
    border: solid var(--opacityBlackColor);
-   padding: 2px 8px;
+   padding: 10px;
    border-radius: 50%;
 }
 

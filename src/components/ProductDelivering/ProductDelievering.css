@@ -66,9 +66,8 @@
 }
 
 .paymentsSection .deliverPrices{
-    border: 2px solid var(--primaryColor);
-    padding: 15px 5px;
-    border-radius: 10px;
+    border: 1px solid var(--primaryColor);
+    padding: 15px;
     max-width: 500px;
     margin: 0 auto;
 }
@@ -86,6 +85,11 @@
         max-width: 400px;
         margin: auto;
     }
+
+    .paymentsSection .deliverPrices{
+        padding: 2rem 5%;
+    }
+    
 }
 
 
