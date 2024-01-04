@@ -10,7 +10,7 @@ const ProductPayment = () => {
   return (
     <ProductCollection>
        <div className="paymentsSection">
-                <SteepTitle title="Paiement à Atoun" index="2" />
+                <SteepTitle title="Paiement à Atoun" index="2" icon={<RiSecurePaymentFill />} />
 
                 <div className="ordersSection">
                     <div className="orderPaymentType flex">

@@ -19,7 +19,7 @@ const ProductPresentation = () => {
   return (
     <ProductCollection>
         <div className="productSection">
-            <SteepTitle title="Votre Produit: Commandez-le!" index="1" />
+            <SteepTitle title="Votre Produit: Commandez-le!" index="1" icon={<RiSecurePaymentFill />} />
 
             <div className="productInfosText">
                 <p className="name">Nom du produit de l'entreprise</p>

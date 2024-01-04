@@ -1,0 +1,113 @@
+.paymentsSection .deliverPrices{
+    margin-bottom: 4rem;
+}
+
+.deliversSection{
+
+}
+
+.deliversSection .deliverSection{
+    margin: 2rem 0;
+}
+
+.deliversSection .deliverSection h4{
+    font-size: 17px;
+    margin-bottom: 1rem;
+}
+
+.deliversSection .deliverSection .input{
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+
+.deliversSection .deliverSection input{
+    margin-bottom: 1rem;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.deliversSection .deliverSection .delieverOption{
+    position: relative;
+}
+
+
+.deliversSection .deliverSection .delieverOption .plusIcon{
+   position: absolute;
+   right: 20px;
+    border: 1px solid var(--blackColor);
+    padding: 0px 5px;
+    transform: rotate(90deg);
+    border-radius: 50%;
+    font-size: 12px;
+}
+
+.deliversSection .deliverSection form button{
+    white-space: nowrap;
+}
+
+.deliversSection .deliverDetails .delieverDetailsContent{
+    width: 100%;
+    flex-direction: column;
+}
+
+.deliversSection .deliverDetails .delieverDetailsContent input{
+    width: 100%;
+}
+
+.paymentsSection form button.button4{
+    position: fixed;
+    bottom: 5.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    white-space: nowrap;
+    justify-content: center;
+}
+
+.paymentsSection .deliverPrices{
+    border: 2px solid var(--primaryColor);
+    padding: 15px 5px;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.paymentsSection .deliverPrices p{
+    font-size: 15px;
+}
+
+@media screen and (min-width: 490px) {
+    .paymentsSection{
+        padding: 20px 10% 6rem;
+    }
+
+    .paymentsSection .deliversSection{
+        max-width: 400px;
+        margin: auto;
+    }
+}
+
+
+@media screen and (min-width: 700px){
+    .paymentsSection form button.button4{
+        bottom: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .paymentsSection .deliversSection{
+        max-width: 100%;
+        margin: auto;
+    }
+
+    .paymentsSection form .deliversSection{
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 10%;
+        margin: auto 0;
+        justify-content: center;
+    }
+}

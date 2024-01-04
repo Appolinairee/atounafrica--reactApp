@@ -1,70 +1,72 @@
 import "./ProductDelievering.css";
 import ProductCollection from "../ProductCollection/ProductCollection";
 import SteepTitle from "../SteepTitle/SteepTitle";
+import Button from "../Button/Button";
+import { FaTruckFast } from "react-icons/fa6";
+import { MdOutlinePlace } from "react-icons/md";
+import { CiCalendarDate } from "react-icons/ci";
 
 const ProductDeliever = () => {
   return (
     <ProductCollection>
       <div className="paymentsSection">
-            <SteepTitle title="Choix de la livraison" index="3" />
+            <SteepTitle title="Choix de la livraison" index="3" icon={<FaTruckFast />} />
 
+            <form action="" method="post">
                 <div className="deliversSection">
                     <div className="deliverSection">
                         <h4>Choisissez votre option de livraison</h4>
 
                         <div className="deliverOptions">
-                            <form action="" method="post">
                                 <div className="delieverOption flex input">
                                     <input type="checkbox" value="créateur" id="creator" />
-                                    <label for="creator">Se faire livrer par le créateur</label>
+                                    <label htmlFor="creator">Se faire livrer par le créateur</label>
     
                                     <div className="plusIcon">{">"}</div>
                                 </div>
     
                                 <div className="delieverOption flex input">
                                     <input type="checkbox" value="Gozem" id="gozem" />
-                                    <label for="gozem">Gozem</label>
+                                    <label htmlFor="gozem">Gozem</label>
     
                                     <div className="plusIcon">{"<"}</div>
                                 </div>
     
                                 <div className="delieverOption flex input">
                                     <input type="checkbox" value="Gozem" id="laly" />
-                                    <label for="laly">Laly Express</label>
+                                    <label htmlFor="laly">Laly Express</label>
     
                                     <div className="plusIcon">{"<"}</div>
                                 </div>
     
                                 <div className="delieverOption flex input">
                                     <input type="checkbox" value="Gozem" id="deliverhouse" />
-                                    <label for="deliverhouse">Deliver House</label>
+                                    <label htmlFor="deliverhouse">Deliver House</label>
     
                                     <div className="plusIcon">{">"}</div>
                                 </div>
-
-                                <button type="submit">Soumettez votre choix</button>
-                            </form>
                         </div>
                     </div>
 
                     <div className="deliverSection deliverDetails">
                         <h4>Vos coordonnées pour la livraison</h4>
 
-                        <div className="delieverDetails flex">
-                            <form action="">
+                        <div className="delieverDetailsContent flex">
                                 <div className="deliverDetail input">
+                                    <div className="icon"><MdOutlinePlace /></div>
                                     <input type="text" placeholder="Lieu de livraison" />
                                 </div>
 
                                 <div className="deliverDetail input">
+                                    <div className="icon"><CiCalendarDate /></div>
                                     <input type="datetime" placeholder="Date et heure de livraison" />
                                 </div>
-
-                                <button type="submit">Confirmer vos coordonnées</button>
-                            </form>
                         </div>
-                    </div>
-               </div>
+                </div>
+                </div>
+
+                <Button buttonClass="button button4" buttonContent="Confirmer la livraison" buttonIcon={<FaTruckFast />}/>
+            </form>
 
                <div className="deliverPrices">
                     <p>Frais de livraison: <b>En attente du livreur</b> (dans au plus 20 minutes) </p>

@@ -129,7 +129,8 @@ body .app{
 .input input{
     height: 100%;
     margin: auto 0;
-    align-content: center
+    align-content: center;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .topSection{

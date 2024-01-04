@@ -6,7 +6,7 @@ const ProductReceive = () => {
   return (
     <ProductCollection>
         <div className="receiveContent">
-            <SteepTitle title="Confirmer la réception" index="4" />
+            <SteepTitle title="Confirmer la réception" index="4" icon={<MdShoppingCart />} />
             <div className="orders">
                         <div className="order">
                             <div className="orderDetails flex">
