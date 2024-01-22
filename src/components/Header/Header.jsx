@@ -50,7 +50,7 @@ function Header() {
   return (
     <header className="topSection">
         <div className="headerMain section">
-            <h1>Plus de <b>20.000 </b>
+            <h1 className="text-2xl">Plus de <b>20.000 </b>
                 produits et créations
                 <b className="mia"> <br />Made In Africa <br /> </b> 
                 pour tous vos besoins et services.</h1>

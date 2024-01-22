@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 *, ::after, ::before{
     padding: 0;
     margin: 0;
@@ -134,20 +138,20 @@ body .app{
 }
 
 .topSection{
-    padding-top: 90px;
+    padding-top: 45px;
     margin: 0 3%;
 }
 
 @media screen and (max-width: 700px) {
     .topSection{
-        padding-top: 75px;
+        padding-top: 38px;
         margin: 0 2%;
     }
 }
 
 @media screen and (max-width: 450px) {
     .topSection{
-        padding-top: 68px;
+        padding-top: 45px;
         margin: 0 2%;
     }
 }

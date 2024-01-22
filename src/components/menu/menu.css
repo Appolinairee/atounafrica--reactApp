@@ -7,7 +7,7 @@
     padding: 4rem 1rem 0 1rem;
     color: var(--color-white-pur);
     gap: 0;
-    z-index: 90;
+    z-index: 40;
     background: rgba(180, 168, 168, 0.8);
     transition: .3s ease;
     overflow-y: scroll;  

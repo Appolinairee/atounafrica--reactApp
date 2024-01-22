@@ -19,7 +19,7 @@ function Research() {
   };
 
   return (
-    <form action="" className="flex research">
+    <form action="" className="flex research max-w-[400px]">
       <div className="icon">
         <IoSearch />
       </div>

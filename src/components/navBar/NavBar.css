@@ -6,7 +6,7 @@ nav{
     max-height: 70px;
     padding: 20px 4%;
     border-radius: 10px;
-    z-index: 100;
+    z-index: 49;
 }
 
 nav .logo img{
@@ -175,7 +175,7 @@ nav .menuLinksExtra{
         font-size: 14px;
         border-radius: 10px;
         max-width: 400px;
-        z-index: 110;
+        z-index: 40;
 
         justify-content: space-around;
     }

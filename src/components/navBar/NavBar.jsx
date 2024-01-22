@@ -14,13 +14,10 @@ import { BiMessage } from "react-icons/bi";
 import { FaBars } from "react-icons/fa6";
 import { MdOutlineNotificationsActive } from "react-icons/md";
 import { FaTimes } from "react-icons/fa";
-
+import Message from "../Message/Message";
+    
 export default function NavBar() {
-    const [barState, setBarState] = useState (0);
-
-    const handleBar = () => {
-        setBarState(barState? 0 : 1);
-    }
+    const [barState, setBarState] = useState(0);
 
     const Links = [
         {
@@ -48,8 +45,18 @@ export default function NavBar() {
         },
     ];
 
+    const [messageState, setMessageState] = useState(false);
+
+    const handleBar = () => {
+        setBarState(barState? 0 : 1);
+    }
+
+    const handleMessageState = () => {
+        setMessageState(messageState? 0 : 1);
+    }
+
   return (
-    <div>
+    <div className="simpleMenu_messages">
         <nav className="flex section">
             <div className="menuButton flex" onClick={handleBar}>
                 {
@@ -87,7 +94,7 @@ export default function NavBar() {
             </div>
 
             <div className="menuLinksExtra flex">
-                <div className="menuLinkExtra messageButton flex">
+                <div className="menuLinkExtra messageButton flex" onClick={() => {setMessageState(!messageState)}}>
                         <div className="icon flex">
                             <BiMessage />
                             <span>23</span>
@@ -95,7 +102,7 @@ export default function NavBar() {
 
                         <p>Messages</p>
                 </div>
-
+                    
                 <div className="menuLinkExtra">
                     <a href="">
                         <div className="icon flex"><MdOutlineNotificationsActive />  <span>23</span></div>
@@ -115,6 +122,8 @@ export default function NavBar() {
         <SimpleMenu />
 
         <Menu barState={barState} handleBar={handleBar} />
+
+        <Message handleMessageState={handleMessageState}messageState={messageState} className={`${messageState ? "activeMessage": ""}`} />
     </div>
   )
 }
@@ -154,19 +163,20 @@ function SimpleMenu() {
     ]
 
   return (
-    <div className ="simpleSideMenu">
-        <ul className  ="flex">
-            {
-                subLinks.map((link, index) => (
-                    <li key={index}>
-                        <NavLink to={link.link} className="menuLink flex">
-                            <div className="icon"> {link.icon} </div>
-                            <p> {link.name} </p>
-                        </NavLink>
-                    </li>
-                ))
-            }
-        </ul>
-    </div>
+
+        <div className ="simpleSideMenu">
+            <ul className  ="flex">
+                {
+                    subLinks.map((link, index) => (
+                        <li key={index}>
+                            <NavLink to={link.link} className="menuLink flex">
+                                <div className="icon"> {link.icon} </div>
+                                <p> {link.name} </p>
+                            </NavLink>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
   )
 }
