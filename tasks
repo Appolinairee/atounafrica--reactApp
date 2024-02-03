@@ -1,22 +1,20 @@
 There are attending tasks about this amazing Atoun Africa app
 
 # Home Page
-    -interaction of navbar Development =>
-    -integration of Header and interactions
-    -products integrations 
-    -gestion des catégories de la page Home
 
 # Pages Categories et Recherche
-    -responsivité
 
 # Pages Produits
     # Page présentation produit
-        -mise en forme commune aux pages produits
-        -intégration et responsivité
     # Page Paiement
-        -
     #Page Choix de livrraison
     #Page Suivie, Réception, avis
+
+#notificationsBar
+    #ComeUp NotificationsBar
+
+#Message Bar
+    #ComeUp Message Bar
 
 # Footer
     -recherche du contenu

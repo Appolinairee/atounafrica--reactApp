@@ -89,8 +89,8 @@ nav .menuLinksExtra .icon{
 
 nav .menuLinksExtra .icon span{
     position: absolute;
-    top: -5px;
-    right: -5px;
+    top: -8px;
+    right: -8px;
     background: var(--primaryColor);
     color: var(--whiteColor);
     padding: 1px 2px;
@@ -105,9 +105,9 @@ nav .menuButton, .simpleSideMenu{
 
 nav .menuLinksExtra{
     gap: 25px;
-    border: 2px solid var(--opacityBlackColor);
+    border: 1.5px solid var(--opacityBlackColor);
     border-radius: 20px;
-    padding: 9px 13px;
+    padding: 7px 12px;
 }
 
 .menuLinkExtra.menuExtraButton{

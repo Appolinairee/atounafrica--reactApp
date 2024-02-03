@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import "./NavBar.css";
 import Menu from "../menu/Menu";
+import Notifications from "../Notifications";
 import Logo from "../../assets/images/Logo-Atoun.png";
 
 // Icons
@@ -46,13 +47,18 @@ export default function NavBar() {
     ];
 
     const [messageState, setMessageState] = useState(false);
+    const [notificationState, setNotificationState] = useState(false);
 
     const handleBar = () => {
         setBarState(barState? 0 : 1);
     }
 
     const handleMessageState = () => {
-        setMessageState(messageState? 0 : 1);
+        setMessageState(messageState? false : true);
+    }
+
+    const handleNotification = () => {
+        setNotificationState(notificationState? false : true);
     }
 
   return (
@@ -104,15 +110,16 @@ export default function NavBar() {
                 </div>
                     
                 <div className="menuLinkExtra">
-                    <a href="">
-                        <div className="icon flex"><MdOutlineNotificationsActive />  <span>23</span></div>
-                    </a>
+                    <div className="icon flex" onClick={() => handleNotification()}>
+                        <MdOutlineNotificationsActive />
+                        <span className="top-4">23</span>
+                    </div>
                 </div>
 
                 <div className="menuLinkExtra menuExtraButton" onClick={ handleBar }>
                     <a>
                         <div className="icon">{
-                            (barState) ? <FaBars />: <FaRegUser/> 
+                            (barState) ? <FaTimes /> : <FaBars />
                         }</div>
                     </a>
                 </div>
@@ -123,7 +130,9 @@ export default function NavBar() {
 
         <Menu barState={barState} handleBar={handleBar} />
 
-        <Message handleMessageState={handleMessageState}messageState={messageState} className={`${messageState ? "activeMessage": ""}`} />
+        <Message handleMessageState={handleMessageState} messageState={messageState} className={`${messageState ? "activeMessage": ""}`} />
+        
+        <Notifications handleNotification={handleNotification} notificationState={notificationState} />
     </div>
   )
 }
