@@ -3,8 +3,10 @@ import { useState } from "react";
 import "./NavBar.css";
 import Menu from "../menu/Menu";
 import Notifications from "../Notifications";
-import Logo from "../../assets/images/Logo-Atoun.png";
+import Message from "../Message/Message";
+import DisplayIndex from "../../BaseComponents/DisplayIndex";
 
+import Logo from "../../assets/images/Logo-Atoun.png";
 // Icons
 import { IoSearch } from "react-icons/io5";
 import { MdShoppingCart } from "react-icons/md";
@@ -13,9 +15,9 @@ import { BiCategory } from "react-icons/bi";
 import { FaRegUser } from "react-icons/fa";
 import { BiMessage } from "react-icons/bi";
 import { FaBars } from "react-icons/fa6";
-import { MdOutlineNotificationsActive } from "react-icons/md";
-import { FaTimes } from "react-icons/fa";
-import Message from "../Message/Message";
+import { IoMdNotificationsOutline } from "react-icons/io";
+import { LiaTimesSolid } from "react-icons/lia";
+import MessageButton from "../../BaseComponents/MessageButton";
     
 export default function NavBar() {
     const [barState, setBarState] = useState(0);
@@ -66,7 +68,7 @@ export default function NavBar() {
         <nav className="flex section">
             <div className="menuButton flex" onClick={handleBar}>
                 {
-                    (barState) ? <FaTimes />: <FaBars/> 
+                    (barState) ? <LiaTimesSolid />: <FaBars/> 
                 }
                 <p>Menu</p>
             </div>
@@ -103,7 +105,7 @@ export default function NavBar() {
                 <div className="menuLinkExtra messageButton flex" onClick={() => {setMessageState(!messageState)}}>
                         <div className="icon flex">
                             <BiMessage />
-                            <span>23</span>
+                            <DisplayIndex index="23" />
                         </div>
 
                         <p>Messages</p>
@@ -111,15 +113,15 @@ export default function NavBar() {
                     
                 <div className="menuLinkExtra">
                     <div className="icon flex" onClick={() => handleNotification()}>
-                        <MdOutlineNotificationsActive />
-                        <span className="top-4">23</span>
+                        <IoMdNotificationsOutline />
+                        <DisplayIndex index="23" />
                     </div>
                 </div>
 
                 <div className="menuLinkExtra menuExtraButton" onClick={ handleBar }>
                     <a>
                         <div className="icon">{
-                            (barState) ? <FaTimes /> : <FaBars />
+                            (barState) ? <LiaTimesSolid /> : <FaBars />
                         }</div>
                     </a>
                 </div>
@@ -133,6 +135,8 @@ export default function NavBar() {
         <Message handleMessageState={handleMessageState} messageState={messageState} className={`${messageState ? "activeMessage": ""}`} />
         
         <Notifications handleNotification={handleNotification} notificationState={notificationState} />
+
+        <MessageButton />
     </div>
   )
 }

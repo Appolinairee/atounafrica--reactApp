@@ -1,4 +1,7 @@
 import "./ProductPresentation.css";
+import Button from "../Button/Button";
+import ProductCollection from "../ProductCollection/ProductCollection";
+import SteepTitle from "../SteepTitle/SteepTitle";
 
 import ProductImage1 from "../../assets/photos(exemples)/OIP (3).jpeg";
 import ProductImage2 from "../../assets/photos(exemples)/mobilier.png";
@@ -11,9 +14,7 @@ import { FaRegStar } from "react-icons/fa";
 import { FaStarHalfAlt } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { IoArrowForward } from "react-icons/io5";
-import Button from "../Button/Button";
-import ProductCollection from "../ProductCollection/ProductCollection";
-import SteepTitle from "../SteepTitle/SteepTitle";
+import { RiSecurePaymentFill } from "react-icons/ri";
 
 const ProductPresentation = () => {
   return (

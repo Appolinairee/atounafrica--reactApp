@@ -87,7 +87,7 @@ nav .menuLinksExtra .icon{
     font-size: 18px;
 }
 
-nav .menuLinksExtra .icon span{
+/* nav .menuLinksExtra .icon span{
     position: absolute;
     top: -8px;
     right: -8px;
@@ -97,7 +97,7 @@ nav .menuLinksExtra .icon span{
     font-weight: bold;
     border-radius: 50%;
     font-size: 9px;
-}
+} */
 
 nav .menuButton, .simpleSideMenu{
     display: none;
