@@ -176,7 +176,6 @@ function SimpleMenu() {
     ]
 
   return (
-
         <div className ="simpleSideMenu">
             <ul className  ="flex">
                 {

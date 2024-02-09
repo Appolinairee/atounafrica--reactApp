@@ -5,7 +5,6 @@ import NotificationImage from "../assets/photos(exemples)/OIP (4).jpeg"
 import NothingToDisplay from "../BaseComponents/NothingToDisplay";
 
 const Notification = ({message, image, state, date, link}) => {
-
   return(
     <div className={`${state ? "bg-dark/5 border-light": "bg-secondary/30 border-dark/5"} p-2 px-5 flex gap-3 border-solid border-0 border-b-[0.5px] cursor-pointer`}>
         <div className="w-[60px] h-[35px]">
@@ -98,8 +97,7 @@ const Notifications = ({handleNotification, notificationState }) => {
     }
   ];
 
-  const Messages = [
-  ];
+  const Messages = [];
 
   
   useEffect(() => {
@@ -118,7 +116,7 @@ const Notifications = ({handleNotification, notificationState }) => {
 
   return (
     <div className={`fixed top-0 right-0 h-full w-full bg-transparent ${
-      notificationState ? "z-50" : "z-0"
+      notificationState ? "z-50" : "z-0 w-0"
     }`}>
       <div
         className={`${
@@ -182,13 +180,13 @@ const Notifications = ({handleNotification, notificationState }) => {
                   ))
               }
         </div>
-      {handleNotification? "Hell": "Hgd"}
-        {
-          handleNotification && 
-          <div className={`absolute bg-red-700 top-0 right-[340px] h-full w-[100vw]}`} onClick={handleNotification}></div>
-        }
 
       </div>
+
+      {
+        notificationState &&
+        <div className={`absolute bg-transparent top-0 right-[340px] h-full w-full `} onClick={handleNotification}></div>
+      }
     </div>
   );
 };
