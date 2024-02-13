@@ -3,8 +3,8 @@ import { useState } from "react";
 import "./NavBar.css";
 import Menu from "../menu/Menu";
 import Notifications from "../Notifications";
-import Message from "../Message/Message";
 import DisplayIndex from "../../BaseComponents/DisplayIndex";
+import Message from "../Message";
 
 import Logo from "../../assets/images/Logo-Atoun.png";
 // Icons
@@ -17,7 +17,6 @@ import { BiMessage } from "react-icons/bi";
 import { FaBars } from "react-icons/fa6";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { LiaTimesSolid } from "react-icons/lia";
-import MessageButton from "../../BaseComponents/MessageButton";
     
 export default function NavBar() {
     const [barState, setBarState] = useState(0);
@@ -48,15 +47,10 @@ export default function NavBar() {
         },
     ];
 
-    const [messageState, setMessageState] = useState(false);
     const [notificationState, setNotificationState] = useState(false);
 
     const handleBar = () => {
         setBarState(barState? 0 : 1);
-    }
-
-    const handleMessageState = () => {
-        setMessageState(messageState? false : true);
     }
 
     const handleNotification = () => {
@@ -102,7 +96,7 @@ export default function NavBar() {
             </div>
 
             <div className="menuLinksExtra flex">
-                <div className="menuLinkExtra messageButton flex" onClick={() => {setMessageState(!messageState)}}>
+                <div className="menuLinkExtra messageButton flex">
                         <div className="icon flex">
                             <BiMessage />
                             <DisplayIndex index="23" />
@@ -129,14 +123,9 @@ export default function NavBar() {
         </nav>
 
         <SimpleMenu />
-
         <Menu barState={barState} handleBar={handleBar} />
-
-        <Message handleMessageState={handleMessageState} messageState={messageState} className={`${messageState ? "activeMessage": ""}`} />
-        
         <Notifications handleNotification={handleNotification} notificationState={notificationState} />
-
-        <MessageButton />
+        <Message />
     </div>
   )
 }

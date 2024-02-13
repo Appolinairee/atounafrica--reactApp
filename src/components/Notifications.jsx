@@ -3,6 +3,8 @@ import { LiaTimesSolid } from "react-icons/lia";
 
 import NotificationImage from "../assets/photos(exemples)/OIP (4).jpeg"
 import NothingToDisplay from "../BaseComponents/NothingToDisplay";
+import Overflow from "../BaseComponents/Overflow";
+import HiddenBodyScroll from "../BaseComponents/HiddenBodyScroll";
 
 const Notification = ({message, image, state, date, link}) => {
   return(
@@ -101,22 +103,12 @@ const Notifications = ({handleNotification, notificationState }) => {
 
   
   useEffect(() => {
-    const bodyElement = document.body;
-
-    if (notificationState) {
-      bodyElement.classList.add("overflow-hidden");
-    } else {
-      bodyElement.classList.remove("overflow-hidden");
-    }
-
-    return () => {
-      bodyElement.classList.remove("overflow-hidden");
-    };
+    <HiddenBodyScroll state={notificationState} />
   }, [notificationState]);
 
   return (
     <div className={`fixed top-0 right-0 h-full w-full bg-transparent ${
-      notificationState ? "z-50" : "z-0 w-0"
+      notificationState ? "z-50 block" : "z-0 w-0 hidden"
     }`}>
       <div
         className={`${
@@ -185,7 +177,7 @@ const Notifications = ({handleNotification, notificationState }) => {
 
       {
         notificationState &&
-        <div className={`absolute bg-transparent top-0 right-[340px] h-full w-full `} onClick={handleNotification}></div>
+        <Overflow handleOverflow={handleNotification} />
       }
     </div>
   );

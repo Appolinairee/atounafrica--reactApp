@@ -6,7 +6,7 @@ nav{
     max-height: 70px;
     padding: 20px 4%;
     border-radius: 10px;
-    z-index: 49;
+    z-index: 40;
 }
 
 nav .logo img{
