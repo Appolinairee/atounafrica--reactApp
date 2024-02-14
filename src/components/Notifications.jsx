@@ -100,16 +100,13 @@ const Notifications = ({handleNotification, notificationState }) => {
   ];
 
   const Messages = [];
-
+  // <HiddenBodyScroll state={notificationState} />
   
-  useEffect(() => {
-    <HiddenBodyScroll state={notificationState} />
-  }, [notificationState]);
-
   return (
     <div className={`fixed top-0 right-0 h-full w-full bg-transparent ${
       notificationState ? "z-50 block" : "z-0 w-0 hidden"
     }`}>
+
       <div
         className={`${
           notificationState ? "translate-x-0" : "translate-x-full"

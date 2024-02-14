@@ -5,6 +5,8 @@ import MessageButton from "../BaseComponents/MessageButton";
 import { IoSearch } from "react-icons/io5";
 import { IoSettings } from "react-icons/io5";
 import Overflow from "../BaseComponents/Overflow";
+import Chat from "./Chat";
+import HiddenBodyScroll from "../BaseComponents/HiddenBodyScroll";
 
 const Message = () => {
     const [msgType, setMsgType] = useState(0);
@@ -25,14 +27,14 @@ const Message = () => {
         }
     }, [msgType]);
 
-
     
+    // <HiddenBodyScroll state={msgState} />
+
   return (
     <>
         <MessageButton messageState={msgState} handleMsgState={handleMsgState} />
 
-        <div className={`fixed bg-red right-4 bottom-[60px] bg-light w-[350px] h-[90vh] rounded-tl-[20px] rounded-tr-[20px] rounded-lg z-50 shadow-boxShadow1 ${msgState ? 'block' : 'hidden'} overflow-hidden`}>
-
+        <div className={`fixed bg-red right-4 bottom-[60px] bg-light w-[350px] h-[90vh] rounded-tl-[20px] rounded-tr-[20px] rounded-lg z-50 shadow-boxShadow1 ${msgState ? 'block' : 'hidden'} overflow-hidden scrollbar`}>
             <div className="bg-primary px-4 pt-6 rounded-tl-[20px] rounded-tr-[20px] text-light">
                 <div className="flex items-center mb-7">
                     <h4 className="text-xl">Messages</h4>
@@ -63,13 +65,13 @@ const Message = () => {
                         <MessagesList />
                     </div>
             </div>
-            
 
+            <Chat />
         </div>
 
         {
             msgState &&
-            <Overflow handleOverflow={handleMsgState} className="!fixed z-50 !-right-[20px] w-[100vw] " />
+            <Overflow handleOverflow={handleMsgState} className="!fixed bg-transparent z-45 !right-[20px] w-[100vw] " />
         }
     </>
   )

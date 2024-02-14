@@ -55,7 +55,7 @@ const MessagesList = () => {
       {
         messages.length > 0 ?
         messages.map((message, index) => (
-            <MessageListElement element={message} />
+            <MessageListElement key={index+message.name} element={message} />
         ))
         :
         <NothingToDisplay text="Aucun message" />
