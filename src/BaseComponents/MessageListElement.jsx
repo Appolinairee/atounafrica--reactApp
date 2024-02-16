@@ -1,6 +1,6 @@
-const MessageListElement= ({element}) => {
+const MessageListElement= ({element, handleChat}) => {
     return (
-      <div className="flex justify-between items-center gap-2 text-[13px] cursor-pointer">
+      <div className="flex justify-between items-center gap-2 text-[13px] cursor-pointer" onClick={handleChat}>
         <div className="max-w-[40px] h-[36px] rounded-full w-[15%] border-solid border-dark/5 border-[1px]">
             <img className="w-full h-full" src={element.image} alt={element.name} />
         </div>
@@ -22,6 +22,7 @@ const MessageListElement= ({element}) => {
         <div className="w-[15%] text-right">
             <span className="text-[10px] whitespace-nowrap">{element.date}</span>
             <br />
+
             {
                 element.number > 0 &&
                 <span className="bg-primary rounded-full px-1 text-light text-[10px] font-medium ">{element.number}</span>

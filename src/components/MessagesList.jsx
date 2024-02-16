@@ -3,7 +3,7 @@ import MessageListElement from "./../BaseComponents/MessageListElement.jsx";
 import NothingToDisplay from "../BaseComponents/NothingToDisplay.jsx"
 
 
-const MessagesList = () => {
+const MessagesList = ({handleChat, isChat}) => {
     const messages = [
         {
             image: Image,
@@ -55,7 +55,7 @@ const MessagesList = () => {
       {
         messages.length > 0 ?
         messages.map((message, index) => (
-            <MessageListElement key={index+message.name} element={message} />
+            <MessageListElement key={index+message.name} element={message} handleChat={handleChat} />
         ))
         :
         <NothingToDisplay text="Aucun message" />

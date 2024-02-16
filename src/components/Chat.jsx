@@ -1,14 +1,15 @@
-import { BiArrowFromRight } from "react-icons/bi";
 import Profil from "../assets/photos(exemples)/OIP (3).jpg";
-import { BiFace } from "react-icons/bi";
 import ChatUnit from "../BaseComponents/ChatUnit";
-import { BiPhone } from "react-icons/bi";
-import { BiSticker } from "react-icons/bi";
-import { BiImage } from "react-icons/bi";
-import { BiSolidFileDoc } from "react-icons/bi";
-import { BiFileFind } from "react-icons/bi";
+import ChatForm from "../BaseComponents/ChatForm";
 
-const Chat = () => {
+import { BiArrowFromRight } from "react-icons/bi";
+import { SiCoinmarketcap } from "react-icons/si";
+import { AiOutlineQuestionCircle } from "react-icons/ai";
+import { useRef, useEffect } from "react";
+
+
+const Chat = ({isChat, handleChat}) => {
+  const overflowRef = useRef(null);
   
   const Messages = [
     {
@@ -59,52 +60,49 @@ const Chat = () => {
     },
   ]
 
+  useEffect(() => {
+    // Scroll chat messages to the bottom
+    if (overflowRef.current && overflowRef.current.clientHeight) {
+      overflowRef.current.scrollTop = overflowRef.current.clientHeight;
+      console.log(overflowRef.current.scrollTop);
+    }
+  }, [overflowRef.current]);
+  
+
   return (
-    <div className="absolute bg-light top-0 left-0 w-full h-full custom-background">
+    
+    <div className={`absolute bg-light top-0 left-0 w-full h-full custom-background ${isChat ?'block' : 'hidden'}`}>
 
        <div className="absolute z-10 pt-2 pb-1 px-2 text-light w-full top-0 left-0 bg-primary flex items-center h-[9%]">
 
           <div className="flex items-center gap-2 text-[13px] ">
-            <div className="flex items-center rounded-2xl hover:bg-light/15 gap-[3px] text-[13px] cursor-pointer p-[3px]">
+            <div className="flex items-center rounded-2xl hover:bg-light/15 gap-[3px] text-[13px] cursor-pointer p-[3px]" onClick={handleChat}>
               <BiArrowFromRight />
               <img className="w-[30px] h-[28px] rounded-full" src={Profil} alt="" />
             </div>
 
-            <p>ASSOGBA Romaric</p>
+            <p className="cursor-pointer">ASSOGBA Romaric </p>
           </div>
 
-          <BiFace />
+          <div className="flex items-center gap-2 mr-1">
+            <SiCoinmarketcap className="rounded-full hover:bg-light/15 text-2xl p-1 cursor-pointer" />
+            <AiOutlineQuestionCircle className="rounded-full hover:bg-light/15 text-2xl p-1 cursor-pointer" />
+          </div>
        </div>
 
-       <div className="absolute p-2 bottom-0 w-full h-[82%] mb-14 mt-18 left-0 overflow-auto scrollbar-thin bg-transparent">
-          {
-            Messages.map((message, index ) => (
-              <div key={index+message.message}>
-                <ChatUnit message={message} />
 
-              </div>
-            ))
-          }
-        </div>
-        
-        <div className="absolute w-[98%] left-[1%] h-[50px] bg-transparent bottom-1 z-10">
-          <form action="" method="post" className="flex flex-nowrap relative gap-1">
-
-            <div className="shadow-boxShadow1 w-[90%] flex relative items-center rounded-[20px] bg-light">
-               <BiSticker className="absolute  left-[5px] text-dark/90 p-1 hover:bg-dark/20 text-[26px] cursor-pointer rounded-full" />
-
-               <BiImage className="absolute right-[5px] text-dark/90 p-1 bg-dark/10 text-[26px] cursor-pointer rounded-full" />
-
-               <BiSolidFileDoc className="absolute right-[30px] text-dark/90 p-1 hover:bg-dark/10 text-[26px] cursor-pointer rounded-full" />
-
-               <input type="text" name="message" placeholder="Message" className="rounded-[20px] w-full bg-dark/10 pl-8 py-2 text-dark text-[14px]" autoFocus/>
+      <div ref={overflowRef} className="absolute p-2 bottom-0 w-full h-[82%] mb-14 mt-18 left-0 overflow-auto scrollbar-track-transparent scrollbar-thumb-dark/40 hover:scrollbar-thumb-dark  scrollbar-thin bg-transparent">
+        {
+          Messages.map((message, index ) => (
+            <div key={index+message.message}>
+              <ChatUnit message={message} />
             </div>
-            
-            <div className="rounded-full w-[10%] bg-primary flex items-center h-[35px] text-light ">
-              <BiPhone className="m-auto text-xl" />
-            </div>
-          </form>
-        </div>
+          ))
+        }
+      </div>
+
+        <ChatForm />
+
 
     </div>
   )
