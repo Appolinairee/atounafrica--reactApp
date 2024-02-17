@@ -66,7 +66,7 @@ const Chat = ({isChat, handleChat}) => {
       overflowRef.current.scrollTop = overflowRef.current.clientHeight;
       console.log(overflowRef.current.scrollTop);
     }
-  }, [overflowRef.current]);
+  }, []);
   
 
   return (
@@ -101,7 +101,7 @@ const Chat = ({isChat, handleChat}) => {
         }
       </div>
 
-        <ChatForm />
+      <ChatForm />
 
 
     </div>
