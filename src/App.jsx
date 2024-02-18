@@ -11,6 +11,7 @@ import ProductPresentation from './components/ProductPresentation/ProductPresent
 import ProductPayment from './components/ProductPayment/ProductPayment';
 import ProductDeliever from './components/ProductDelivering/ProductDelievering';
 import ProductReceive from './components/ProductReceive/ProductReceive';
+import Inscription from './pages/Inscription';
 
 const App = () => {
 
@@ -27,6 +28,9 @@ const App = () => {
               <Route path='/payment' element={<ProductPayment />} />
               <Route path='/deliever' element={<ProductDeliever />} />
               <Route path='/reception' element={<ProductReceive />} />
+
+              {/* Auths */}
+              <Route path='/inscription' element={<Inscription />} />
           </Routes>
       </BrowserRouter>
     </div>
