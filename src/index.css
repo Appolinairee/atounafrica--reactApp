@@ -7,6 +7,10 @@
     background-image: url('./assets/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
 }
 
+.bg-gradient-green-yellow {
+    background-image: linear-gradient(to bottom, white 20%, #d9e4f9cf 70%);
+}
+
 *, ::after, ::before{
     padding: 0;
     margin: 0;
@@ -47,6 +51,10 @@ html body{
     max-width: 1300px;
     margin: auto;
     position: relative;
+}
+
+input, textarea, select{
+    font-family: 'Montserrat', sans-serif;
 }
 
 body .app{

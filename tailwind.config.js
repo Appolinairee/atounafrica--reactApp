@@ -10,7 +10,7 @@ module.exports = {
         light: "#ffffff",
         primary: "#00ACA4",
         primaryDark: "#58E6D9",
-        secondary: "#fdd88e"
+        secondary: "#fdd88e",
       },
       screens: {
         'xs': {max: '400px'},
