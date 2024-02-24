@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { LiaTimesSolid } from "react-icons/lia";
 
 import NotificationImage from "../assets/photos(exemples)/OIP (4).jpeg"
@@ -124,7 +124,7 @@ const Notifications = ({handleNotification, notificationState }) => {
                   <p>Tout</p>
 
                   {
-                    (Notifications.length != 0) &&
+                    (Notifications.length !== 0) &&
 
                     <span className={`absolute top-[1.5px] right-1/4 text-[10px] px-2 py-[1px] rounded-full ${!notificationType ? 'bg-primary text-light': "bg-dark/20 text-dark/80"}`}>
                     {Notifications.length}
@@ -137,7 +137,7 @@ const Notifications = ({handleNotification, notificationState }) => {
                 <p>Messages</p>
 
                 {
-                    (Messages.length != 0) &&
+                    (Messages.length !== 0) &&
 
                     <span className={`absolute top-[1.5px] right-6 text-[10px] px-2 py-[1px] rounded-full ${notificationType ? 'bg-primary text-light': "bg-dark/20 text-dark/80"}`}>
                     {Messages.length}
@@ -152,7 +152,7 @@ const Notifications = ({handleNotification, notificationState }) => {
               {
 
                 (!notificationType) ?
-                  Notifications.length == 0 ? 
+                  Notifications.length === 0 ? 
                   <NothingToDisplay />
                   :
                   Notifications.map((notification, index) => (
@@ -161,7 +161,7 @@ const Notifications = ({handleNotification, notificationState }) => {
 
                 :
 
-                Messages.length == 0 ? 
+                Messages.length === 0 ? 
                   <NothingToDisplay text="Vous n'avez pas de message pour l'instant" />
                   :
                   Messages.map((notification, index) => (

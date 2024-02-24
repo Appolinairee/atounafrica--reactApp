@@ -15,6 +15,7 @@ import Inscription from "./pages/account/Inscription";
 import Connexion from "./pages/account/Connexion";
 import ForgetPass from "./pages/account/ForgetPass";
 import ResetPass from "./pages/account/ResetPass";
+import Profil from "./pages/Profil";
 
 
 const App = () => {
@@ -37,6 +38,9 @@ const App = () => {
                <Route path="/connexion" element={<Connexion />} />
                <Route path="/forget" element={<ForgetPass />} />
                <Route path="/reset" element={<ResetPass />} />
+
+               {/* Profils */}
+               <Route path="/profil" element={<Profil />} />
             </Routes>
          </BrowserRouter>
       </div>

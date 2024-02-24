@@ -4,7 +4,7 @@ import { MdShoppingCart } from "react-icons/md";
 import { FaTruckFast } from "react-icons/fa6";
 import { RiSecurePaymentFill } from "react-icons/ri";
 import { FaRegStar } from "react-icons/fa";
-import ProductPresentation from "../ProductPresentation/ProductPresentation";
+
 
 const ProductCollection = ({children}) => {
   return (

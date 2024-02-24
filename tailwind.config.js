@@ -19,6 +19,9 @@ module.exports = {
         'lg': {max: '1024px'},
         'xl': {max: '1280px'},
       },
+      padding: {
+        section: '2rem'
+      },
       boxShadow: {
         boxShadow1: '0 0 28px 0 rgba(0,0,0,.1)',
       },
