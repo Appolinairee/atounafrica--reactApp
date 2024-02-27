@@ -57,7 +57,7 @@ const Profil = () => {
                 <CiEdit className="cursor-pointer rounded-full hover:bg-dark/20 p-1 " onClick={handleEditClick} />
             </div>
  
-            <div className="flex items-start justify-start w-full  h-full mb-14 gap-[5%] sm:block">
+            <div className="grid grid-cols-2 items-start justify-start w-full  h-full mb-14 gap-[5%] sm:block">
                 
                 <div className="w-full sm:mb-8">
                     <div className="relative rounded-xl h-full min-h-[150px] xs:min-h-[100px]">
@@ -74,13 +74,7 @@ const Profil = () => {
                         </div>
                     </div>
 
-                    <h4 className="relative font-semibold text-xl text-center mt-14 xs:mt-10 xs:text-[16px]">Nicolas Roski</h4>
-
-                </div>
-
-
-                <div className="">
-                    <div className="mb-8">
+                    <div className="mt-14">
                         <div className="flex w-fit gap-2 justify-start ">
                             <FaLink /> 
                             <p>Lien d'Affiliation</p>
@@ -97,6 +91,27 @@ const Profil = () => {
                         
                         <p className="text-[14px] cursor-pointer">En savoir plus +</p>
                     </div>
+                </div>
+
+
+                <div className="">
+                    {/* <div className="mb-8">
+                        <div className="flex w-fit gap-2 justify-start ">
+                            <FaLink /> 
+                            <p>Lien d'Affiliation</p>
+                        </div>
+
+                        <div className="flex items-center my-2 px-2 py-1 border-solid border-dark/50 rounded-xl border-[1px] cursor-pointer xs:overflow-hidden xs:text-[14px] xs:pr-5">
+                            <div className="flex items-center justify-center gap-2 xs:gap-0">
+                                <p className="max-w-[95%] overflow-hidden whitespace-nowrap text-ellipsis xs:max-w-[90%]">atounafrica.com?perform=1233</p>
+                            </div>
+
+                            <span className="bg-dark text-[13px] text-light rounded-md px-[5px] py-[2px]">Copier</span>
+                        
+                        </div>
+                        
+                        <p className="text-[14px] cursor-pointer">En savoir plus +</p>
+                    </div> */}
 
 
                     <div className="mb-8">

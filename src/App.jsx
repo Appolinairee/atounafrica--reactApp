@@ -16,6 +16,7 @@ import Connexion from "./pages/account/Connexion";
 import ForgetPass from "./pages/account/ForgetPass";
 import ResetPass from "./pages/account/ResetPass";
 import Profil from "./pages/Profil";
+import CreatorProfil from "./pages/CreatorProfil";
 
 
 const App = () => {
@@ -41,6 +42,7 @@ const App = () => {
 
                {/* Profils */}
                <Route path="/profil" element={<Profil />} />
+               <Route path="/profil/creator" element={<CreatorProfil />} />
             </Routes>
          </BrowserRouter>
       </div>
