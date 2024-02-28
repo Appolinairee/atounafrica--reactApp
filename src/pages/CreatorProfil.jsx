@@ -2,6 +2,7 @@ import Logo from "../assets/photos(exemples)/OIP (2).jpeg";
 import { BiMessageRoundedDetail } from "react-icons/bi";
 import CreatorHeader from "../components/CreatorHeader";
 import Products from "../components/Products/Products";
+import CreatorInfo from "../BaseComponents/CreatorInfo";
 
 const CreatorProfil = () => {
    return (
@@ -25,9 +26,7 @@ const CreatorProfil = () => {
 
             <CreatorHeader />
 
-            <div>
-               Description, Localisation,.. Informations (seul pour le créateur)
-            </div>
+            <CreatorInfo />
 
             <Products />
          </div>

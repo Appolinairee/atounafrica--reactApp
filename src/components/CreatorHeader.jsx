@@ -64,8 +64,8 @@ const Header = () => {
 
 
                 <div className='flex items-center justify-center gap-[10%] whitespace-nowrap'>
-                    <Button2 Text="Découvrir" />    
                     <Button3 />
+                    <Button2 Text="Découvrir" />    
                 </div>
            </div>
         </div>
