@@ -17,6 +17,7 @@ import ForgetPass from "./pages/account/ForgetPass";
 import ResetPass from "./pages/account/ResetPass";
 import Profil from "./pages/Profil";
 import CreatorProfil from "./pages/CreatorProfil";
+import CreatorSign from "./pages/CreatorSign";
 
 
 const App = () => {
@@ -43,6 +44,7 @@ const App = () => {
                {/* Profils */}
                <Route path="/profil" element={<Profil />} />
                <Route path="/profil/creator" element={<CreatorProfil />} />
+               <Route path="/creator/inscription" element={<CreatorSign />} />
             </Routes>
          </BrowserRouter>
       </div>
