@@ -44,7 +44,7 @@ const App = () => {
                {/* Profils */}
                <Route path="/profil" element={<Profil />} />
                <Route path="/profil/creator" element={<CreatorProfil />} />
-               <Route path="/creator/inscription" element={<CreatorSign />} />
+               <Route path="/creator" element={<CreatorSign />} />
             </Routes>
          </BrowserRouter>
       </div>
