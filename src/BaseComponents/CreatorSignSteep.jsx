@@ -34,7 +34,7 @@ const CreatorSignSteep = () => {
       <div className="flex relative items-center justify-center max-w-[500px] m-auto gap-2 mt-8 md:w-[80%] md:mx-auto xs:w-[95%] xs:mt-4">
          {Steps.map(({ name, number, icon }, index) => (
             <div
-               className={`text-center flex items-center flex-col z-10 bg-light rounded-full`}
+               className={`text-center flex items-center flex-col z-10 bg-light rounded-full cursor-pointer`}
             >
                <div
                   className={`relative mb-2 border-dark rounded-full border-solid border-[0.75px] p-2 xs:p-[0.4rem] ${

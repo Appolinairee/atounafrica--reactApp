@@ -14,14 +14,14 @@ const PdfViewer = ({ pdfUrl }) => {
             </p>
          </div>
 
-         <div className="flex items-center justify-center gap-4 w-fit">
+         <div className="flex items-center justify-center gap-4 w-fit xs:block">
             <a
                href="../assets/Note de service_004.pdf"
                target="_blank"
                rel="noopener noreferrer"
                className=""
             >
-               <Button2 Text="Ouvrir le PDF" className=" w-40 !text-[13px] xs:!w-30" />
+               <button className=" p-1 border-solid border-[1px] px-2 rounded-lg whitespace-nowrap">Ouvrir le PDF</button>
             </a>
 
             <a
@@ -29,7 +29,7 @@ const PdfViewer = ({ pdfUrl }) => {
                download="atounAfrica.pdf"
                className=""
             >
-               <Button1 Text="Télécharger PDF" className="!text-[12px] !p-2" />
+               <button className=" p-1 border-solid border-[1px] px-2 rounded-lg whitespace-nowrap xs:mt-2">Télécharger PDF</button>
             </a>
          </div>
       </div>

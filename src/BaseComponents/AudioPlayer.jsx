@@ -5,7 +5,7 @@ const AudioPlayer = ({ audioUrl }) => {
       <div className="my-8">
          <h4 className="text-2xl font-semibold mb-4 capitalize">écouter l'audio</h4>
 
-         <audio controls>
+         <audio controls className="w-full">
             <source
                src="../assets/1984 George Orwell _32kbps.mp3"
                type="audio/mp3"

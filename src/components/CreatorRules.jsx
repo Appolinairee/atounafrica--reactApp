@@ -1,3 +1,6 @@
+import { useState } from "react";
+import Button2 from "../BaseComponents/Button2";
+
 // icons
 import { IoArrowForwardSharp } from "react-icons/io5";
 
@@ -5,13 +8,10 @@ import { IoArrowForwardSharp } from "react-icons/io5";
 import Product1 from "../assets/photos(exemples)/OIP (2).jpg";
 import Product2 from "../assets/photos(exemples)/OIP (6).jpg";
 import Product3 from "../assets/photos(exemples)/OIP (3).jpg";
-import Product4 from "../assets/photos(exemples)/OIP (1).jpg";
-import Product5 from "../assets/photos(exemples)/OIP (2).jpg";
 
 import Video from "../assets/video.mp4";
 import PdfViewer from "../BaseComponents/PdfViewer";
 import AudioPlayer from "../BaseComponents/AudioPlayer";
-import { useState } from "react";
 
 const SlideButton = ({ className }) => {
    return (
@@ -21,8 +21,7 @@ const SlideButton = ({ className }) => {
    );
 };
 
-const CreatorRules = () => {
-
+const CreatorRules = ({handleState}) => {
    const Rules = [
       {
          name: "Authenticité Africaine",
@@ -52,9 +51,8 @@ const CreatorRules = () => {
    ];
 
    return (
-      <div className="my-8 large:mb-[7rem] xs:!mt-4">
+      <div className="my-8 large:mb-[7rem] xs:!mt-4 pb-24">
          <div className="my-14 grid grid-cols-2 items-start justify-start gap-[5%] h-fit large:grid-cols-1 large:w-[80%] large:ml-[10%] xs:!w-[100%] xs:gap-2 xs:!ml-[0%]">
-            
             <h2 className=" font-bold text-2xl hidden xs:block text-[17px]">
                Et si on s'entendait sur quelques règles simples ?
             </h2>
@@ -134,6 +132,28 @@ const CreatorRules = () => {
                <PdfViewer />
             </div>
          </div>
+
+         <form method="POST" className="mt-14 py-2 rounded-tl-3xl rounded-tr-3xl p-auto text-center fixed bottom-0 bg-light z-50 w-[50%] shadow-boxShadow1 left-1/2 -translate-x-1/2 large:w-[95%] xs:px-[2.5%]">
+            <div className="mb-4 cursor-pointer xs:text-[14px]">
+               <input
+                  type="checkbox"
+                  name="check"
+                  id="check"
+                  required
+                  className="checked:bg-blue-500 default:ring-2"
+               />
+               <label htmlFor="check" className="ml-4">
+                  J'ai lu et j'accepte tous les accords qui nous lient.{" "}
+               </label>
+            </div>
+
+            <button type="submit" className=" !w-[50%] !max-w-[300px] large:min-w-[260px]" onClick={() => handleState(1)}>
+               <Button2
+                  Text="Suivant: Vos Informations"
+                  className="!w-full large:!min-w-[80%]"
+               />
+            </button>
+         </form>
       </div>
    );
 };
