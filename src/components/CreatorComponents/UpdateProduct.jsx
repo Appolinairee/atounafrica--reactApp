@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { FaClock, FaCog, FaMoneyBillAlt, FaTag, FaTags } from "react-icons/fa";
 import Label from "../../BaseComponents/Label";
+import Image1 from "../../assets/photos(exemples)/OIP (1).jpeg";
+import Image2 from "../../assets/photos(exemples)/OIP (2).jpeg";
 
-const CreateProduct = () => {
+const UpdateProduct = () => {
    const [productFormData, setProductFormData] = useState({
-      productName: "",
+      productName: "King Of Soto",
       productFeatures: Array(5).fill(""),
       deliveryTypes: [],
       productPrice: "",
@@ -16,49 +18,7 @@ const CreateProduct = () => {
       },
    });
 
-   const handleProductChange = (e) => {
-      const { name, value, type } = e.target;
-
-      if (type === "checkbox") {
-         // Gestion des cases à cocher (sélection multiple)
-         const updatedValues = [...productFormData[name]];
-         if (updatedValues.includes(value)) {
-            updatedValues.splice(updatedValues.indexOf(value), 1);
-         } else {
-            updatedValues.push(value);
-         }
-         setProductFormData((prevData) => ({
-            ...prevData,
-            [name]: updatedValues,
-         }));
-      } else if (name === "productFeatures") {
-         // Gestion des caractéristiques
-         const index = parseInt(e.target.dataset.index, 10);
-         const updatedFeatures = [...productFormData.productFeatures];
-         updatedFeatures[index] = value;
-         setProductFormData((prevData) => ({
-            ...prevData,
-            productFeatures: updatedFeatures,
-         }));
-      } else if (name === "availability") {
-         // Gestion de la disponibilité avec quantité
-         setProductFormData((prevData) => ({
-            ...prevData,
-            availability: {
-               ...prevData.availability,
-               status: value,
-               quantity:
-                  value === "disponible" ? prevData.availability.quantity : "",
-            },
-         }));
-      } else {
-         // Gestion des autres champs
-         setProductFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-         }));
-      }
-   };
+   const handleProductChange = (e) => {};
 
    const handleProductSubmit = (e) => {
       e.preventDefault();
@@ -69,7 +29,7 @@ const CreateProduct = () => {
       <div className="my-8  xs:!mt-4">
          <div className="mx-[15%] large:mx-[5%] xs:!mx-[2.5%]">
             <h2 className="font-bold text-[2rem] text-center xs:block xs:text-[17px]">
-               Création d'un produit @ <br />
+               Mettre à jour votre produit @ <br />
             </h2>
 
             <div className="my-8 mx-auto max-w-[500px]">
@@ -102,6 +62,32 @@ const CreateProduct = () => {
                         required={true}
                      />
 
+                     <div className="flex items-start justify-start xs:w-full w-fit gap-[10px] my-3 overflow-x-auto">
+                        <div className="w-fit h-[110px] overflow-hidden rounded-2xl min-w-[100px] xs:h-[80px]">
+                           <img
+                              src={Image1}
+                              alt={productFormData.productName}
+                              className="w-auto h-full"
+                           />
+                        </div>
+
+                        <div className="w-fit h-[110px] overflow-hidden rounded-2xl min-w-[100px] xs:h-[80px]">
+                           <img
+                              src={Image2}
+                              alt={productFormData.productName}
+                              className="w-auto h-full"
+                           />
+                        </div>
+                        
+                        <div className="w-fit h-[110px] overflow-hidden rounded-2xl min-w-[100px] xs:h-[90px]">
+                           <img
+                              src={Image2}
+                              alt={productFormData.productName}
+                              className="w-auto h-full"
+                           />
+                        </div>
+                     </div>
+
                      <input
                         type="file"
                         id="productGalery"
@@ -111,7 +97,12 @@ const CreateProduct = () => {
                         className="border-solid border-[1px] w-full p-2 py-3 border-dark/40 rounded-[20px]"
                      />
 
-                     <p className=" mt-2 cursor-pointer">Ajouter une autre <span className="text-light bg-primary rounded-full px-1">+</span></p>
+                     <p className=" mt-2 cursor-pointer">
+                        Ajouter une autre{" "}
+                        <span className="text-light bg-primary rounded-full px-1">
+                           +
+                        </span>
+                     </p>
                   </div>
 
                   <div className="mb-8">
@@ -304,7 +295,7 @@ const CreateProduct = () => {
                      type="submit"
                      className="rounded-[20px] p-3 bg-primary w-full text-white text-xl font-bold xs:text-[17px]"
                   >
-                     Créer le produit
+                    Mettre à jour le produit
                   </button>
                </form>
             </div>
@@ -313,4 +304,4 @@ const CreateProduct = () => {
    );
 };
 
-export default CreateProduct;
+export default UpdateProduct;

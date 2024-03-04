@@ -18,6 +18,7 @@ import ResetPass from "./pages/account/ResetPass";
 import Profil from "./pages/Profil";
 import CreatorProfil from "./pages/CreatorProfil";
 import CreatorSign from "./pages/CreatorSign";
+import CreatorDashboard from "./components/CreatorComponents/CreatorDashboard";
 
 
 const App = () => {
@@ -45,6 +46,7 @@ const App = () => {
                <Route path="/profil" element={<Profil />} />
                <Route path="/profil/creator" element={<CreatorProfil />} />
                <Route path="/creator" element={<CreatorSign />} />
+               <Route path="/creator/tableau" element={<CreatorDashboard />} />
             </Routes>
          </BrowserRouter>
       </div>

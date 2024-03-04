@@ -4,6 +4,7 @@ import CreatorRules from "../components/CreatorRules";
 import CreatorForm from "../components/CreatorForm";
 import CreatorConfiguration from "../components/CreatorConfiguration"
 import CreateProduct from "../components/CreatorComponents/CreateProduct";
+import UpdateProduct from "../components/CreatorComponents/UpdateProduct";
 
 const CreatorSign = () => {
    const [state, setState] = useState(0);
@@ -23,7 +24,7 @@ const CreatorSign = () => {
 
             {state === 2 && <CreatorConfiguration />}
 
-            {state === 3 && <CreateProduct />}
+            {state === 3 && <UpdateProduct />}
          </div>
       </div>
    );
