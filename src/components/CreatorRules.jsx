@@ -51,9 +51,9 @@ const CreatorRules = ({handleState}) => {
    ];
 
    return (
-      <div className="my-8 large:mb-[7rem] xs:!mt-4 pb-24">
+      <div className="my-8 xs:!mt-4 pb-2">
          <div className="my-14 grid grid-cols-2 items-start justify-start gap-[5%] h-fit large:grid-cols-1 large:w-[80%] large:ml-[10%] xs:!w-[100%] xs:gap-2 xs:!ml-[0%]">
-            <h2 className=" font-bold text-2xl hidden xs:block text-[17px]">
+            <h2 className="font-bold text-2xl hidden xs:block text-[17px]">
                Et si on s'entendait sur quelques règles simples ?
             </h2>
 
@@ -149,7 +149,7 @@ const CreatorRules = ({handleState}) => {
 
             <button type="submit" className=" !w-[50%] !max-w-[300px] large:min-w-[260px]" onClick={() => handleState(1)}>
                <Button2
-                  Text="Suivant: Vos Informations"
+                  Text="Confirmation d'accord"
                   className="!w-full large:!min-w-[80%]"
                />
             </button>

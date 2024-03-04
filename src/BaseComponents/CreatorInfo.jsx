@@ -51,6 +51,7 @@ const Profil = () => {
 
   return (
     <div className="w-full pt-[100px] lg:pt-[80px] xs:pt-[70px]">
+        
         <div className="w-[75%] m-auto bg-white px-[5%] py-6 lg:w-[90%] xs:w-[95%]">
             <div className="flex items-center justify-center mb-5 text-[27px]">
                 <h3 className="text-xl font-semibold ">Profil Personnel</h3>
