@@ -1,10 +1,9 @@
 nav{
     position: fixed;
-    left: 3%; 
-    width: 94%;
-    margin: 10px 0%;
+    left: 0%; 
+    width: 100%;
     max-height: 70px;
-    padding: 20px 4%;
+    padding: 30px 4%;
     border-radius: 10px;
     z-index: 40;
 }
@@ -15,8 +14,8 @@ nav .logo img{
     cursor: pointer;
 }
 
-nav .navResearch{
-    height: 33px;
+/* nav .navResearch{
+    height: 80%;
 }
 
 nav .navResearch input{
@@ -46,7 +45,7 @@ nav .navResearch .submit .icon{
     align-items: center;
     display: flex;
     justify-content: center;
-}
+} */
 
 nav .simpleMenu ul{
     gap: 20px;
