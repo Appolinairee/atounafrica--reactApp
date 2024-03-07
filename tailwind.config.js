@@ -21,7 +21,8 @@ module.exports = {
         'xl': {max: '1280px'},
       },
       padding: {
-        section: '2rem'
+        section: '2rem',
+        sectionPadding: "4%"
       },
       boxShadow: {
         boxShadow1: '0 0 28px 0 rgba(0,0,0,.1)',

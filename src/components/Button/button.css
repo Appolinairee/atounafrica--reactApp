@@ -42,7 +42,7 @@ button.button.button1 i{
     border-radius: 0 0 40px 40px;
     font-size: 3rem;
     text-transform: uppercase;
-    z-index: 150;
+    /* z-index: 150; */
    border-bottom: 20px solid var(--whiteColor);
 }
 

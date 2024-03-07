@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 import "./NavBar.css";
 import Menu from "../menu/Menu";
@@ -6,11 +6,7 @@ import Notifications from "../Notifications";
 import DisplayIndex from "../../BaseComponents/DisplayIndex";
 import Message from "../Message";
 import ScrollBarHider from "../../BaseComponents/ScrollBarHidden";
-import {
-   FaShoppingCart,
-   FaMoneyBillWave,
-   FaChevronDown,
-} from "react-icons/fa";
+import { FaShoppingCart, FaMoneyBillWave, FaChevronDown } from "react-icons/fa";
 
 import Logo from "../../assets/images/Logo-Atoun.png";
 // Icons
@@ -19,7 +15,6 @@ import { MdShoppingCart } from "react-icons/md";
 import { GoHome } from "react-icons/go";
 import { BiCategory } from "react-icons/bi";
 import { FaRegUser } from "react-icons/fa";
-import { BiMessage } from "react-icons/bi";
 import { FaBars } from "react-icons/fa6";
 import { MdOutlineNotifications } from "react-icons/md";
 import { LiaTimesSolid } from "react-icons/lia";
@@ -27,6 +22,7 @@ import { LiaTimesSolid } from "react-icons/lia";
 export default function NavBar() {
    const [barState, setBarState] = useState(0);
    const [searchState, setSearchState] = useState(false);
+   const [profilState, setProfilState] = useState(false);
 
    const handleSearchState = () => {
       setSearchState(!searchState);
@@ -69,12 +65,8 @@ export default function NavBar() {
    };
 
    return (
-      <div className="simpleMenu_messages">
-         <nav className="flex py-[35px] bg-light">
-            <div className="menuButton flex" onClick={handleBar}>
-               {barState ? <LiaTimesSolid /> : <FaBars />}
-               <p>Menu</p>
-            </div>
+      <div className="simpleMenu_messages pb-[78px]">
+         <nav className="flex py-[35px] bg-light md:py-[25px]">
 
             <div className="flex items-center w-[40%]">
                <div className="logo">
@@ -105,78 +97,63 @@ export default function NavBar() {
                         className="!top-[70px]"
                      />
 
-                     {/* <p className="fixed bottom-0 top-[80px] left-0 bg-dark/10 w-full h-full "></p> */}
                   </form>
                </div>
             </div>
 
-            {/* <div className="simpleMenu">
-                <ul className="flex">
-                    {
-                        Links.map((link, index) =>(
-                            <li key={index}>
-                                <NavLink to={link.link} className="menuLink flex">
-                                    <div className="icon"> {link.icon} </div>
-                                    <p> {link.name} </p>
-                                </NavLink>
-                            </li>
-                        ))
-                    }
-                </ul>
-            </div> */}
-
-            {/* <div className="menuLinksExtra flex">
-               <div className="menuLinkExtra messageButton flex">
-                  <div className="icon flex">
-                     <BiMessage />
-                     <DisplayIndex index="23" />
-                  </div>
-
-                  <p>Messages</p>
-               </div>
-
-               <div className="menuLinkExtra">
-                  <div
-                     className="icon flex"
-                     onClick={() => handleNotification()}
-                  >
-                     <IoMdNotificationsOutline />
-                     <DisplayIndex index="23" />
-                  </div>
-               </div>
-
-               <div
-                  className="menuLinkExtra menuExtraButton"
-                  onClick={handleBar}
-               >
-                  <a>
-                     <div className="icon">
-                        {barState ? <LiaTimesSolid /> : <FaBars />}
-                     </div>
-                  </a>
-               </div>
-            </div> */}
-
             <div className="flex items-center justify-center gap-4 *:cursor-pointer">
-               
-               <div className="relative mr-2">
+               <div className="relative mr-2" onClick={() => handleNotification()}>
                   <MdOutlineNotifications className=" text-xl" />
                   <DisplayIndex index={12} />
                </div>
 
-               <div className="flex gap-3 text-[15px] border-solid rounded-2xl p-[6px] px-[12px] border-dark/20 border-[1px] ">
+               <div className="flex gap-3 text-[15px] border-solid rounded-2xl p-[6px] px-[12px] border-dark/20 border-[1px] large:hidden">
                   <FaShoppingCart />
                   Achat
                </div>
 
-               <div className="flex gap-3 text-[15px] border-solid rounded-2xl p-[6px] px-[12px] border-dark/20 border-[1px]">
+               <div className="flex gap-3 text-[15px] border-solid rounded-2xl p-[6px] px-[12px] border-dark/20 border-[1px] large:hidden">
                   <FaMoneyBillWave />
                   Vente
                </div>
 
-               <div className="flex gap-3 text-[15px] border-solid rounded-2xl p-[4px] px-[10px] border-dark/20 border-[1px]">
-                  <img src={Logo} className="w-[27px] h-[26px] border-dark/10 border-solid border-[1px] rounded-full " alt="Profil Utilisateur par défaut" />
-                  <FaChevronDown />
+               <div
+                  className="flex relative gap-3 text-[15px] border-solid rounded-2xl p-[4px] px-[10px] border-dark/20 border-[1px] xs:p-[2px] xs:px-[5px] xs:gap-1"
+                  onClick={() => setProfilState(!profilState)}
+               >
+                  <img
+                     src={Logo}
+                     className="w-[27px] h-[26px] border-dark/10 border-solid border-[1px] rounded-full xs:h-[24px]"
+                     alt="Profil Utilisateur par défaut"
+                  />
+
+                  <FaChevronDown
+                     className={` duration-150 text-dark/70 xs:text-[13px] ${
+                        profilState ? " rotate-180" : "rotate-0"
+                     }`}
+                  />
+               </div>
+
+               {profilState && (
+                     <SubMenu />
+               )}
+
+               {profilState && (
+                  <span
+                     className="fixed z-0 w-full h-full left-0 top-0 bottom-0 bg-transparent"
+                     onClick={() => setProfilState(!profilState)}
+                  ></span>
+               )}
+
+               <div
+                  className="menuLinkExtra"
+                  onClick={handleBar}
+               >
+                  <Link>
+                     <div className="icon">
+                        {barState ? <LiaTimesSolid /> : <FaBars />}
+                     </div>
+                  </Link>
                </div>
             </div>
          </nav>
@@ -184,14 +161,62 @@ export default function NavBar() {
          <SimpleMenu />
 
          <Menu barState={barState} handleBar={handleBar} />
+
          <Notifications
             handleNotification={handleNotification}
             notificationState={notificationState}
          />
-         <Message />
       </div>
    );
 }
+
+const SubMenu = () => {
+   const SubLinks = [
+      {
+         name: "Profil",
+         link: "",
+         icon: <FaRegUser />,
+      },
+
+      {
+         name: "Panier",
+         link: "",
+         icon: <BiCategory />,
+      },
+
+      {
+         name: "Affiliation",
+         link: "",
+         icon: <FaRegUser />,
+      },
+
+      {
+         name: "Déconnexion",
+         link: "",
+         icon: <BiCategory />,
+      },
+   ];
+
+   return (
+      <div className="fixed !z-50 right-0 text-[14px] top-[65px] w-fit bg-white -translate-x-[60px] h-auto flex flex-col shadow-boxShadow1 items-center whitespace-nowrap rounded-xl overflow-hidden md:-right-[50px] xs:top-[60px]">
+         {SubLinks.map(({ name, link, icon }, index) => (
+            <Link
+               className={` font-semibold gap-4 bg-light w-full py-3 border-b-[1px] px-6 border-dark/50 text-center hover:bg-dark/10 ${
+                  index === 0
+                     ? "border-dark/40 border-0 border-b-[1px] border-solid"
+                     : ""
+               }`}
+               to={link}
+            >
+               <div className="flex justify-center gap-3 items-center w-fit ">
+                  <p>{icon}</p>
+                  <p>{name}</p>
+               </div>
+            </Link>
+         ))}
+      </div>
+   );
+};
 
 function SimpleMenu() {
    const subLinks = [
@@ -217,13 +242,7 @@ function SimpleMenu() {
          name: "Catégories",
          link: "/categories",
          icon: <BiCategory />,
-      },
-
-      {
-         name: "Profil",
-         link: "/profil",
-         icon: <FaRegUser />,
-      },
+      }
    ];
 
    return (
@@ -237,6 +256,8 @@ function SimpleMenu() {
                   </NavLink>
                </li>
             ))}
+
+            <Message />
          </ul>
       </div>
    );
