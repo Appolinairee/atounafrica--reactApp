@@ -36,8 +36,6 @@ const HomeHeader = () => {
       const titleElement = document.getElementById("slideeTitle");
       const ButtonElement = document.querySelector(".secondButton");
 
-      console.log(ButtonElement);
-
       if (titleElement && ButtonElement) {
          titleElement.classList.add("fade-in");
          ButtonElement.classList.add("zoom-in");
@@ -88,7 +86,7 @@ const HomeHeader = () => {
 
    return (
       <div className="bg-light py-2 px-sectionPadding ">
-         <div className="h-[400px] xs:h-[350px] rounded-[30px] bg-dark/20 flex items-center justify-start overflow-hidden xs:rounded-[15px]">
+         <div className="h-[400px] xs:h-[350px] rounded-[30px] bg-dark/10 flex items-center justify-start overflow-hidden xs:rounded-[15px]">
             <div className="flex h-full w-full relative !items-start justify-between large:!h-full large:text-light">
                <div className="pl-[5%] pr-0 py-[3%] large:relative large:z-10 h-full pb-[80px] flex flex-col justify-between !items-start large:pt-[5%]">
                   <div className="flex gap-2 w-fit  xs:max-w-[80%] whitespace-nowrap xs:flex-wrap">
