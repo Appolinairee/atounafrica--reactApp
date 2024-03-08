@@ -173,3 +173,38 @@ body .app{
         height: 50px;
     }
 }
+
+
+
+
+
+/* Animations */
+
+.fade-in {
+    transform: translatey(0px);
+    animation: fadeIn .7s ease-in-out forwards;
+}
+  
+  @keyframes fadeIn {
+    from {
+        transform: translatey(-10px);
+    }
+    to {
+        transform: translatey(0px);
+    }
+}
+
+
+.zoom-in {
+    transform: scale(0);
+    animation: zoomIn .5s ease-in-out forwards .4s;
+}
+  
+  @keyframes zoomIn {
+    from {
+        transform: scale(0.95);
+    }
+    to {
+        transform: scale(1);
+    }
+  }

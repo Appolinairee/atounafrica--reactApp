@@ -65,7 +65,7 @@ export default function NavBar() {
    };
 
    return (
-      <div className="simpleMenu_messages pb-[78px]">
+      <div className="simpleMenu_messages pb-[78px] md:pb-[70px] ">
          <nav className="flex py-[35px] bg-light md:py-[25px]">
 
             <div className="flex items-center w-[40%]">

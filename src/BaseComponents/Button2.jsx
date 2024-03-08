@@ -2,7 +2,7 @@ import React from "react";
 
 const Button2 = ({ Text, className}) => {
    return (
-      <button className={`${className} group relative inline-flex h-12 w-36 items-center justify-center overflow-hidden rounded-full bg-primary font-medium text-neutral-200 transition-all duration-300`}>
+      <button className={` group relative inline-flex h-12 w-36 items-center justify-center overflow-hidden rounded-full bg-primary font-medium text-neutral-200 transition-all duration-300 ${className}`}>
          <div className="inline-flex whitespace-nowrap transition-all duration-200 -translate-x-3 group-hover:-translate-x-0">
             {Text}
          </div>

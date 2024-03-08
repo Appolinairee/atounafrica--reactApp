@@ -1,5 +1,3 @@
-import React from "react";
-
 const Button = ({ Text,  className }) => {
    return (
       <button className={`${className}  group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-black px-6 font-medium text-neutral-200`}>
