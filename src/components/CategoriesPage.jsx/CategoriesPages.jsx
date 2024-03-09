@@ -3,7 +3,7 @@ import FilterSection from "../FilterSection/FilterSection"
 import Products from "../Products/Products";
 import "./CategoriesPages.css";
 import Categories from "../Categories/Categories";
-import Creators from "../Creator/creators";
+import Creators from "../Creator/Creators";
 
 const CategoriesPages = () => {
     return (

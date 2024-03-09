@@ -34,11 +34,11 @@ const Steep = () => {
             être Africain, être Authentique
          </h3>
 
-         <p className="text-[1rem] font-semibold">C'est en quelques clics!</p>
+         <p className="text-[1rem] font-medium">C'est en quelques clics!</p>
 
          <div className="grid grid-cols-4 gap-[5%] my-4">
             {Process.map(({ image, name }, index) => (
-               <div className="border-solid border-dark/40 border-[1px] p-3 rounded-2xl">
+               <div className="p-3">
                   <div className="h-[180px]">
                      <img className="h-full w-auto" src={image} alt={name} />
                   </div>
@@ -48,21 +48,6 @@ const Steep = () => {
                   </p>
                </div>
             ))}
-
-            {/* <div className="">
-                <img src={Steep2} alt="Etape 1" />
-                <p>échanger</p>
-            </div>
-
-            <div className="">
-                <img src={Steep3} alt="Etape 1" />
-                <p>Payer à Atoun</p>
-            </div>
-
-            <div className="">
-                <img src={Steep4} alt="Etape 1" />
-                <p>Livraison</p>
-            </div> */}
          </div>
 
          <Button2 Text="En savoir plus" className="!w-[200px]" />

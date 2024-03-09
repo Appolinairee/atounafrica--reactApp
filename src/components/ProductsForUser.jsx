@@ -4,6 +4,7 @@ import { GoHeartFill } from "react-icons/go";
 import { BsArrowLeft, BsArrowRight, BsChatQuote } from "react-icons/bs";
 import { LuLink } from "react-icons/lu";
 import { Link } from "react-router-dom";
+import Creator from "./Creator/Creator";
 import { useState } from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
@@ -28,7 +29,7 @@ const ProductsForUser = () => {
                   className="w-full productShadow rounded-xl p-[0.8rem] max-w-[400px] m-auto"
                   key={index + title}
                >
-                  <div className="flex justify-between w-full border-solid border-0 border-b-[1px] border-dark/10 pb-1  ">
+                  {/* <div className="flex justify-between w-full border-solid border-0 border-b-[1px] border-dark/10 pb-1  ">
                      <div className="flex w-fit gap-2 text-[14px]">
                         <img
                            className="rounded-full w-[40px] h-[40px]"
@@ -41,7 +42,9 @@ const ProductsForUser = () => {
                            <p>Etoiles</p>
                         </div>
                      </div>
-                  </div>
+                  </div> */}
+
+                  <Creator image={creator.logo} name={creator.name} />
 
                   <div className="flex items-center  my-1">
                      <div className="flex justify-between !items-center gap-4 text-[14px]">
