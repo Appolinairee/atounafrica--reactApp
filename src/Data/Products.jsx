@@ -15,6 +15,7 @@ const products = [
          name: "Creator 10",
          logo: Image2,
       },
+      mediaCount: 1
    },
    {
       title: "Product 2",
@@ -27,6 +28,7 @@ const products = [
          name: "Creator 10",
          logo: Image1,
       },
+      mediaCount: 3
    },
    {
       title: "Product 3",
@@ -39,6 +41,7 @@ const products = [
          name: "Creator 10",
          logo: Image2,
       },
+      mediaCount: 1
    },
    {
       title: "Product 4",
@@ -51,6 +54,7 @@ const products = [
          name: "Creator 10",
          logo: Image2,
       },
+      mediaCount: 2
    },
    {
       title: "Product 5",
@@ -63,6 +67,7 @@ const products = [
          name: "Creator 10",
          logo: Image2,
       },
+      mediaCount: 3
    },
    {
       title: "Product 6",
@@ -75,6 +80,7 @@ const products = [
          name: "Creator 10",
          logo: Image2,
       },
+      mediaCount: 3
    },
    {
       title: "Product 7",
@@ -87,6 +93,7 @@ const products = [
          name: "Creator 10",
          logo: Image2,
       },
+      mediaCount: 3
    },
    {
       title: "Product 8",
@@ -99,6 +106,7 @@ const products = [
          name: "Creator 10",
          logo: Image2,
       },
+      mediaCount: 3
    },
    {
       title: "Product 9",
@@ -111,6 +119,7 @@ const products = [
          name: "Creator 10",
          logo: Image2,
       },
+      mediaCount: 2
    },
    {
       title: "Product 10",
@@ -123,6 +132,7 @@ const products = [
          name: "Creator 10",
          logo: Image2,
       },
+      mediaCount: 3
    },
    {
       title: "Product 11",
@@ -135,6 +145,7 @@ const products = [
          name: "Creator 10",
          logo: Image2,
       },
+      mediaCount: 3
    },
    {
       title: "Product 12",
@@ -147,6 +158,7 @@ const products = [
          name: "Creator 10",
          logo: Image2,
       },
+      mediaCount: 2
    },
 ];
 

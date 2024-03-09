@@ -1,17 +1,27 @@
 import Products from "../Data/Products";
 import { GoHeart } from "react-icons/go";
 import { GoHeartFill } from "react-icons/go";
-import { BsChatQuote } from "react-icons/bs";
+import { BsArrowLeft, BsArrowRight, BsChatQuote } from "react-icons/bs";
 import { LuLink } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 const ProductsForUser = () => {
    return (
       <div className="grid grid-cols-3 w-full gap-20 px-sectionPadding my-2 py-10 bg-light lg:grid-cols-2 md:!grid-cols-1 xs:py-6 xs:gap-6">
          {Products.map(
             (
-               { title, newPrice, oldPrice, image, likes, comments, creator },
+               {
+                  title,
+                  newPrice,
+                  oldPrice,
+                  image,
+                  likes,
+                  comments,
+                  creator,
+                  mediaCount,
+               },
                index
             ) => (
                <div
@@ -55,12 +65,21 @@ const ProductsForUser = () => {
                      <p className="text-[15px]">{title}</p>
                   </div>
 
-                  <div className="w-full h-auto rounded-xl overflow-hidden my-3  bg-red-400">
-                     <img className="w-full h-auto" src={image} alt={title} />
-                  </div>
+                  <Link>
+                     <div className="w-full h-auto rounded-xl overflow-hidden my-3  relative">
+                        <img
+                           className="w-full h-auto"
+                           src={image}
+                           alt={title}
+                        />
+
+                        {mediaCount > 1 && (
+                           <MediaPaginator length={mediaCount} />
+                        )}
+                     </div>
+                  </Link>
 
                   <div className="flex mt-2 justify-start *:flex *:items-center *:gap-1 *:cursor-pointer border-solid border-0 border-t-[1px] border-dark/10 pt-[8px] xs:text-[14px]">
-
                      <LikeButton initialLikes={likes} />
 
                      <div>
@@ -106,6 +125,28 @@ const LikeButton = ({ initialLikes }) => {
          </p>
 
          <p>{productLikes}</p>
+      </div>
+   );
+};
+
+const MediaPaginator = ({ length }) => {
+   return (
+      <div className="flex items-center w-fit gap-1 *:cursor-pointer font-bold absolute !bottom-[15px] left-[10px] bg-dark/10 p-[2px] px-[5px] rounded-[5px]">
+         <MdKeyboardArrowLeft className="text-[16px] border-solid border-dark/50 rounded-full p-[0px] px-[0px] border-[1px] duration-75 hover:border-transparent hover:bg-primary hover:text-light xs:text-[22px] large:border-light " />
+         <div className="flex gap-[2px]">
+            {Array.from({ length }, (_, index) => (
+               <span
+                  key={index}
+                  className={`relative p-[3px] border-solid border-dark/60 border-[1px] rounded-full  ${
+                     index === 0
+                        ? "bg-primary px-[6px] border-transparent rounded-lg "
+                        : ""
+                  }`}
+               ></span>
+            ))}
+         </div>
+
+         <MdKeyboardArrowRight className="text-[16px] border-solid border-dark/50 rounded-full p-[0px] px-[0px] border-[1px] duration-75 hover:border-transparent hover:bg-primary hover:text-light xs:text-[22px] large:border-light" />
       </div>
    );
 };
