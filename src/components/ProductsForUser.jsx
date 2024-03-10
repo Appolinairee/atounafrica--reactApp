@@ -10,8 +10,8 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 const ProductsForUser = () => {
    return (
-      <div className="grid grid-cols-3 w-full gap-20 px-sectionPadding my-2 py-10 bg-light lg:grid-cols-2 md:!grid-cols-1 xs:py-6 xs:gap-6">
-         {Products.map(
+      <div className="grid grid-cols-3 w-full gap-x-20 gap-y-6 px-sectionPadding my-2 py-10 bg-light lg:grid-cols-2 md:!grid-cols-1 xs:py-6 xs:gap-6">
+         {Products.slice(0,6).map(
             (
                {
                   title,
@@ -29,20 +29,6 @@ const ProductsForUser = () => {
                   className="w-full productShadow rounded-xl p-[0.8rem] max-w-[400px] m-auto"
                   key={index + title}
                >
-                  {/* <div className="flex justify-between w-full border-solid border-0 border-b-[1px] border-dark/10 pb-1  ">
-                     <div className="flex w-fit gap-2 text-[14px]">
-                        <img
-                           className="rounded-full w-[40px] h-[40px]"
-                           src={creator.logo}
-                           alt={creator.name}
-                        />
-
-                        <div>
-                           <p>{creator.name}</p>
-                           <p>Etoiles</p>
-                        </div>
-                     </div>
-                  </div> */}
 
                   <Creator image={creator.logo} name={creator.name} />
 

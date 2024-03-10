@@ -1,7 +1,7 @@
 import Image1 from "../assets/photos(exemples)/OIP (2).jpg";
-import Image2 from "../assets/photos(exemples)/OIP (2).jpg";
-import Image3 from "../assets/photos(exemples)/OIP (2).jpg";
-import Image4 from "../assets/photos(exemples)/OIP (2).jpg";
+import Image2 from "../assets/photos(exemples)/OIP (3).jpg";
+import Image3 from "../assets/photos(exemples)/OIP (4).jpg";
+import Image4 from "../assets/photos(exemples)/OIP (5).jpg";
 
 const products = [
    {
@@ -47,7 +47,7 @@ const products = [
       title: "Product 4",
       newPrice: 24.99,
       oldPrice: 34.99,
-      image: Image4,
+      image: Image1,
       likes: 100,
       comments: 12,
       creator: {

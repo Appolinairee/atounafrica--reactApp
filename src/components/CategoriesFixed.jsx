@@ -19,9 +19,9 @@ const CategoriesFixed = ({ className }) => {
    const { category = "Pour vous" } = useParams();
    const containerRef = useRef(null);
    const [isAtStart, setIsAtStart] = useState(true);
-  const [isAtEnd, setIsAtEnd] = useState(false);
-  const [scrollStep, setScrollStep] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
+   const [isAtEnd, setIsAtEnd] = useState(false);
+   const [scrollStep, setScrollStep] = useState(0);
+   const [scrollLeft, setScrollLeft] = useState(0);
 
    const Categories = [
       {
@@ -69,7 +69,6 @@ const CategoriesFixed = ({ className }) => {
    const handleScroll = (direction) => {
       const container = containerRef.current;
 
-      console.log(container);
       if (container) {
          const newScrollLeft =
             direction === "left"
@@ -88,21 +87,23 @@ const CategoriesFixed = ({ className }) => {
    useEffect(() => {
       const container = containerRef.current;
       if (container) {
-        const totalWidth = container.scrollWidth;
-        const averageItemWidth = totalWidth / Categories.length;
-  
-        setScrollStep(averageItemWidth);
-  
-        // Met à jour les états isAtStart et isAtEnd
-        setIsAtStart(scrollLeft < 20);
-        setIsAtEnd(scrollLeft + container.clientWidth >= totalWidth);
+         const totalWidth = container.scrollWidth;
+         const averageItemWidth = totalWidth / Categories.length;
+
+         setScrollStep(averageItemWidth);
+
+         // Met à jour les états isAtStart et isAtEnd
+         setIsAtStart(scrollLeft < 20);
+         setIsAtEnd(scrollLeft + container.clientWidth >= totalWidth);
       }
-    }, [scrollLeft]);
+   }, [scrollLeft]);
 
    return (
-      <div className={`${className} mb-2  relative px-sectionPadding border-solid border-0 border-dark/10 border-b-[1px] bg-light  `}>
+      <div
+         className={`${className} mb-2  relative px-sectionPadding border-solid border-0 border-dark/10 border-b-[1px] !z-10 bg-light  `}
+      >
          <div
-            className={`flex pt-4 overflow-x-auto gap-[5%] z-30 scrollbar-none`}
+            className={`flex pt-4 overflow-x-auto gap-[5%] !z-50 scrollbar-none`}
             ref={containerRef}
          >
             {Categories.map(({ icon, text }, index) => (
@@ -121,20 +122,26 @@ const CategoriesFixed = ({ className }) => {
                </div>
             ))}
          </div>
-         
+
          <button
-            className={`absolute -bottom-1 bg-light transform -translate-y-1/2 left-4 ${isAtStart ? "opacity-0": "absolute-100"} border-solid rounded-full border-[1px] p-[3px] border-dark/50 large:left-1 xs:p-[2px] xs:-bottom-1`}
+            className={`absolute -bottom-1 bg-light transform -translate-y-1/2 left-4 ${
+               isAtStart ? "opacity-0" : "absolute-100"
+            } border-solid rounded-full border-[1px] p-[3px] border-dark/50 large:left-1 xs:p-[2px] xs:-bottom-1`}
             onClick={() => handleScroll("left")}
          >
             <MdKeyboardArrowLeft />
          </button>
 
          <button
-            className={`absolute -bottom-1 bg-light right-4 transform -translate-y-1/2 ${isAtEnd ? "opacity-0": "absolute-100"} border-solid rounded-full border-[1px] p-[3px] border-dark/50 large:right-1 xs:p-[2px] xs:-bottom-1`}
+            className={`absolute -bottom-1 bg-light right-4 transform -translate-y-1/2 ${
+               isAtEnd ? "opacity-0" : "absolute-100"
+            } border-solid rounded-full border-[1px] p-[3px] border-dark/50 large:right-1 xs:p-[2px] xs:-bottom-1`}
             onClick={() => handleScroll("right")}
          >
             <MdKeyboardArrowRight />
          </button>
+
+         
       </div>
    );
 };

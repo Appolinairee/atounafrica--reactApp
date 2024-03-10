@@ -5,7 +5,6 @@ const HiddenBodyScroll = ({state}) => {
     console.log(state);
     const bodyElement = document.body;
 
-    console.log("state");
     if (state) {
       bodyElement.classList.add("scrollbar-none");
     } else {

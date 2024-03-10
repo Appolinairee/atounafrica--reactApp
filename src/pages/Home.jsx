@@ -16,16 +16,19 @@ export default function Home() {
          <HomeHeader />
 
          <div className="relative">
-            <CategoriesFixed className="!sticky top-4 left-0 w-full xs:top-2" />
+            <CategoriesFixed className="!sticky top-4 left-0 w-full md:top-3 xs:top-2" />
             {/* <Header /> */}
             {/* <Products /> */}
             <ProductsForUser />
             <Steep />
+            <ProductsForUser />
             <Newsletter />
+            <ProductsForUser />
             <Creators />
-            <Categories />
+            <ProductsForUser />
+            {/* <Categories />
             <Products />
-            <Products />
+            <Products /> */}
          </div>
       </div>
    );

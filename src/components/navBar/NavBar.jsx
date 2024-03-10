@@ -158,7 +158,9 @@ export default function NavBar() {
             </div>
          </nav>
 
-         <SimpleMenu />
+         
+
+         <Message classNameBtn="!fixed bottom-2 right-2 xs:right-3" />
 
          <Menu barState={barState} handleBar={handleBar} />
 
@@ -166,6 +168,7 @@ export default function NavBar() {
             handleNotification={handleNotification}
             notificationState={notificationState}
          />
+         <SimpleMenu />
       </div>
    );
 }
@@ -257,7 +260,7 @@ function SimpleMenu() {
                </li>
             ))}
 
-            <Message />
+            <div className=" w-[10%]"></div>
          </ul>
       </div>
    );
