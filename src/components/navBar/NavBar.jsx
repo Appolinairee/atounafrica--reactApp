@@ -168,6 +168,7 @@ export default function NavBar() {
             handleNotification={handleNotification}
             notificationState={notificationState}
          />
+         
          <SimpleMenu />
       </div>
    );

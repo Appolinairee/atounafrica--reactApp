@@ -17,8 +17,6 @@ export default function Home() {
 
          <div className="relative">
             <CategoriesFixed className="!sticky top-4 left-0 w-full md:top-3 xs:top-2" />
-            {/* <Header /> */}
-            {/* <Products /> */}
             <ProductsForUser />
             <Steep />
             <ProductsForUser />

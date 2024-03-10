@@ -4,7 +4,7 @@ import { LiaTimesSolid } from "react-icons/lia";
 import NotificationImage from "../assets/photos(exemples)/OIP (4).jpeg"
 import NothingToDisplay from "../BaseComponents/NothingToDisplay";
 import Overflow from "../BaseComponents/Overflow";
-import HiddenBodyScroll from "../BaseComponents/HiddenBodyScroll";
+import ScrollBarHider from "../BaseComponents/ScrollBarHidden";
 
 const Notification = ({message, image, state, date, link}) => {
   return(
@@ -110,7 +110,7 @@ const Notifications = ({handleNotification, notificationState }) => {
       <div
         className={`${
           notificationState ? "translate-x-0" : "translate-x-full"
-        } transition-all duration-200 absolute top-0 right-0 h-full w-[340px] shadow-boxShadow1 bg-light py-4 xs:w-full`}
+        } transition-all duration-200 absolute top-0 right-0 h-full w-[340px] shadow-boxShadow1 bg-light py-4 xs:w-full !z-20`}
       >
         <div className="fixed top-4 right-0 w-full">
           <div className="relative text-center">
@@ -174,7 +174,7 @@ const Notifications = ({handleNotification, notificationState }) => {
 
       {
         notificationState &&
-        <Overflow handleOverflow={handleNotification} />
+        <ScrollBarHider hidden={true} handleSearchState={handleNotification} className="!z-10" />
       }
     </div>
   );

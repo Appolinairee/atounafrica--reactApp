@@ -20,7 +20,6 @@ import CreatorProfil from "./pages/CreatorProfil";
 import CreatorSign from "./pages/CreatorSign";
 import CreatorDashboard from "./components/CreatorComponents/CreatorDashboard";
 
-
 const App = () => {
    return (
       <div>
@@ -30,6 +29,12 @@ const App = () => {
             <Routes>
                <Route path="" element={<Home />} />
 
+               {/* Auths */}
+               <Route path="/inscription" element={<Inscription />} />
+               <Route path="/connexion" element={<Connexion />} />
+               <Route path="/forget" element={<ForgetPass />} />
+               <Route path="/reset" element={<ResetPass />} />
+
                {/* Product */}
                <Route path="/research" element={<ProductResult />} />
                <Route path="/categories" element={<CategoriesPages />} />
@@ -38,21 +43,17 @@ const App = () => {
                <Route path="/deliever" element={<ProductDeliever />} />
                <Route path="/reception" element={<ProductReceive />} />
 
-               {/* Auths */}
-               <Route path="/inscription" element={<Inscription />} />
-               <Route path="/connexion" element={<Connexion />} />
-               <Route path="/forget" element={<ForgetPass />} />
-               <Route path="/reset" element={<ResetPass />} />
-
                {/* Profils */}
                <Route path="/profil" element={<Profil />} />
                <Route path="/profil/creator" element={<CreatorProfil />} />
                <Route path="/creator" element={<CreatorSign />} />
                <Route path="/creator/tableau" element={<CreatorDashboard />} />
+
+               <Route path="*" element={<Home />} />
             </Routes>
          </BrowserRouter>
       </div>
    );
 };
 
-export default App; 
+export default App;

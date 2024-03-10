@@ -8,6 +8,7 @@ import Overflow from "../BaseComponents/Overflow";
 import Chat from "./Chat";
 import AtounService from "../BaseComponents/AtounService";
 import Faq from "../BaseComponents/Faq";
+import ScrollBarHider from "../BaseComponents/ScrollBarHidden";
 
 const Message = ({classNameBtn}) => {
     const [msgType, setMsgType] = useState(0);
@@ -37,7 +38,7 @@ const Message = ({classNameBtn}) => {
     <>
         <MessageButton messageState={msgState} handleMsgState={handleMsgState} className={classNameBtn} />
 
-        <div className={`fixed bg-red right-4 bottom-[60px] bg-light w-[350px] min-h-[90vh] h-[90vh] rounded-tl-[20px] rounded-tr-[20px] rounded-lg !z-50 shadow-boxShadow1 ${msgState ? 'block' : 'hidden'} overflow-hidden scrollbar max-w-full xs:right-[2.5%] xs:w-[95%] xs:h-[95vh] xs:bottom-[8vh] max-h-[500px]`}>
+        <div className={`fixed bg-red right-4 bottom-[57px] bg-light w-[350px] min-h-[91vh] h-[100vh] rounded-tl-[20px] rounded-tr-[20px] rounded-lg !z-50 shadow-boxShadow1 ${msgState ? 'block' : 'hidden'} overflow-hidden scrollbar max-w-full xs:right-[2.5%] xs:w-[95%] xs:h-[95vh] xs:bottom-[8vh] max-h-[500px] z-50`}>
 
             <div className="bg-primary  pt-4 rounded-tl-[20px] rounded-tr-[20px] text-light">
                 <div className="flex items-center mb-6 px-4">
@@ -76,7 +77,7 @@ const Message = ({classNameBtn}) => {
 
         {
             msgState &&
-            <Overflow handleOverflow={handleMsgState} className="!fixed bg-transparent z-45 !right-[20px] w-[100vw] " />
+            <ScrollBarHider hidden={true} handleSearchState={handleMsgState} className="!z-40" />
         }
     </>
   )
