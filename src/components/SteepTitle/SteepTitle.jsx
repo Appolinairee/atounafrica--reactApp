@@ -4,7 +4,7 @@ const SteepTitle = ({title, index, icon}) => {
   return (
     <div className="actualState flex">
         {
-            (index != 1) && <div className="icon"><FaArrowLeft /></div>
+            (index !== 1) && <div className="icon"><FaArrowLeft /></div>
         }
         {
           icon && <span className="icon">{icon}</span>

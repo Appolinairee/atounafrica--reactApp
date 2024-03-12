@@ -4,7 +4,7 @@ const Button = ({ Text,  className }) => {
          <span>{Text}</span>
          <div className="ml-1 transition group-hover:translate-x-1">
             <svg
-               height="1'"
+               height="1"
                viewBox="0 0 15 15"
                fill="none"
                xmlns="http://www.w3.org/2000/svg"

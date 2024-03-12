@@ -3,7 +3,6 @@ import CreatorSignSteep from "../BaseComponents/CreatorSignSteep";
 import CreatorRules from "../components/CreatorRules";
 import CreatorForm from "../components/CreatorForm";
 import CreatorConfiguration from "../components/CreatorConfiguration"
-import CreateProduct from "../components/CreatorComponents/CreateProduct";
 import UpdateProduct from "../components/CreatorComponents/UpdateProduct";
 
 const CreatorSign = () => {

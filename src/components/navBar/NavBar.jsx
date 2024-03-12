@@ -28,32 +28,6 @@ export default function NavBar() {
       setSearchState(!searchState);
    };
 
-   const Links = [
-      {
-         name: "Accueil",
-         link: "/",
-         icon: <GoHome />,
-      },
-
-      {
-         name: "Panier",
-         link: "/panier",
-         icon: <MdShoppingCart />,
-      },
-
-      {
-         name: "Catégories",
-         link: "/categories",
-         icon: <BiCategory />,
-      },
-
-      {
-         name: "Profil",
-         link: "/profil",
-         icon: <FaRegUser />,
-      },
-   ];
-
    const [notificationState, setNotificationState] = useState(false);
 
    const handleBar = () => {

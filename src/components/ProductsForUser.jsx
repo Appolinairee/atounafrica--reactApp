@@ -1,7 +1,7 @@
 import Products from "../Data/Products";
 import { GoHeart } from "react-icons/go";
 import { GoHeartFill } from "react-icons/go";
-import { BsArrowLeft, BsArrowRight, BsChatQuote } from "react-icons/bs";
+import { BsChatQuote } from "react-icons/bs";
 import { LuLink } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import Creator from "./Creator/Creator";

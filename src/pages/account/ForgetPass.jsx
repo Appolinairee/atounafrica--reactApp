@@ -1,4 +1,3 @@
-import { LuUser } from "react-icons/lu";
 import SignImage from "../../assets/signImage.png";
 import { Link } from "react-router-dom";
 import { CiMail } from "react-icons/ci";

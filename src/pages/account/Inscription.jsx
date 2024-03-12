@@ -11,16 +11,16 @@ const Inscription = () => {
    const [password, setPassword] = useState(false);
    const [confirmationEmailSent, setConfirmationEmailSent] = useState(false);
 
-   const handleRegistration = async (e) => {
-      e.preventDefault();
+   // const handleRegistration = async (e) => {
+   //    e.preventDefault();
 
-      // Logique pour soumettre le formulaire d'inscription au backend
+   //    // Logique pour soumettre le formulaire d'inscription au backend
 
-      // Envoyer un e-mail de confirmation (côté backend)
+   //    // Envoyer un e-mail de confirmation (côté backend)
 
-      // Mettre à jour l'état pour afficher le message de notification
-      setConfirmationEmailSent(true);
-   };
+   //    // Mettre à jour l'état pour afficher le message de notification
+   //    setConfirmationEmailSent(true);
+   // };
 
    return (
       <div className="bg-light pt-1">

@@ -38,7 +38,7 @@ const Steep = () => {
 
          <div className="grid grid-cols-4 gap-[5%] my-4 large:grid-cols-2 xs:gap-[10px]">
             {Process.map(({ image, name }, index) => (
-               <div className="p-3">
+               <div key={index+name} className="p-3">
                   <div className="h-[180px] md:h-[150px] xs:h-[90px]">
                      <img className="h-full w-auto" src={image} alt={name} />
                   </div>

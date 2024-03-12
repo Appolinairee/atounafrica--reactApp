@@ -91,7 +91,7 @@ const Menu = ({barState, handleBar}) => {
     ];
 
   return (
-    <div className={(barState == 1)? "allMenus active": "allMenus"}>  
+    <div className={(barState === 1)? "allMenus active": "allMenus"}>  
         <div className="overlay" onClick={ handleBar }></div>
 
         <div className="menus actived"  >
