@@ -11,11 +11,11 @@
     background-image: linear-gradient(to bottom, white 20%, #d9e4f9cf 70%);
 }
 
-.productShadow{
+.productShadow {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05), -1px -1px 2px rgba(0, 0, 0, 0.05);
 }
 
-*, ::after, ::before{
+*, ::after, ::before {
     padding: 0;
     margin: 0;
     border: none;
@@ -26,7 +26,7 @@
     color: var(--color-dark);
 }
 
-:root{
+:root {
     /* Colors */
     --primaryColor: #00ACA4;
     --blackColor: black;
@@ -45,62 +45,64 @@
     --smallMargin: 1%;
 }
 
-html{
+html {
     scroll-behavior: smooth;
     font-family: 'Montserrat', sans-serif;
 }
 
-html body{
+html body {
     background: var(--backgroundColor);
     position: relative;
 }
 
-input, textarea, select{
+input, textarea, select {
     font-family: 'Montserrat', sans-serif;
 }
 
-body .app{
+body .app {
     background: var(--color-body);
     overflow-x: hidden;
 }
 
-.overlay{
+.overlay {
     position: absolute;
-    width: 100%; height: 100%;
-    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
     z-index: 5;
     background-color: rgba(0, 0, 0, 0.3);
 }
 
-.grid{
+.grid {
     display: grid;
 }
 
-.flex{
+.flex {
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
 }
 
-.section{
+.section {
     background: var(--whiteColor);
     padding: auto 3%;
     margin: initial auto;
     max-width: 1300px;
 }
 
-.icon{
+.icon {
     cursor: pointer;
     display: flex;
     align-items: center;
 }
 
-.before, .after{
+.before, .after {
     position: relative;
 }
 
-.before::before, .after::after{
+.before::before, .after::after {
     content: '';
     position: absolute;
     top: 0;
@@ -112,28 +114,28 @@ body .app{
 
 /* To analyse */
 
-.actualState{
+.actualState {
     margin-bottom: 20px;
     gap: 10px;
     justify-content: center;
     align-items: center;
 }
 
-.actualState span.icon{
-   border: solid var(--opacityBlackColor);
-   padding: 10px;
-   border-radius: 50%;
+.actualState span.icon {
+    border: solid var(--opacityBlackColor);
+    padding: 10px;
+    border-radius: 50%;
 }
 
-.actualState h3{
-   font-size: 1.3rem;
+.actualState h3 {
+    font-size: 1.3rem;
 }
 
-.actualState i{
-   font-size: 14px;
+.actualState i {
+    font-size: 14px;
 }
 
-.input{
+.input {
     border: 1.5px solid var(--opacityBlackColor);
     display: flex;
     align-items: center;
@@ -145,34 +147,34 @@ body .app{
     height: 47px;
 }
 
-.input input{
+.input input {
     height: 100%;
     margin: auto 0;
     align-content: center;
     font-family: 'Montserrat', sans-serif;
 }
 
-.topSection{
+.topSection {
     padding-top: 45px;
     margin: 0 3%;
 }
 
 @media screen and (max-width: 700px) {
-    .topSection{
+    .topSection {
         padding-top: 38px;
         margin: 0 2%;
     }
 }
 
 @media screen and (max-width: 450px) {
-    .topSection{
+    .topSection {
         padding-top: 45px;
         margin: 0 2%;
     }
 }
 
 @media screen and (min-width: 451px) {
-    .input{
+    .input {
         padding: 10px 10px;
         height: 50px;
     }
@@ -188,11 +190,12 @@ body .app{
     transform: translatey(0px);
     animation: fadeIn .7s ease-in-out forwards;
 }
-  
-  @keyframes fadeIn {
+
+@keyframes fadeIn {
     from {
         transform: translatey(-10px);
     }
+
     to {
         transform: translatey(0px);
     }
@@ -203,12 +206,13 @@ body .app{
     transform: scale(0);
     animation: zoomIn .5s ease-in-out forwards .4s;
 }
-  
-  @keyframes zoomIn {
+
+@keyframes zoomIn {
     from {
         transform: scale(0.95);
     }
+
     to {
         transform: scale(1);
     }
-  }
+}

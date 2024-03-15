@@ -1,30 +1,29 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Provider } from "react-redux";
 
 // import General Components
-import NavBar from "../components/navBar/NavBar";
+import NavBar from "./components/navBar/NavBar";
 
 // Import Pages
-import Home from "../pages/Home";
-import ProductResult from "../components/ProductResults/ProductResult";
-import CategoriesPages from "../components/CategoriesPage.jsx/CategoriesPages";
-import ProductPresentation from "../components/ProductPresentation/ProductPresentation";
-import ProductPayment from "../components/ProductPayment/ProductPayment";
-import ProductDeliever from "../components/ProductDelivering/ProductDelievering";
-import ProductReceive from "../components/ProductReceive/ProductReceive";
-import Inscription from "../pages/account/Inscription";
-import Connexion from "../pages/account/Connexion";
-import ForgetPass from "../pages/account/ForgetPass";
-import ResetPass from "../pages/account/ResetPass";
-import Profil from "../pages/Profil";
-import CreatorProfil from "../pages/CreatorProfil";
-import CreatorSign from "../pages/CreatorSign";
-import CreatorDashboard from "../components/CreatorComponents/CreatorDashboard";
+import Home from "./pages/Home";
+import ProductResult from "./components/ProductResults/ProductResult";
+import CategoriesPages from "./components/CategoriesPage.jsx/CategoriesPages";
+import ProductPresentation from "./components/ProductPresentation/ProductPresentation";
+import ProductPayment from "./components/ProductPayment/ProductPayment";
+import ProductDeliever from "./components/ProductDelivering/ProductDelievering";
+import ProductReceive from "./components/ProductReceive/ProductReceive";
+import Inscription from "./pages/account/Inscription";
+import Connexion from "./pages/account/Connexion";
+import ForgetPass from "./pages/account/ForgetPass";
+import ResetPass from "./pages/account/ResetPass";
+import Profil from "./pages/Profil";
+import CreatorProfil from "./pages/CreatorProfil";
+import CreatorSign from "./pages/CreatorSign";
+import CreatorDashboard from "./components/CreatorComponents/CreatorDashboard";
+import VerifyEmail from "./pages/account/VerifyEmail";
 
 const App = () => {
    return (
-      <Provider store={store}>
-         <div>
+      <div>
          <BrowserRouter>
             <NavBar />
 
@@ -36,6 +35,7 @@ const App = () => {
                <Route path="/connexion" element={<Connexion />} />
                <Route path="/forget" element={<ForgetPass />} />
                <Route path="/reset" element={<ResetPass />} />
+               <Route path="/api/auth/email/verify" element={<VerifyEmail />} />
 
                {/* Product */}
                <Route path="/research" element={<ProductResult />} />
@@ -55,7 +55,6 @@ const App = () => {
             </Routes>
          </BrowserRouter>
       </div>
-      </Provider>
    );
 };
 
