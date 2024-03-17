@@ -21,8 +21,10 @@ const Inscription = () => {
             }
          ),
       {
-         onSuccess: () => {
+         onSuccess: (response) => {
             console.log("User registered successfully");
+            let data = response.data.data;
+            localStorage.setItem("token", data.token);
             navigate("/");
          },
          onError: (error) => {

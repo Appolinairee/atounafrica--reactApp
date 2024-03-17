@@ -20,12 +20,17 @@ import CreatorProfil from "./pages/CreatorProfil";
 import CreatorSign from "./pages/CreatorSign";
 import CreatorDashboard from "./components/CreatorComponents/CreatorDashboard";
 import VerifyEmail from "./pages/account/VerifyEmail";
+import useUser from "./store/useUser";
 
 const App = () => {
+
+   const {user, isLoading} = useUser();
+   const isUser = (user) ? true : false;
+
    return (
       <div>
          <BrowserRouter>
-            <NavBar />
+            <NavBar isUser={isUser}  />
 
             <Routes>
                <Route path="" element={<Home />} />

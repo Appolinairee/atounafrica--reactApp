@@ -19,7 +19,7 @@ import { FaBars } from "react-icons/fa6";
 import { MdOutlineNotifications } from "react-icons/md";
 import { LiaTimesSolid } from "react-icons/lia";
 
-export default function NavBar() {
+export default function NavBar({ isUser }) {
    const [barState, setBarState] = useState(0);
    const [searchState, setSearchState] = useState(false);
    const [profilState, setProfilState] = useState(false);
@@ -41,7 +41,6 @@ export default function NavBar() {
    return (
       <div className="simpleMenu_messages pb-[78px] md:pb-[70px] ">
          <nav className="flex py-[35px] bg-light md:py-[25px]">
-
             <div className="flex items-center w-[40%]">
                <div className="logo">
                   <img src={Logo} alt="Logo d'Atoun Africa" />
@@ -70,26 +69,44 @@ export default function NavBar() {
                         handleSearchState={handleSearchState}
                         className="!top-[70px]"
                      />
-
                   </form>
                </div>
             </div>
 
             <div className="flex items-center justify-center gap-4 *:cursor-pointer">
-               <div className="relative mr-2" onClick={() => handleNotification()}>
+               <div
+                  className="relative mr-2"
+                  onClick={() => handleNotification()}
+               >
                   <MdOutlineNotifications className=" text-xl" />
                   <DisplayIndex index={12} />
                </div>
 
-               <div className="flex gap-3 text-[15px] border-solid rounded-2xl p-[6px] px-[12px] border-dark/20 border-[1px] large:hidden">
-                  <FaShoppingCart />
-                  Achat
-               </div>
+               {isUser ? (
+                  <>
+                     <div className="flex gap-3 text-[15px] border-solid rounded-2xl p-[6px] px-[12px] border-dark/20 border-[1px] large:hidden">
+                        <FaShoppingCart />
+                        Achat
+                     </div>
 
-               <div className="flex gap-3 text-[15px] border-solid rounded-2xl p-[6px] px-[12px] border-dark/20 border-[1px] large:hidden">
-                  <FaMoneyBillWave />
-                  Vente
-               </div>
+                     <div className="flex gap-3 text-[15px] border-solid rounded-2xl p-[6px] px-[12px] border-dark/20 border-[1px] large:hidden">
+                        <FaMoneyBillWave />
+                        Vente
+                     </div>
+                  </>
+               ) : (
+                  <>
+                     <div className="flex gap-3 text-[15px] border-solid rounded-2xl p-[6px] px-[12px] border-dark/20 border-[1px] large:hidden">
+                        <FaShoppingCart />
+                        Se connecter
+                     </div>
+
+                     <div className="flex gap-3 text-[15px] border-solid rounded-2xl p-[6px] px-[12px] border-dark/20 border-[1px] large:hidden">
+                        <FaMoneyBillWave />
+                        S'inscrire
+                     </div>
+                  </>
+               )}
 
                <div
                   className="flex relative gap-3 text-[15px] border-solid rounded-2xl p-[4px] px-[10px] border-dark/20 border-[1px] xs:p-[2px] xs:px-[5px] xs:gap-1"
@@ -108,9 +125,7 @@ export default function NavBar() {
                   />
                </div>
 
-               {profilState && (
-                     <SubMenu />
-               )}
+               {profilState && <SubMenu />}
 
                {profilState && (
                   <span
@@ -119,10 +134,7 @@ export default function NavBar() {
                   ></span>
                )}
 
-               <div
-                  className="menuLinkExtra"
-                  onClick={handleBar}
-               >
+               <div className="menuLinkExtra" onClick={handleBar}>
                   <Link>
                      <div className="icon">
                         {barState ? <LiaTimesSolid /> : <FaBars />}
@@ -132,8 +144,6 @@ export default function NavBar() {
             </div>
          </nav>
 
-         
-
          <Message classNameBtn="!fixed bottom-2 right-2 xs:right-3" />
 
          <Menu barState={barState} handleBar={handleBar} />
@@ -142,7 +152,7 @@ export default function NavBar() {
             handleNotification={handleNotification}
             notificationState={notificationState}
          />
-         
+
          <SimpleMenu />
       </div>
    );
@@ -220,7 +230,7 @@ function SimpleMenu() {
          name: "Catégories",
          link: "/categories",
          icon: <BiCategory />,
-      }
+      },
    ];
 
    return (

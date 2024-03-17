@@ -3,18 +3,17 @@ import { GoEye } from "react-icons/go";
 import { FcGoogle } from "react-icons/fc";
 import { CiMail } from "react-icons/ci";
 import SignImage from "../../assets/signImage.png";
-import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
 import axios from "axios";
 import InputField from "../../BaseComponents/InputField";
 import ErrorMessage from "../../BaseComponents/ErrorMessage";
 import LoadingButton from "../../BaseComponents/LoadingButton";
-import UserContext from "../../store/UserContext";
 
 const Connexion = () => {
    const [password, setPassword] = useState(false);
-   const { user, updateUser } = useContext(UserContext);
+   const navigate = useNavigate();
 
    const [formData, setFormData] = useState({
       email: "",
@@ -37,10 +36,8 @@ const Connexion = () => {
       {
          onSuccess: (response) => {
             let data = response.data.data;
-            console.log("User registered successfully");
             localStorage.setItem("token", data.token);
-            updateUser(data.user);
-            console.log(data.user);
+            navigate("/");
          },
          onError: (error) => {
             const { data } = error.response;
@@ -55,7 +52,6 @@ const Connexion = () => {
                   "Une erreur s'est produite lors de l'inscription:"
                );
             }
-            
          },
       }
    );
