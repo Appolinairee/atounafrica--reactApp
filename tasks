@@ -1,4 +1,6 @@
--axios, redux-toolkit
-# inscription
-# connexion
-# forget pass
+
+
+Think about
+
+# On connexion component, think about soft delete account 
+And non verified account

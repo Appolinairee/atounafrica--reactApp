@@ -9,58 +9,11 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useMutation } from "react-query";
 import { ImSpinner6 } from "react-icons/im";
+import MailIsSendNotification from "../../BaseComponents/MailIsSendNotification";
+import ErrorMessage from "../../BaseComponents/ErrorMessage";
+import InputField from "../../BaseComponents/InputField";
+import LoadingButton from "../../BaseComponents/LoadingButton";
 
-const ErrorMessage = ({ text }) => {
-   return (
-      <div className=" bg-red-100 rounded-[4px] px-2 text-dark text-[13px]">
-         {text}
-      </div>
-   );
-};
-
-const InputField = ({
-   type,
-   placeholder,
-   name,
-   value,
-   onChange,
-   error,
-   icon,
-}) => {
-   return (
-      <>
-         {error && <ErrorMessage text={error} />}
-         <div className="bg-red px-3 py-2 flex items-center justify-center relative bg-light text-dark rounded-[8px] mb-3">
-            <p className="absolute top-1/2 left-3 text-[17px] -translate-y-1/2">
-               {icon}
-            </p>
-
-            <input
-               className="pl-6 w-full placeholder:text-dark/70"
-               type={type}
-               placeholder={placeholder}
-               name={name}
-               value={value}
-               onChange={onChange}
-               required
-            />
-         </div>
-      </>
-   );
-};
-
-const LoadingButton = ({ text, loading }) => {
-   return (
-      <button
-         type="submit"
-         className="!text-center flex gap-2 w-fit font-semibold  text-light mx-auto"
-         disabled={loading}
-      >
-         {loading ? <ImSpinner6 className="animate-spin" /> : null}
-         {loading ? "Chargement..." : text}
-      </button>
-   );
-};
 
 const Inscription = () => {
    const [password, setPassword] = useState(false);
@@ -139,7 +92,8 @@ const Inscription = () => {
          formData.password.length >= 7 &&
          formData.password !== formData.password_confirmation
       )
-         newErrors.password_confirmation = "Les mots de passe ne correspondent pas";
+         newErrors.password_confirmation =
+            "Les mots de passe ne correspondent pas";
 
       setErrors(newErrors);
 
@@ -280,11 +234,7 @@ const Inscription = () => {
                   </div>
                </>
             ) : (
-               <p className="mt-8">
-                  Un mail a été envoyé sur @mail. <br />
-                  <br /> Veuillez confirmer votre adresse mail pour vous
-                  connecter.
-               </p>
+               <MailIsSendNotification email={formData.email} />
             )}
          </div>
       </div>
