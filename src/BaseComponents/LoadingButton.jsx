@@ -7,8 +7,8 @@ const LoadingButton = ({ text, loading }) => {
          className="!text-center flex gap-2 w-fit font-semibold  text-light mx-auto"
          disabled={loading}
       >
-         {loading ? <ImSpinner6 className="animate-spin" /> : null}
-         {loading ? "En cours..." : text}
+         {loading ? <ImSpinner6 className="animate-spin" /> : text}
+         {/* {loading ? "En cours..." : text} */}
       </button>
    );
 };

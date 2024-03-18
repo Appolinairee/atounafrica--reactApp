@@ -37,7 +37,12 @@ const Inscription = () => {
       mutation.mutate();
    }, []);
 
-   return null;
+   return (
+      <h2>
+         En cours de confirmation.
+         Dans un instant ...
+      </h2>
+   );
 };
 
 export default Inscription;

@@ -1,4 +1,5 @@
 import Image from "../assets/images/Logo-Atoun.png";
+import Image2 from "../assets/images/madeInAfrica.png";
 import MessageListElement from "./../BaseComponents/MessageListElement.jsx";
 import NothingToDisplay from "../BaseComponents/NothingToDisplay.jsx";
 
@@ -12,7 +13,21 @@ const MessagesList = ({ handleChat, isChat }) => {
          number: 45,
       },
       {
+         image: Image2,
+         message: "Exactement, je vous reviens très rapidement",
+         name: "Planète",
+         date: "8:05 AM",
+         number: 45,
+      },
+      {
          image: Image,
+         message: "Exactement, je vous reviens très rapidement",
+         name: "Confort Meuble Bénin",
+         date: "8:05 AM",
+         number: 45,
+      },
+      {
+         image: Image2,
          message: "Exactement, je vous reviens très rapidement",
          name: "Confort Meuble Bénin",
          date: "8:05 AM",
@@ -26,21 +41,7 @@ const MessagesList = ({ handleChat, isChat }) => {
          number: 45,
       },
       {
-         image: Image,
-         message: "Exactement, je vous reviens très rapidement",
-         name: "Confort Meuble Bénin",
-         date: "8:05 AM",
-         number: 45,
-      },
-      {
-         image: Image,
-         message: "Exactement, je vous reviens très rapidement",
-         name: "Confort Meuble Bénin",
-         date: "8:05 AM",
-         number: 45,
-      },
-      {
-         image: Image,
+         image: Image2,
          message: "Exactement, je vous reviens très rapidement",
          name: "Confort Meuble Bénin",
          date: "8:05 AM",
@@ -49,7 +50,7 @@ const MessagesList = ({ handleChat, isChat }) => {
    ];
 
    return (
-      <div className="p-2 flex flex-col gap-5 pt-4">
+      <div className="p-2 flex flex-col gap-2 pt-4">
          {messages.length > 0 ? (
             messages.map((message, index) => (
                <MessageListElement

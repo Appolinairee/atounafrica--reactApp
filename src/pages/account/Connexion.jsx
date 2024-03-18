@@ -126,7 +126,7 @@ const Connexion = () => {
 
                   {errors.password && <ErrorMessage text={errors.password} />}
 
-                  <div className="bg-red px-3 py-2 flex items-center justify-center relative bg-light text-dark rounded-[8px] mb-3">
+                  <div className="bg-red px-3 py-2 flex items-center justify-center relative bg-light text-dark rounded-[8px] mb-2">
                      <RiLockPasswordLine className="absolute top-1/2 left-3 text-[17px] -translate-y-1/2" />
 
                      <input
@@ -150,8 +150,11 @@ const Connexion = () => {
                         ></span>
                      </span>
                   </div>
+                  <Link to="/forget" className="text-[13px] mt-2">
+                     Mot de passe oublié <span className="text-primary font-semibold">?</span>
+                  </Link>
 
-                  <div className="bg-red px-3 py-2 flex items-center justify-center relative bg-primary text-dark rounded-[8px] mt-3 mb-2 text-center cursor-pointer">
+                  <div className="bg-red px-3 py-2 flex items-center justify-center relative bg-primary text-dark rounded-[8px] mt-4 mb-2 text-center cursor-pointer">
                      <LoadingButton
                         text="Se connecter"
                         loading={mutation.isLoading}
@@ -173,7 +176,7 @@ const Connexion = () => {
 
             <div className="mb-2 text-[15px] w-full text-center">
                <p>
-                  N'avez-vous pas encore un compte ?{" "}
+                  N'avez-vous pas un compte ?{" "}
                   <Link
                      className=" underline text-primary font-medium"
                      to="/inscription"

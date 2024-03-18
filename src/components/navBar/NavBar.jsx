@@ -1,14 +1,14 @@
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 import "./NavBar.css";
+
 import Menu from "../menu/Menu";
 import Notifications from "../Notifications";
 import DisplayIndex from "../../BaseComponents/DisplayIndex";
 import Message from "../Message";
 import ScrollBarHider from "../../BaseComponents/ScrollBarHidden";
-import { FaShoppingCart, FaMoneyBillWave, FaChevronDown } from "react-icons/fa";
-
 import Logo from "../../assets/images/Logo-Atoun.png";
+
 // Icons
 import { IoSearch } from "react-icons/io5";
 import { MdShoppingCart } from "react-icons/md";
@@ -18,8 +18,11 @@ import { FaRegUser } from "react-icons/fa";
 import { FaBars } from "react-icons/fa6";
 import { MdOutlineNotifications } from "react-icons/md";
 import { LiaTimesSolid } from "react-icons/lia";
+import { FaShoppingCart, FaMoneyBillWave, FaChevronDown } from "react-icons/fa";
+import { useQueryClient } from "react-query";
+import axios from "axios";
 
-export default function NavBar({ isUser }) {
+export default function NavBar({ user }) {
    const [barState, setBarState] = useState(0);
    const [searchState, setSearchState] = useState(false);
    const [profilState, setProfilState] = useState(false);
@@ -79,10 +82,14 @@ export default function NavBar({ isUser }) {
                   onClick={() => handleNotification()}
                >
                   <MdOutlineNotifications className=" text-xl" />
-                  <DisplayIndex index={12} />
+                  <DisplayIndex
+                     index={
+                        user?.notification_count ? user.notification_count : 0
+                     }
+                  />
                </div>
 
-               {isUser ? (
+               {user ? (
                   <>
                      <div className="flex gap-3 text-[15px] border-solid rounded-2xl p-[6px] px-[12px] border-dark/20 border-[1px] large:hidden">
                         <FaShoppingCart />
@@ -96,11 +103,6 @@ export default function NavBar({ isUser }) {
                   </>
                ) : (
                   <>
-                     <div className="flex gap-3 text-[15px] border-solid rounded-2xl p-[6px] px-[12px] border-dark/20 border-[1px] large:hidden">
-                        <FaShoppingCart />
-                        Se connecter
-                     </div>
-
                      <div className="flex gap-3 text-[15px] border-solid rounded-2xl p-[6px] px-[12px] border-dark/20 border-[1px] large:hidden">
                         <FaMoneyBillWave />
                         S'inscrire
@@ -125,7 +127,7 @@ export default function NavBar({ isUser }) {
                   />
                </div>
 
-               {profilState && <SubMenu />}
+               {profilState && <SubMenu auth={(user) ? true : false} />}
 
                {profilState && (
                   <span
@@ -158,8 +160,11 @@ export default function NavBar({ isUser }) {
    );
 }
 
-const SubMenu = () => {
-   const SubLinks = [
+const SubMenu = ({auth}) => {
+   
+   const queryClient = useQueryClient();
+
+   const AuthSubLinks = [
       {
          name: "Profil",
          link: "",
@@ -185,9 +190,46 @@ const SubMenu = () => {
       },
    ];
 
+   const SubLinks = [
+      {
+         name: "Connexion",
+         link: "/connexion",
+         icon: <FaRegUser />,
+      },
+
+      {
+         name: "Inscription",
+         link: "/inscription",
+         icon: <BiCategory />,
+      },
+   ];
+
+   const Links = (auth) ? AuthSubLinks : SubLinks ;
+
+   const handleLogout = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+  
+      try {
+        await axios.post('http://127.0.0.1:8000/api/auth/logout', null, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+
+        localStorage.removeItem('token');
+        queryClient.clear();
+        window.location.href = '/connexion';
+
+      } catch (error) {
+        console.error('Erreur lors de la déconnexion :', error);
+      }
+   }
+
    return (
       <div className="fixed !z-50 right-0 text-[14px] top-[65px] w-fit bg-white -translate-x-[60px] h-auto flex flex-col shadow-boxShadow1 items-center whitespace-nowrap rounded-xl overflow-hidden md:-right-[50px] xs:top-[60px]">
-         {SubLinks.map(({ name, link, icon }, index) => (
+         {Links.map(({ name, link, icon }, index) => (
             <Link
                className={` font-semibold gap-4 bg-light w-full py-3 border-b-[1px] px-6 border-dark/50 text-center hover:bg-dark/10 ${
                   index === 0
@@ -195,6 +237,7 @@ const SubMenu = () => {
                      : ""
                }`}
                to={link}
+               onClick={index === 3 ? handleLogout : null}
             >
                <div className="flex justify-center gap-3 items-center w-fit ">
                   <p>{icon}</p>
@@ -207,6 +250,7 @@ const SubMenu = () => {
 };
 
 function SimpleMenu() {
+
    const subLinks = [
       {
          name: "Accueil",
@@ -244,8 +288,6 @@ function SimpleMenu() {
                   </NavLink>
                </li>
             ))}
-
-            <div className=" w-[10%]"></div>
          </ul>
       </div>
    );

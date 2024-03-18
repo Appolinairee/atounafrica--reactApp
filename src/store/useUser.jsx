@@ -12,8 +12,7 @@ const useUser = () => {
         },
         retry: false
       });
-      console.log(response.data.data)
-      return response.data;
+      return response.data.data;
     } else {
       return null;
     }

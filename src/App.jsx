@@ -25,12 +25,11 @@ import useUser from "./store/useUser";
 const App = () => {
 
    const {user, isLoading} = useUser();
-   const isUser = (user) ? true : false;
 
    return (
       <div>
          <BrowserRouter>
-            <NavBar isUser={isUser}  />
+            <NavBar user={user} />
 
             <Routes>
                <Route path="" element={<Home />} />
@@ -39,8 +38,8 @@ const App = () => {
                <Route path="/inscription" element={<Inscription />} />
                <Route path="/connexion" element={<Connexion />} />
                <Route path="/forget" element={<ForgetPass />} />
-               <Route path="/reset" element={<ResetPass />} />
                <Route path="/api/auth/email/verify" element={<VerifyEmail />} />
+               <Route path="/api/auth/password/reset" element={<ResetPass />} />
 
                {/* Product */}
                <Route path="/research" element={<ProductResult />} />
