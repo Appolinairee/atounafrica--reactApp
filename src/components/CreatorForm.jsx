@@ -50,7 +50,6 @@ const CreatorForm = () => {
    const handleSubmit = (e) => {
       e.preventDefault();
       // Ajoutez ici la logique pour traiter les données du formulaire, par exemple, envoyez-les à un serveur.
-      console.log("Données soumises:", formData);
    };
 
    return (

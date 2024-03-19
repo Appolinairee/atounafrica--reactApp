@@ -9,7 +9,6 @@ function Research() {
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
-    console.log(e);
 
     if (searchValue.trim() !== "") {
       

@@ -8,7 +8,7 @@ const MailIsSendNotification = ({ email }) => {
             email,
          });
       } catch (error) {
-         console.log(error);
+         // 
       }
    });
 

@@ -14,10 +14,10 @@ import { IoSearch } from "react-icons/io5";
 import { MdShoppingCart } from "react-icons/md";
 import { GoHome } from "react-icons/go";
 import { BiCategory } from "react-icons/bi";
-import { FaRegUser } from "react-icons/fa";
+import { FaRegUser, FaUserPlus } from "react-icons/fa";
 import { FaBars } from "react-icons/fa6";
 import { MdOutlineNotifications } from "react-icons/md";
-import { LiaTimesSolid } from "react-icons/lia";
+import { LiaSignInAltSolid, LiaSignOutAltSolid, LiaTimesSolid } from "react-icons/lia";
 import { FaShoppingCart, FaMoneyBillWave, FaChevronDown } from "react-icons/fa";
 import { useQueryClient } from "react-query";
 import axios from "axios";
@@ -104,8 +104,13 @@ export default function NavBar({ user }) {
                ) : (
                   <>
                      <div className="flex gap-3 text-[15px] border-solid rounded-2xl p-[6px] px-[12px] border-dark/20 border-[1px] large:hidden">
-                        <FaMoneyBillWave />
+                        <LiaSignInAltSolid />
                         S'inscrire
+                     </div>
+
+                     <div className="flex gap-3 text-[15px] border-solid rounded-2xl p-[6px] px-[12px] border-dark/20 border-[1px] large:hidden">
+                        <FaShoppingCart />
+                        Achat
                      </div>
                   </>
                )}
@@ -186,7 +191,7 @@ const SubMenu = ({auth}) => {
       {
          name: "Déconnexion",
          link: "",
-         icon: <BiCategory />,
+         icon: <LiaSignOutAltSolid />,
       },
    ];
 
@@ -194,13 +199,13 @@ const SubMenu = ({auth}) => {
       {
          name: "Connexion",
          link: "/connexion",
-         icon: <FaRegUser />,
+         icon: <FaUserPlus />,
       },
 
       {
          name: "Inscription",
          link: "/inscription",
-         icon: <BiCategory />,
+         icon: <LiaSignInAltSolid />,
       },
    ];
 

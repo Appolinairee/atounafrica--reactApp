@@ -64,7 +64,6 @@ const Chat = ({isChat, handleChat}) => {
     // Scroll chat messages to the bottom
     if (overflowRef.current && overflowRef.current.clientHeight) {
       overflowRef.current.scrollTop = overflowRef.current.clientHeight;
-      console.log(overflowRef.current.scrollTop);
     }
   }, []);
   

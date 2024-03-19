@@ -41,7 +41,6 @@ const ResetPass = () => {
          },
          onError: (error) => {
             setErrors("Une erreur est survenue. Veuillez réessayer.");
-            console.log(error)
          },
       }
    );

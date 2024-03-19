@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 
 const HiddenBodyScroll = ({state}) => {
   useEffect(() => {
-    console.log(state);
     const bodyElement = document.body;
 
     if (state) {

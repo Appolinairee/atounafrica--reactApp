@@ -58,7 +58,6 @@ const AtounService = () => {
     useEffect(() => {
         if (overflowRef.current && overflowRef.current.clientHeight) {
           overflowRef.current.scrollTop = overflowRef.current.clientHeight;
-          console.log(overflowRef.current.scrollTop);
         }
       }, []);
 

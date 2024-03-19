@@ -103,7 +103,6 @@ const LikeButton = ({ initialLikes }) => {
       } else {
          setProductLikes(productLikes + 1);
       }
-      console.log(productLikes);
       setIsLiked(!isLiked);
    };
 

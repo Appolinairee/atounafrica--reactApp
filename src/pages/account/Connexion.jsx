@@ -1,6 +1,5 @@
 import { RiLockPasswordLine } from "react-icons/ri";
 import { GoEye } from "react-icons/go";
-import { FcGoogle } from "react-icons/fc";
 import { CiMail } from "react-icons/ci";
 import SignImage from "../../assets/signImage.png";
 import { useState } from "react";
@@ -10,8 +9,11 @@ import axios from "axios";
 import InputField from "../../BaseComponents/InputField";
 import ErrorMessage from "../../BaseComponents/ErrorMessage";
 import LoadingButton from "../../BaseComponents/LoadingButton";
+import { useDispatch } from "react-redux";
+import { login } from "../../Features/authSlice";
 
 const Connexion = () => {
+   const dispatch = useDispatch();
    const [password, setPassword] = useState(false);
    const navigate = useNavigate();
 
@@ -36,7 +38,7 @@ const Connexion = () => {
       {
          onSuccess: (response) => {
             let data = response.data.data;
-            localStorage.setItem("token", data.token);
+            dispatch(login({user: data.user, token: data.token}))
             navigate("/");
          },
          onError: (error) => {

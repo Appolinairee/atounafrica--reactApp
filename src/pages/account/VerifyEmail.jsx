@@ -1,7 +1,9 @@
 import { useEffect } from "react";
-import { useMutation, useQuery } from "react-query";
+import { useMutation } from "react-query";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../Features/authSlice";
 
 const Inscription = () => {
    const location = useLocation();
@@ -10,6 +12,7 @@ const Inscription = () => {
    const expires = searchParams.get("expires");
    const signature = searchParams.get("signature");
 
+   const dispatch = useDispatch();
    const navigate = useNavigate();
 
    const mutation = useMutation(
@@ -17,32 +20,27 @@ const Inscription = () => {
          axios.post(
             `http://127.0.0.1:8000/api/auth/email/verify?email=${email}&expires=${expires}&signature=${signature}`,
             {
-               retry: 0,
+               retry: { retries: 0 },
             }
          ),
       {
          onSuccess: (response) => {
-            console.log("User registered successfully");
             let data = response.data.data;
-            localStorage.setItem("token", data.token);
+
+            dispatch(login({ user: data.user, token: data.token }));
             navigate("/");
          },
          onError: (error) => {
             console.error("Error during registration:", error);
-            navigate("/error");
+            navigate("/");
          },
       }
    );
    useEffect(() => {
       mutation.mutate();
-   }, [mutation]);
+   }, []);
 
-   return (
-      <h2>
-         En cours de confirmation.
-         Dans un instant ...
-      </h2>
-   );
+   return <h2>En cours de confirmation. Dans un instant ...</h2>;
 };
 
 export default Inscription;

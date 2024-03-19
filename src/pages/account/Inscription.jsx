@@ -41,12 +41,10 @@ const Inscription = () => {
          axios.post("http://127.0.0.1:8000/api/auth/register", formData),
       {
          onSuccess: () => {
-            console.log("User registered successfully");
             setConfirmationEmailSent(true);
          },
          onError: (error) => {
             const { data } = error.response;
-            console.log(data.errorsList);
 
             if (data && data.errorsList) {
                setErrors(data.errorsList);

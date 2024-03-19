@@ -12,9 +12,16 @@ import { useEffect, useState } from "react";
 import Button1 from "../BaseComponents/Button1";
 import Button2 from "../BaseComponents/Button2";
 import Overflow from "../BaseComponents/Overflow";
+import { useFetchProducts } from "../Features/products/useFetchProducts";
+import { selectProducts } from "../Features/products/productsSlice";
+import { useSelector } from "react-redux";
 
 const HomeHeader = () => {
    const [currentSlide, setCurrentSlide] = useState(0);
+   const { isLoading, isError } = useFetchProducts();
+   const PresentationsProducts = useSelector(selectProducts);
+
+   console.log(PresentationsProducts)
 
    const handlePrevSlide = () => {
       setCurrentSlide((prevSlide) =>
