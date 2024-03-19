@@ -20,11 +20,16 @@ import CreatorProfil from "./pages/CreatorProfil";
 import CreatorSign from "./pages/CreatorSign";
 import CreatorDashboard from "./components/CreatorComponents/CreatorDashboard";
 import VerifyEmail from "./pages/account/VerifyEmail";
-import useUser from "./store/useUser";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import useFetchUser from "./Hooks/useFetchUser";
 
 const App = () => {
 
-   const {user, isLoading} = useUser();
+   useFetchUser();
+   const user = useSelector((state) => state.auth.user);
+
+   console.log(user);
 
    return (
       <div>

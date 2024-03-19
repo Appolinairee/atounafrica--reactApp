@@ -35,7 +35,7 @@ const Inscription = () => {
    );
    useEffect(() => {
       mutation.mutate();
-   }, []);
+   }, [mutation]);
 
    return (
       <h2>
