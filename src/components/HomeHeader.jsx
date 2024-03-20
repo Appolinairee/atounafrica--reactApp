@@ -15,23 +15,24 @@ import Overflow from "../BaseComponents/Overflow";
 import { useFetchProducts } from "../Features/products/useFetchProducts";
 import { selectProducts } from "../Features/products/productsSlice";
 import { useSelector } from "react-redux";
+import Image from "http://localhost:8000/storage/products/image/yfzAU8YYwklLEstLaQ6usuRths8csJKAnnprQGFT.png";
 
 const HomeHeader = () => {
    const [currentSlide, setCurrentSlide] = useState(0);
    const { isLoading, isError } = useFetchProducts();
-   const PresentationsProducts = useSelector(selectProducts);
-
-   console.log(PresentationsProducts)
+   const PresentationsProducts = useSelector(selectProducts).products;
+   const [slide, setSlide] = useState({});
+   const [slides, setSlides] = useState([]);
 
    const handlePrevSlide = () => {
       setCurrentSlide((prevSlide) =>
-         prevSlide === 0 ? Slides.length - 1 : prevSlide - 1
+         prevSlide === 0 ? slides.length - 1 : prevSlide - 1
       );
    };
 
    const handleNextSlide = () => {
       setCurrentSlide((prevSlide) =>
-         prevSlide === Slides.length - 1 ? 0 : prevSlide + 1
+         prevSlide === slides.length - 1 ? 0 : prevSlide + 1
       );
    };
 
@@ -60,36 +61,54 @@ const HomeHeader = () => {
 
    const Slides = [
       {
-         keys: ["Meubles", "Authenticité", "Made In Africa"],
-         title: "Le Made In Africa qui rayonne de plus belle",
+         caracteristics: ["Meubles", "Authenticité", "Made In Africa"],
+         title: "Le Made Africa qui rayonne de plus belle",
          image: Slide1,
          type: true,
       },
       {
-         keys: ["Meubles", "Authenticité", "Made In Africa"],
+         caracteristics: ["Meubles", "Authenticité", "Made In Africa"],
          title: "Le Made n Africa qui rayonne de plus belle",
          image: Slide2,
       },
       {
-         keys: ["Meubles", "Authenticité", "Made In Africa"],
+         caracteristics: ["Meubles", "Authenticité", "Made In Africa"],
          title: "Le Made n Africa qui rayonne de plus belle",
          image: Slide2,
       },
    ];
 
-   // useEffect(() => {
-   //    const nextSlide = () => {
-   //       setCurrentSlide((prevSlide) =>
-   //          prevSlide === Slides.length - 1 ? 0 : prevSlide + 1
-   //       );
-   //    };
+   useEffect(() => {
+      let currentSlideData = {};
 
-   //    // const intervalId = setInterval(nextSlide, 10000);
+      if (!isLoading && !isError && PresentationsProducts.length > 0) {
+         setSlides(PresentationsProducts);
 
-   //    // return () => clearInterval(intervalId);
-   // }, [currentSlide, Slides.length]);
+         currentSlideData = {
+            title: PresentationsProducts[currentSlide].title,
+            caracteristics: PresentationsProducts[currentSlide].caracteristics
+               .split(";;")
+               .map((item) => item.trim()),
+            image:
+               process.env.PUBLIC_URL + "public/storage/" + PresentationsProducts[currentSlide].medias[0].link,
+            type: PresentationsProducts[currentSlide].status === 2,
+         };
+      } else {
+         setSlides(Slides);
 
-   const { keys, title, image, type } = Slides[currentSlide];
+         currentSlideData = {
+            title: Slides[currentSlide].title,
+            caracteristics: Slides[currentSlide].caracteristics,
+            image: Slides[currentSlide].image,
+            type: Slides[currentSlide].type,
+         };
+      }
+
+      setSlide(currentSlideData);
+      console.log(slide, slides);
+   }, [isLoading, isError, PresentationsProducts, currentSlide]);
+
+   console.log(slide.image)
 
    return (
       <div className="bg-light py-2 px-sectionPadding ">
@@ -97,8 +116,11 @@ const HomeHeader = () => {
             <div className="flex h-full w-full relative !items-start justify-between large:!h-full large:text-light">
                <div className="pl-[5%] pr-0 py-[3%] large:relative large:z-10 h-full pb-[80px] flex flex-col justify-between !items-start large:pt-[5%]">
                   <div className="flex gap-2 w-fit  xs:max-w-[80%] whitespace-nowrap xs:flex-wrap">
-                     {keys.slice(0, 2).map((item, i) => (
-                        <span className="bg-dark/20  rounded-lg p-1 large:text-light font-medium large:py-[3px] large:text-[14px] large:px-2 large:bg-dark/40  xs:!text-[14px]" key={i}>
+                     {slide.caracteristics?.slice(0, 2).map((item, i) => (
+                        <span
+                           className="bg-dark/20  rounded-lg p-1 large:text-light font-medium large:py-[3px] large:text-[14px] large:px-2 large:bg-dark/40  xs:!text-[14px]"
+                           key={i}
+                        >
                            {item}
                         </span>
                      ))}
@@ -108,23 +130,31 @@ const HomeHeader = () => {
                      className="my-[5%] font-semibold text-[40px] max-w-[80%] md:max-w-[95%]  line-clamp-3 overflow-ellipsis xs:text-[35px] xs:max-w-[90%]"
                      id="slideeTitle"
                   >
-                     {title}
+                     {slide.title}
                   </h2>
 
-                  {type ? (
+                  {slide.type ? (
                      <div className="flex gap-4 w-fit ">
                         <Button1 Text="Contactez" className="xs:hidden" />
-                        <div className="secondButton"><Button2 Text="Vendre" /></div>
+                        <div className="secondButton">
+                           <Button2 Text="Vendre" />
+                        </div>
                      </div>
                   ) : (
                      <div className="flex gap-4 w-fit ">
                         <Button1 Text="Voir" className="xs:hidden" />
-                         <div className="secondButton"><Button2 Text="Commander" /></div>
+                        <div className="secondButton">
+                           <Button2 Text="Commander" />
+                        </div>
                      </div>
                   )}
 
                   <SlidesPaginator
-                     length={Slides.length}
+                     length={
+                        !!PresentationsProducts
+                           ? PresentationsProducts?.length
+                           : Slides.length
+                     }
                      currentSlide={currentSlide}
                      handleSlideClick={handleSlideClick}
                      handleNextSlide={handleNextSlide}
@@ -133,8 +163,11 @@ const HomeHeader = () => {
                </div>
 
                <div className="!w-[60%] h-full overflow-hidden large:absolute top-0 left-0 large:!w-full large:z-0">
-                  <img className="w-full h-full" src={image} alt={title} />
+                  <img className="w-full h-full" src={slide.image} alt={slide.title} />
                </div>
+
+               <img className="w-full h-full" src={Image} alt={slide.title} />
+
 
                <Overflow className="!bg-dark/50 !w-full !right-0 !z-0 hidden large:!block" />
             </div>

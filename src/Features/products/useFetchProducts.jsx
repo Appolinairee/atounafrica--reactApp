@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import axios from "../../axiosConfig";
-import { setProducts } from "./productsSlice";
 import { useDispatch } from "react-redux";
+import { setProducts } from "./productsSlice";
 
 export const useFetchProducts = () => {
    const dispatch = useDispatch();
@@ -10,12 +10,17 @@ export const useFetchProducts = () => {
       "products",
       async () => {
          const response = await axios.get("products/presentations");
+         return response; 
       },
       {
          onSuccess: (response) => {
-            console.log("Fetch products successful");
-            console.log(response.data.data)
-            dispatch(setProducts({products: response.data.data}))
+            console.log("Fetch products successfull");
+
+            if(response.data.data)
+               dispatch(setProducts({products: response.data.data}))
+         },
+         onError: (error) => {
+            console.log(error);
          }
       }
    );

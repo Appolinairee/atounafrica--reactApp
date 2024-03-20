@@ -12,7 +12,7 @@ const products = [
       likes: 120,
       comments: 15,
       creator: {
-         name: "Creator 10",
+         name: "Creator 10", 
          logo: Image2,
       },
       mediaCount: 1
