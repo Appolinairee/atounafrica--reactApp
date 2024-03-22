@@ -7,22 +7,23 @@ import { BsArrowRight } from "react-icons/bs";
 import { BsArrowLeft } from "react-icons/bs";
 import Slide1 from "../assets/photos(exemples)/OIP (1).jpeg";
 import Slide2 from "../assets/photos(exemples)/OIP (3).jpeg";
-import Button from "./Button/Button";
 import { useEffect, useState } from "react";
 import Button1 from "../BaseComponents/Button1";
 import Button2 from "../BaseComponents/Button2";
 import Overflow from "../BaseComponents/Overflow";
-import { useFetchProducts } from "../Features/products/useFetchProducts";
-import { selectProducts } from "../Features/products/productsSlice";
 import { useSelector } from "react-redux";
-import Image from "http://localhost:8000/storage/products/image/yfzAU8YYwklLEstLaQ6usuRths8csJKAnnprQGFT.png";
+import { selectPresentations } from "../Features/products/presentationsSlice";
+import { useFetchPresentations } from "../Features/products/useFetchPresentations";
 
 const HomeHeader = () => {
    const [currentSlide, setCurrentSlide] = useState(0);
-   const { isLoading, isError } = useFetchProducts();
-   const PresentationsProducts = useSelector(selectProducts).products;
+   const { isLoading, isError } = useFetchPresentations();
+   const PresentationsProducts = useSelector(selectPresentations).presentations;
    const [slide, setSlide] = useState({});
    const [slides, setSlides] = useState([]);
+
+   console.log(PresentationsProducts)
+
 
    const handlePrevSlide = () => {
       setCurrentSlide((prevSlide) =>
@@ -81,7 +82,7 @@ const HomeHeader = () => {
    useEffect(() => {
       let currentSlideData = {};
 
-      if (!isLoading && !isError && PresentationsProducts.length > 0) {
+      if (!isLoading && !isError && PresentationsProducts?.length > 0) {
          setSlides(PresentationsProducts);
 
          currentSlideData = {
@@ -89,8 +90,8 @@ const HomeHeader = () => {
             caracteristics: PresentationsProducts[currentSlide].caracteristics
                .split(";;")
                .map((item) => item.trim()),
-            image:
-               process.env.PUBLIC_URL + "public/storage/" + PresentationsProducts[currentSlide].medias[0].link,
+            // image: process.env.PUBLIC_URL + "public/storage/" + PresentationsProducts[currentSlide].medias[0].link,
+            image: Slide1,
             type: PresentationsProducts[currentSlide].status === 2,
          };
       } else {
@@ -105,10 +106,7 @@ const HomeHeader = () => {
       }
 
       setSlide(currentSlideData);
-      console.log(slide, slides);
    }, [isLoading, isError, PresentationsProducts, currentSlide]);
-
-   console.log(slide.image)
 
    return (
       <div className="bg-light py-2 px-sectionPadding ">
@@ -165,8 +163,6 @@ const HomeHeader = () => {
                <div className="!w-[60%] h-full overflow-hidden large:absolute top-0 left-0 large:!w-full large:z-0">
                   <img className="w-full h-full" src={slide.image} alt={slide.title} />
                </div>
-
-               <img className="w-full h-full" src={Image} alt={slide.title} />
 
 
                <Overflow className="!bg-dark/50 !w-full !right-0 !z-0 hidden large:!block" />

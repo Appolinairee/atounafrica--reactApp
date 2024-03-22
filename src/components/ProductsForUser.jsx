@@ -7,42 +7,62 @@ import { Link } from "react-router-dom";
 import Creator from "./Creator/Creator";
 import { useState } from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { useFetchProducts } from "../Features/products/useFetchProducts";
+import { useSelector } from "react-redux";
+import { selectProducts } from "../Features/products/productsSlice";
+import Image from "../assets/photos(exemples)/OIP (3).jpg"
+import LikeButton from "../BaseComponents/LikeButton";
 
 const ProductsForUser = () => {
+   const { isLoading, isError } = useFetchProducts();
+   const Productsa = useSelector(selectProducts).products;
+
+   if(isLoading) return(
+      <div>
+         Loading...
+      </div>
+   )
+
    return (
       <div className="grid grid-cols-3 w-full gap-x-20 gap-y-6 px-sectionPadding my-2 py-10 bg-light lg:grid-cols-2 md:!grid-cols-1 xs:py-6 xs:gap-6">
-         {Products.slice(0,6).map(
+         {Productsa && Productsa.slice(0, 6).map(
             (
                {
+                  id,
                   title,
-                  newPrice,
-                  oldPrice,
-                  image,
-                  likes,
-                  comments,
+                  old_price,
+                  current_price,
+                  creator_id,
+                  disponibility,
                   creator,
-                  mediaCount,
+                  medias,
+                  medias_count,
+                  likes_count,
+                  comments_count,
+                  is_liked
                },
                index
             ) => (
                <div
                   className="w-full productShadow rounded-xl p-[0.8rem] max-w-[400px] m-auto"
-                  key={index + title}
+                  key={index + id}
                >
-
-                  <Creator image={creator.logo} name={creator.name} />
+                  {creator && <Creator image={Image} name={creator.name} />}
 
                   <div className="flex items-center  my-1">
                      <div className="flex justify-between !items-center gap-4 text-[14px]">
                         <p>
                            <span className="text-[17px] font-medium">
-                              {newPrice}
+                              {current_price}
                            </span>{" "}
                            Fcfa
                         </p>
-                        <p className="decoration-primary line-through">
-                           {oldPrice} Fcfa{"  "}
+                        
+                        {
+                           old_price && <p className="decoration-primary line-through">
+                           {old_price} Fcfa{"  "}
                         </p>
+                        }
                      </div>
 
                      <Link className="bg-primary text-light  font-medium p-[3px] px-[6px] rounded-lg text-[14px]">
@@ -58,25 +78,25 @@ const ProductsForUser = () => {
                      <div className="w-full h-auto rounded-xl overflow-hidden my-3  relative">
                         <img
                            className="w-full h-auto"
-                           src={image}
+                           src={Image}
                            alt={title}
                         />
 
-                        {mediaCount > 1 && (
-                           <MediaPaginator length={mediaCount} />
+                        {medias_count > 1 && (
+                           <MediaPaginator length={medias_count} />
                         )}
                      </div>
                   </Link>
 
                   <div className="flex mt-2 justify-start *:flex *:items-center *:gap-1 *:cursor-pointer border-solid border-0 border-t-[1px] border-dark/10 pt-[8px] xs:text-[14px]">
-                     <LikeButton initialLikes={likes} />
+                     <LikeButton initialLikes={likes_count} isLiked={is_liked} productId={id} />
 
                      <div>
                         <p>
                            <BsChatQuote />
                         </p>
 
-                        <p>Avis 10</p>
+                        <p>Avis {comments_count}</p>
                      </div>
 
                      <div>
@@ -93,29 +113,6 @@ const ProductsForUser = () => {
    );
 };
 
-const LikeButton = ({ initialLikes }) => {
-   const [productLikes, setProductLikes] = useState(initialLikes);
-   const [isLiked, setIsLiked] = useState(false);
-
-   const handleLikeClick = () => {
-      if (isLiked) {
-         setProductLikes(productLikes - 1);
-      } else {
-         setProductLikes(productLikes + 1);
-      }
-      setIsLiked(!isLiked);
-   };
-
-   return (
-      <div onClick={handleLikeClick} className="cursor-pointer">
-         <p>
-            {isLiked ? <GoHeartFill className="text-primary" /> : <GoHeart />}
-         </p>
-
-         <p>{productLikes}</p>
-      </div>
-   );
-};
 
 const MediaPaginator = ({ length }) => {
    return (

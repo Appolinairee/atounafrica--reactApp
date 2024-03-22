@@ -20,7 +20,7 @@ import CreatorProfil from "./pages/CreatorProfil";
 import CreatorSign from "./pages/CreatorSign";
 import CreatorDashboard from "./components/CreatorComponents/CreatorDashboard";
 import VerifyEmail from "./pages/account/VerifyEmail";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import useFetchUser from "./Hooks/useFetchUser";
 
 
