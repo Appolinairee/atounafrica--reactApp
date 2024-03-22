@@ -7,14 +7,14 @@ export const useFetchProducts = () => {
    const dispatch = useDispatch();
    const user = useSelector((state) => state.auth.user);
 
+   const $userId = (user?.id) ? '&user_id=' + user.id: '';
+
    const { isLoading, isError } = useQuery(
       "products",
       async () => {
-         const response = await axios.get(`products?perPage=6&user_id=${user.id}`, {
+         const response = await axios.get(`products?perPage=6${$userId}`, {
             retry: { retries: 0 },
          });
-
-         console.log(response)
          
          return response;
       },

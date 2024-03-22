@@ -1,9 +1,19 @@
+Affiliation Link: code unique serveur, utilisation pour, section pour copier le lien d'affiliation
+Button for More and Infinite Scroll
 
 
-Think about
 
-# On connexion component, think about soft delete account 
-And non verified account
-# add redux store to improve user informations display
+# Think about thiiis
+Image and Vidéo get from server origin (Priority: Hight)
 
-La bannière: les images et   
+
+
+
+<!-- Liens: 
+
+Produit: /produits/nom_du_produit?
+Category: /categorie=nom_du_produit
+Recherche: ?recherche=nom_du_produit
+Commande: ?commande=
+Recherche: ?recherche=nom_du_produit
+Lien: ?product=nom&affiliation -->

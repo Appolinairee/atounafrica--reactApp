@@ -1,3 +1,5 @@
+import CreatorStars from "../../BaseComponents/CreatorStars";
+
 const Creator = ({ image, name, stars=1 }) => {
    return (
       <div className="flex justify-between w-full border-solid border-0 border-b-[1px] border-dark/10 pb-1  ">
@@ -10,7 +12,7 @@ const Creator = ({ image, name, stars=1 }) => {
 
             <div>
                <p>{name}</p>
-               <p>Etoiles</p>
+               <CreatorStars number={1} />
             </div>
          </div>
       </div>
