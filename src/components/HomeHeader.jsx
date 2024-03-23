@@ -22,8 +22,6 @@ const HomeHeader = () => {
    const [slide, setSlide] = useState({});
    const [slides, setSlides] = useState([]);
 
-   console.log(PresentationsProducts)
-
 
    const handlePrevSlide = () => {
       setCurrentSlide((prevSlide) =>
@@ -79,6 +77,8 @@ const HomeHeader = () => {
       },
    ];
 
+   console.log(process.env.REACT_API_URL)
+
    useEffect(() => {
       let currentSlideData = {};
 
@@ -90,8 +90,7 @@ const HomeHeader = () => {
             caracteristics: PresentationsProducts[currentSlide].caracteristics
                .split(";;")
                .map((item) => item.trim()),
-            // image: process.env.PUBLIC_URL + "public/storage/" + PresentationsProducts[currentSlide].medias[0].link,
-            image: Slide1,
+            image: process.env.REACT_APP_API_URL + "storage/" + PresentationsProducts[currentSlide].medias[0].link,
             type: PresentationsProducts[currentSlide].status === 2,
          };
       } else {
@@ -163,7 +162,6 @@ const HomeHeader = () => {
                <div className="!w-[60%] h-full overflow-hidden large:absolute top-0 left-0 large:!w-full large:z-0">
                   <img className="w-full h-full" src={slide.image} alt={slide.title} />
                </div>
-
 
                <Overflow className="!bg-dark/50 !w-full !right-0 !z-0 hidden large:!block" />
             </div>

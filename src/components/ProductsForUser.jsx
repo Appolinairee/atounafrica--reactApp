@@ -12,10 +12,16 @@ import { useSelector } from "react-redux";
 import { selectProducts } from "../Features/products/productsSlice";
 import Image from "../assets/photos(exemples)/OIP (3).jpg"
 import LikeButton from "../BaseComponents/LikeButton";
+import ScrollBarHider from "../BaseComponents/ScrollBarHidden";
 
 const ProductsForUser = () => {
    const { isLoading, isError } = useFetchProducts();
    const Productsa = useSelector(selectProducts).products;
+   const [selectedAffiliationLink, setSelectedAffiliationLink] = useState(null);
+
+   const showAffiliationPopUp  = (affiliationLink) => {
+      setSelectedAffiliationLink(affiliationLink);
+   }
 
    if(isLoading) return(
       <div>
@@ -39,7 +45,8 @@ const ProductsForUser = () => {
                   medias_count,
                   likes_count,
                   comments_count,
-                  is_liked
+                  is_liked,
+                  affiliation_link
                },
                index
             ) => (
@@ -47,7 +54,7 @@ const ProductsForUser = () => {
                   className="w-full productShadow rounded-xl p-[0.8rem] max-w-[400px] m-auto"
                   key={index + id}
                >
-                  {creator && <Creator image={Image} name={creator.name} />}
+                  {creator && <Creator image={process.env.REACT_APP_API_URL + "storage/"+creator.logo} name={creator.name} />}
 
                   <div className="flex items-center  my-1">
                      <div className="flex justify-between !items-center gap-4 text-[14px]">
@@ -55,7 +62,7 @@ const ProductsForUser = () => {
                            <span className="text-[17px] font-medium">
                               {current_price}
                            </span>{" "}
-                           Fcfa
+                           Fcfa 
                         </p>
                         
                         {
@@ -78,7 +85,7 @@ const ProductsForUser = () => {
                      <div className="w-full h-auto rounded-xl overflow-hidden my-3  relative">
                         <img
                            className="w-full h-auto"
-                           src={Image}
+                           src={(medias[0]?.link) ? process.env.REACT_APP_API_URL + "storage/"+medias[0].link : Image }
                            alt={title}
                         />
 
@@ -99,7 +106,7 @@ const ProductsForUser = () => {
                         <p>Avis {comments_count}</p>
                      </div>
 
-                     <div>
+                     <div onClick={() => showAffiliationPopUp(affiliation_link)}>
                         <p>
                            <LuLink />
                         </p>
@@ -109,9 +116,25 @@ const ProductsForUser = () => {
                </div>
             )
          )}
+
+         {selectedAffiliationLink && <AffiliationCard affiliateLink={selectedAffiliationLink}  />}
       </div>
    );
 };
+
+const AffiliationCard = ({affiliateLink}) => {
+   return (
+      <div>
+         <ScrollBarHider className="!z-40" />
+         
+         <div className="z-50 relative bg-light">
+            <p>C'est le moment de gagner plus. Copier et partager ce lien pour faire 10% de commission</p>
+
+            {affiliateLink}
+         </div>
+      </div>
+   )
+}
 
 
 const MediaPaginator = ({ length }) => {
