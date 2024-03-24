@@ -1,21 +1,29 @@
 import { useQuery } from "react-query";
 import axios from "../../axiosConfig";
 import { useDispatch, useSelector } from "react-redux";
-import { setProducts } from "./productsSlice";
+import { selectProducts, setProducts } from "./productsSlice";
+import { useState } from "react";
 
 export const useFetchProducts = () => {
-   const dispatch = useDispatch();
    const user = useSelector((state) => state.auth.user);
+   const $userId = user?.id ? "&user_id=" + user.id : "";
+   const dispatch = useDispatch();
 
-   const $userId = (user?.id) ? '&user_id=' + user.id: '';
+   const [page, setPage] = useState(1);
+   const [productsState, setProductsState] = useState([]);
+   const perPage = 6;
 
    const { isLoading, isError } = useQuery(
-      "products",
+      ["products", page],
+
       async () => {
-         const response = await axios.get(`products?perPage=6${$userId}`, {
-            retry: { retries: 0 },
-         });
-         
+         const response = await axios.get(
+            `products?perPage=${perPage}&page=${page}${$userId}`,
+            {
+               retry: { retries: 0 },
+            }
+         );
+
          return response;
       },
       {
@@ -23,56 +31,25 @@ export const useFetchProducts = () => {
             console.log("Fetch products successfull");
             console.log(response);
 
-            if(response.data.data)
-              dispatch(setProducts({products: response.data.data}))
+            const newProducts =
+               page === 1
+                  ? response.data.data
+                  : [...productsState, ...response.data.data];
+            
+            setProductsState(newProducts);
+            console.log(newProducts);
+
+            dispatch(setProducts({ products: newProducts }));
          },
          onError: (error) => {
             console.log(error);
-         }
+         },
       }
    );
 
-   return { isLoading, isError };
+   const handleSeeMore = () => {
+      setPage((prevPage) => prevPage + 1);
+   };
+
+   return { isLoading, isError, handleSeeMore };
 };
-
-
-// import { useInfiniteQuery } from "react-query";
-// import axios from "../../axiosConfig";
-// import { useDispatch } from "react-redux";
-// import { setProducts } from "./productsSlice";
-
-// export const useFetchProducts = () => {
-//   const dispatch = useDispatch();
-
-//   const fetchPresentations = async ({ pageParam = 1 }) => {
-//     const response = await axios.get("products", {
-//       params: {
-//         page: pageParam,
-//       },
-//     });
-//     return response.data;
-//   };
-
-//   const { data, isLoading, isError, fetchNextPage, hasNextPage } = useInfiniteQuery(
-//     "products",
-//     fetchPresentations,
-//     {
-//       getNextPageParam: (lastPage, allPages) => {
-//          console.log(lastPage);
-//          return lastPage.nextPage;
-//       },
-//       onSuccess: (response) => {
-//          console.log(response.data, response.pagination);
-//         console.log("Fetch products successful");
-//         const presentations = response.pages.flatMap((page) => page.data);
-//         console.log(presentations);
-//         dispatch(setProducts({ presentations }));
-//       },
-//       onError: (error) => {
-//         console.error("Error fetching data:", error);
-//       },
-//     }
-//   );
-
-//   return { data, isLoading, isError, fetchNextPage, hasNextPage };
-// };

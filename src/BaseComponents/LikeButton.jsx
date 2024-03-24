@@ -3,9 +3,10 @@ import { useState } from "react";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { useSelector } from "react-redux";
 
-const LikeButton = ({ initialLikes, isLiked, productId, setIsLiked }) => {
+const LikeButton = ({ initialLikes, isLiked, productId }) => {
+   const liked = isLiked;
    const [productLikes, setProductLikes] = useState(initialLikes);
-   const [isLikedState, setIsLikedState] = useState(isLiked);
+   const [isLikedState, setIsLikedState] = useState(liked);
    const user = useSelector((state) => state.auth.user);
    const authToken = localStorage.getItem("token");
 
@@ -23,8 +24,6 @@ const LikeButton = ({ initialLikes, isLiked, productId, setIsLiked }) => {
                }
             );
 
-            console.log(response.data.data);
-
             setProductLikes(response.data.data.likes);
             setIsLikedState(response.data.data.isLiked);
          } catch (error) {
@@ -36,7 +35,7 @@ const LikeButton = ({ initialLikes, isLiked, productId, setIsLiked }) => {
    return (
       <div onClick={handleLike} className="cursor-pointer">
          <p>
-            {isLikedState ? <GoHeartFill className="text-primary" /> : <GoHeart />}
+            {(isLikedState) ? <GoHeartFill className="text-primary" /> : <GoHeart />}
          </p>
 
          <p>{productLikes}</p>
