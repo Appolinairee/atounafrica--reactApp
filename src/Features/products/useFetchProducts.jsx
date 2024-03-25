@@ -8,9 +8,11 @@ export const useFetchProducts = () => {
    const user = useSelector((state) => state.auth.user);
    const $userId = user?.id ? "&user_id=" + user.id : "";
    const dispatch = useDispatch();
+   const Products = useSelector(selectProducts).products;
+   const [willFetchNext, setWillFetchNext] = useState(true);
 
    const [page, setPage] = useState(1);
-   const [productsState, setProductsState] = useState([]);
+   
    const perPage = 6;
 
    const { isLoading, isError } = useQuery(
@@ -29,15 +31,16 @@ export const useFetchProducts = () => {
       {
          onSuccess: (response) => {
             console.log("Fetch products successfull");
-            console.log(response);
 
             const newProducts =
                page === 1
                   ? response.data.data
-                  : [...productsState, ...response.data.data];
+                  : [...Products, ...response.data.data];
             
-            setProductsState(newProducts);
-            console.log(newProducts);
+            console.log(response.data.pagination.total, newProducts.length)
+            if(response.data.pagination.total <= newProducts.length){
+               setWillFetchNext(false);
+            }
 
             dispatch(setProducts({ products: newProducts }));
          },
@@ -48,8 +51,9 @@ export const useFetchProducts = () => {
    );
 
    const handleSeeMore = () => {
-      setPage((prevPage) => prevPage + 1);
+      if(willFetchNext)
+         setPage((prevPage) => prevPage + 1);
    };
 
-   return { isLoading, isError, handleSeeMore };
+   return { isLoading, isError, willFetchNext, handleSeeMore };
 };

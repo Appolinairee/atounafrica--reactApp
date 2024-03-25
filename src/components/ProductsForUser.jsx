@@ -13,25 +13,16 @@ import { selectProducts } from "../Features/products/productsSlice";
 import Image from "../assets/photos(exemples)/OIP (3).jpg";
 import LikeButton from "../BaseComponents/LikeButton";
 import ScrollBarHider from "../BaseComponents/ScrollBarHidden";
+import ProcessAtoun from "./ProcessAtoun";
+import Newsletter from "./Newsletter";
+import Creators from "./Creator/Creators";
+import { ImSpinner6 } from "react-icons/im";
 
-const ProductsForUser = () => {
-   const { isLoading, isError, handleSeeMore } = useFetchProducts();
-   const storedProducts = useSelector(selectProducts).products;
-   const [selectedAffiliationLink, setSelectedAffiliationLink] = useState(null);
-   const [Products, setProducts] = useState(storedProducts);
-
-   const showAffiliationPopUp = (affiliationLink) => {
-      setSelectedAffiliationLink(affiliationLink);
-   };
-
-   useEffect(() => {
-      setProducts(storedProducts);
-   }, [storedProducts]);
-
+const ProductsPacket = ({ Products, slicePosition, showAffiliationPopUp }) => {
    return (
       <div className="grid grid-cols-3 w-full gap-x-20 gap-y-6 px-sectionPadding my-2 py-10 bg-light lg:grid-cols-2 md:!grid-cols-1 xs:py-6 xs:gap-6">
          {Products &&
-            Products.slice(0, 6).map(
+            Products.slice(slicePosition, slicePosition + 6).map(
                (
                   {
                      id,
@@ -139,16 +130,76 @@ const ProductsForUser = () => {
                   </div>
                )
             )}
-         <button onClick={handleSeeMore}>See More</button>
+      </div>
+   );
+};
+
+const ProductsForUser = () => {
+   const { isLoading, isError, willFetchNext, handleSeeMore } =
+      useFetchProducts();
+   const Products = useSelector(selectProducts).products;
+
+   const [selectedAffiliationLink, setSelectedAffiliationLink] = useState(null);
+
+   const showAffiliationPopUp = (affiliationLink) => {
+      setSelectedAffiliationLink(affiliationLink);
+   };
+
+   return (
+      <>
+         <ProductsPacket Products={Products} slicePosition={0} />
+
+         {Products && <ProcessAtoun />}
+
+         {Products && Products.length > 6 && (
+            <>
+               <ProductsPacket
+                  Products={Products}
+                  slicePosition={6}
+                  showAffiliationPopUp={showAffiliationPopUp}
+               />
+
+               <Newsletter />
+            </>
+         )}
+
+         {Products && Products.length > 12 && (
+            <>
+               <ProductsPacket
+                  Products={Products}
+                  slicePosition={12}
+                  showAffiliationPopUp={showAffiliationPopUp}
+               />
+
+               <Creators />
+            </>
+         )}
+
+         {Products && Products.length > 18 && (
+            <>
+               <ProductsPacket
+                  Products={Products}
+                  slicePosition={18}
+                  showAffiliationPopUp={showAffiliationPopUp}
+               />
+            </>
+         )}
+
+         {Products && willFetchNext && (
+            <div className="mx-auto my-8 text-center">
+               {!isLoading && <button onClick={handleSeeMore}>Voir plus de produit</button>}
+
+               {isLoading && <ImSpinner6 className="animate-spin" />}
+            </div>
+         )}
+
          {selectedAffiliationLink && (
             <AffiliationCard
                affiliateLink={selectedAffiliationLink}
                setSelectedAffiliationLink={setSelectedAffiliationLink}
             />
          )}
-
-         {isLoading && <div>Loading...</div>}
-      </div>
+      </>
    );
 };
 
