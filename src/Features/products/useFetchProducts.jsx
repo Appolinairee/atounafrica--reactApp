@@ -12,7 +12,7 @@ export const useFetchProducts = () => {
    const [willFetchNext, setWillFetchNext] = useState(true);
 
    const [page, setPage] = useState(1);
-   
+
    const perPage = 6;
 
    const { isLoading, isError } = useQuery(
@@ -30,19 +30,18 @@ export const useFetchProducts = () => {
       },
       {
          onSuccess: (response) => {
-            console.log("Fetch products successfull");
+            if (response.data.data.length > 0) {
+               const newProducts =
+                  page === 1
+                     ? response.data.data
+                     : [...Products, response.data.data.filter(newProduct => !Products.some(existingProduct => existingProduct.id === newProduct.id))];
 
-            const newProducts =
-               page === 1
-                  ? response.data.data
-                  : [...Products, ...response.data.data];
-            
-            console.log(response.data.pagination.total, newProducts.length)
-            if(response.data.pagination.total <= newProducts.length){
-               setWillFetchNext(false);
+               if (response.data.pagination.total <= newProducts.length) {
+                  setWillFetchNext(false);
+               }
+
+               dispatch(setProducts({ products: newProducts }));
             }
-
-            dispatch(setProducts({ products: newProducts }));
          },
          onError: (error) => {
             console.log(error);
@@ -51,8 +50,7 @@ export const useFetchProducts = () => {
    );
 
    const handleSeeMore = () => {
-      if(willFetchNext)
-         setPage((prevPage) => prevPage + 1);
+      if (willFetchNext) setPage((prevPage) => prevPage + 1);
    };
 
    return { isLoading, isError, willFetchNext, handleSeeMore };

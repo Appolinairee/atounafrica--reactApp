@@ -10,10 +10,10 @@ export default function Home() {
       <div>
          <HomeHeader />
 
-         <div className="relative">
+         {/* <div className="relative">
             <CategoriesFixed className="!sticky top-4 left-0 w-full md:top-3 xs:top-2" />
             <ProductsForUser />
-         </div>
+         </div> */}
       </div>
    );
 }

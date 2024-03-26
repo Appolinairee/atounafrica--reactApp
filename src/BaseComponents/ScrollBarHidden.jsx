@@ -16,7 +16,6 @@ const ScrollBarHider = ({ hidden, handleSearchState, className }) => {
       return () => showScrollBar();
    }, [hidden]);
 
-   console.log(hidden)
 
    return (
       <div>

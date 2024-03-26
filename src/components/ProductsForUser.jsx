@@ -82,9 +82,9 @@ const ProductsPacket = ({ Products, slicePosition, showAffiliationPopUp }) => {
                      </div>
 
                      <Link>
-                        <div className="w-full h-auto rounded-xl overflow-hidden my-3  relative">
+                        <div className="w-full h-auto rounded-xl overflow-hidden my-3  relative border-solid border-[1px] border-dark/5">
                            <img
-                              className="w-full h-auto"
+                              className="w-auto h-[250px] mx-auto"
                               src={
                                  medias[0]?.link
                                     ? process.env.REACT_APP_API_URL +
@@ -140,13 +140,71 @@ const ProductsForUser = () => {
    const Products = useSelector(selectProducts).products;
 
    const [selectedAffiliationLink, setSelectedAffiliationLink] = useState(null);
+   const [scrollPosition, setScrollPosition] = useState(0);
+   const [sectionOffset, setSectionOffset] = useState(0);
+   const [scrollFetchNumber, setScrollFetchNumber] = useState(1);
+
+   useEffect(() => {
+      const handleScroll = () => {
+         const position = window.pageYOffset;
+         setScrollPosition(position);
+      };
+
+      const handleSectionOffset = () => {
+         const section = document.getElementById("products");
+         if (section) {
+            const offsetHeight = section.offsetHeight;
+            setSectionOffset(offsetHeight);
+         }
+      };
+
+      window.addEventListener("scroll", handleScroll);
+      handleSectionOffset();
+
+      return () => {
+         window.removeEventListener("scroll", handleScroll);
+      };
+   }, []);
+
+   useEffect(() => {
+      const scrollFetch = () => {
+         if (
+            scrollFetchNumber === 1 &&
+            scrollPosition >= sectionOffset - 100 &&
+            Products &&
+            Products.length === 6
+         ) {
+            handleSeeMore();
+            setScrollFetchNumber(2);
+         } else if (
+            scrollFetchNumber === 2 &&
+            scrollPosition >= sectionOffset - 100 &&
+            Products &&
+            Products.length === 12
+         ) {
+            handleSeeMore();
+            setScrollFetchNumber(3);
+         } else if (
+            scrollFetchNumber === 3 &&
+            scrollPosition >= sectionOffset - 100 &&
+            Products &&
+            Products.length === 18
+         ) {
+            handleSeeMore();
+            setScrollFetchNumber(4);
+         }
+      };
+
+      if (willFetchNext)
+         scrollFetch();
+
+   }, [scrollPosition, sectionOffset]);
 
    const showAffiliationPopUp = (affiliationLink) => {
       setSelectedAffiliationLink(affiliationLink);
    };
-
    return (
-      <>
+      <div id="products">
          <ProductsPacket Products={Products} slicePosition={0} />
 
          {Products && <ProcessAtoun />}
@@ -185,11 +243,15 @@ const ProductsForUser = () => {
             </>
          )}
 
-         {Products && willFetchNext && (
+         {Products && willFetchNext && scrollFetchNumber >= 2 && (
             <div className="mx-auto my-8 text-center">
-               {!isLoading && <button onClick={handleSeeMore}>Voir plus de produit</button>}
+               {!isLoading && (
+                  <button onClick={handleSeeMore}>Voir plus de produit</button>
+               )}
 
-               {isLoading && <ImSpinner6 className="animate-spin" />}
+               {isLoading && (
+                  <ImSpinner6 className="animate-spin mx-auto text-[3rem] my-4" />
+               )}
             </div>
          )}
 
@@ -199,7 +261,7 @@ const ProductsForUser = () => {
                setSelectedAffiliationLink={setSelectedAffiliationLink}
             />
          )}
-      </>
+      </div>
    );
 };
 
@@ -233,7 +295,7 @@ const AffiliationCard = ({ affiliateLink, setSelectedAffiliationLink }) => {
 
 const MediaPaginator = ({ length }) => {
    return (
-      <div className="flex items-center w-fit gap-1 *:cursor-pointer font-bold absolute !bottom-[15px] left-[10px] bg-dark/10 p-[2px] px-[5px] rounded-[5px]">
+      <div className="flex items-center w-fit gap-1 *:cursor-pointer font-bold absolute !bottom-[15px] left-1/2 -translate-x-1/2 bg-light/80 shadow-boxShadow1 p-[2px] px-[5px] rounded-[5px]">
          <MdKeyboardArrowLeft className="text-[16px] border-solid border-dark/50 rounded-full p-[0px] px-[0px] border-[1px] duration-75 hover:border-transparent hover:bg-primary hover:text-light xs:text-[22px] large:border-light " />
          <div className="flex gap-[2px]">
             {Array.from({ length }, (_, index) => (

@@ -1,18 +1,15 @@
-Button for More and Infinite Scroll
+## Notifications
+    # Get Notifications (pagination)
+    # Test notification link
+    # update notification state
 
+## Messages
+    # get user list for new messages (pagination)
+    # get messages between connected user and specific other
+    # send message (text and image)
+    # faqs configuration
 
 
 # Think about thiiis
+Footer
 Image and Vidéo get from server origin (Priority: Hight)
-
-
-
-
-<!-- Liens: 
-
-Produit: /produits/nom_du_produit?
-Category: /categorie=nom_du_produit
-Recherche: ?recherche=nom_du_produit
-Commande: ?commande=
-Recherche: ?recherche=nom_du_produit
-Lien: ?product=nom&affiliation -->

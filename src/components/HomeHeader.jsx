@@ -76,9 +76,7 @@ const HomeHeader = () => {
          image: Slide2,
       },
    ];
-
-   console.log(process.env.REACT_API_URL)
-
+   
    useEffect(() => {
       let currentSlideData = {};
 

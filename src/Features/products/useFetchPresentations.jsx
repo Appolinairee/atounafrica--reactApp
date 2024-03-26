@@ -14,7 +14,6 @@ export const useFetchPresentations = () => {
       },
       {
          onSuccess: (response) => {
-            console.log("Fetch  products successfull");
 
             if(response.data.data)
                dispatch(setPresentations({presentations: response.data.data}))
