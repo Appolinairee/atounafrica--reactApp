@@ -1,15 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { LiaTimesSolid } from "react-icons/lia";
 
 import NothingToDisplay from "../BaseComponents/NothingToDisplay";
-import Overflow from "../BaseComponents/Overflow";
 import ScrollBarHider from "../BaseComponents/ScrollBarHidden";
 import { useFetchNotifications } from "../Features/notifications/useFetchNotifications";
 import { FaShoppingCart, FaUserPlus } from "react-icons/fa";
 import { MdOutlineNotifications } from "react-icons/md";
 import { Link } from "react-router-dom";
 import axios from "../axiosConfig";
-import { ImSpinner6 } from "react-icons/im";
 
 const Notification = ({ id, message, icon, state, date, link }) => {
    const authToken = localStorage.getItem("token");

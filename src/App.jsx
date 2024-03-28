@@ -32,7 +32,7 @@ const App = () => {
    return (
       <div>
          <BrowserRouter>
-            <NavBar user={user} />
+            <NavBar user={user} /> 
 
             <Routes>
                <Route path="" element={<Home />} />

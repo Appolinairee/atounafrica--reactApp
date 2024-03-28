@@ -1,14 +1,18 @@
-## Notifications
-    # Get Notifications (pagination)
-    # Test notification link
-    # update notification state
-
 ## Messages
     # get user list for new messages (pagination)
     # get messages between connected user and specific other
     # send message (text and image)
     # faqs configuration
 
+
+## Commande || Product
+    # review steps
+    # get Product details
+    
+    ## Product
+    ## Paiement
+    ## livraison
+    ## review
 
 # Think about thiiis
 Footer
