@@ -6,10 +6,12 @@ import { useState } from "react";
 
 export const useFetchProducts = () => {
    const user = useSelector((state) => state.auth.user);
-   const $userId = user?.id ? "&user_id=" + user.id : "";
+   const userId = user?.id ? "&user_id=" + user.id : "";
    const dispatch = useDispatch();
    const Products = useSelector(selectProducts).products;
    const [willFetchNext, setWillFetchNext] = useState(true);
+
+   console.log(userId)
 
    const [page, setPage] = useState(1);
 
@@ -20,7 +22,7 @@ export const useFetchProducts = () => {
 
       async () => {
          const response = await axios.get(
-            `products?perPage=${perPage}&page=${page}${$userId}`,
+            `products?perPage=${perPage}&page=${page + userId}`,
             {
                retry: { retries: 0 },
             }
@@ -31,10 +33,15 @@ export const useFetchProducts = () => {
       {
          onSuccess: (response) => {
             if (response.data.data.length > 0) {
-               const newProducts =
-                  page === 1
-                     ? response.data.data
-                     : [...Products, response.data.data.filter(newProduct => !Products.some(existingProduct => existingProduct.id === newProduct.id))];
+               
+               let newProducts = [];
+               console.log(response);
+
+               if (page === 1) {
+                  newProducts = response.data.data;
+               } else {
+                  newProducts = Products.concat(response.data.data.filter(newProduct => !Products.some(existingProduct => existingProduct.id === newProduct.id)));
+               }
 
                if (response.data.pagination.total <= newProducts.length) {
                   setWillFetchNext(false);

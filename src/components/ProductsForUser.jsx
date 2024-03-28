@@ -19,6 +19,7 @@ import Creators from "./Creator/Creators";
 import { ImSpinner6 } from "react-icons/im";
 
 const ProductsPacket = ({ Products, slicePosition, showAffiliationPopUp }) => {
+
    return (
       <div className="grid grid-cols-3 w-full gap-x-20 gap-y-6 px-sectionPadding my-2 py-10 bg-light lg:grid-cols-2 md:!grid-cols-1 xs:py-6 xs:gap-6">
          {Products &&
@@ -45,6 +46,7 @@ const ProductsPacket = ({ Products, slicePosition, showAffiliationPopUp }) => {
                      className="w-full productShadow rounded-xl p-[0.8rem] max-w-[400px] m-auto"
                      key={index + id}
                   >
+                     
                      {creator && (
                         <Creator
                            image={
@@ -86,7 +88,7 @@ const ProductsPacket = ({ Products, slicePosition, showAffiliationPopUp }) => {
                            <img
                               className="w-auto h-[250px] mx-auto"
                               src={
-                                 medias[0]?.link
+                                 (medias && medias[0]?.link)
                                     ? process.env.REACT_APP_API_URL +
                                       "storage/" +
                                       medias[0].link
@@ -203,6 +205,7 @@ const ProductsForUser = () => {
    const showAffiliationPopUp = (affiliationLink) => {
       setSelectedAffiliationLink(affiliationLink);
    };
+
    return (
       <div id="products">
          <ProductsPacket Products={Products} slicePosition={0} />
@@ -250,7 +253,7 @@ const ProductsForUser = () => {
                )}
 
                {isLoading && (
-                  <ImSpinner6 className="animate-spin mx-auto text-[3rem] my-4" />
+                  <ImSpinner6 className="animate-spin mx-auto text-[2rem] my-4" />
                )}
             </div>
          )}

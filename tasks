@@ -14,6 +14,8 @@
     ## livraison
     ## review
 
+
 # Think about thiiis
 Footer
 Image and Vidéo get from server origin (Priority: Hight)
+L'id de l'user n'est pas chargé avant l'établissement de la requête des produits.

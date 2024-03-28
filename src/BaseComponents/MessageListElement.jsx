@@ -1,4 +1,6 @@
 const MessageListElement= ({element, handleChat}) => {
+    console.log(element);
+    
     return (
       <div className="flex justify-between items-center gap-2 text-[13px] cursor-pointer border-solid border-0 border-b-[1px] border-dark/5 pb-3" onClick={handleChat}>
         <div className="max-w-[40px] h-[36px] rounded-full w-[15%] border-solid border-dark/5 border-[1px]">
@@ -32,4 +34,4 @@ const MessageListElement= ({element, handleChat}) => {
       </div>
     )
 }
-export default MessageListElement
+export default MessageListElement;
