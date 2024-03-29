@@ -52,11 +52,11 @@ const Notification = ({ id, message, icon, state, date, link }) => {
 
 const IconFromLink = ({ link }) => {
 
-   if (link.includes("/produit")){
+   if (link?.includes("/produit")){
       return <FaShoppingCart />;
-   } else if (link.includes("/utilisateur")) {
+   } else if (link?.includes("/utilisateur")) {
       return <FaUserPlus />;
-   } else if (link.includes("/commande")) {
+   } else if (link?.includes("/commande")) {
       return <FaShoppingCart />;
    } else {
       return <MdOutlineNotifications />;

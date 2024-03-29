@@ -14,7 +14,6 @@ const Message = ({classNameBtn}) => {
     const [msgType, setMsgType] = useState(0);
     const [msgState, setMsgState] = useState(false);
     const messageRef = useRef(null);
-    const [isChat, displayChat] = useState(false);
 
     const handleMessageType = (index) => {
         setMsgType(index);
@@ -22,10 +21,6 @@ const Message = ({classNameBtn}) => {
 
     const handleMsgState = () => {
         setMsgState(msgState? false : true);
-    }
-
-    const handleChat = () => {
-        displayChat(!isChat);
     }
 
     useEffect(() => {
@@ -59,7 +54,7 @@ const Message = ({classNameBtn}) => {
 
             <div ref={messageRef} className={`flex items-center justify-center duration-100 pt-0`}>
                     <div className="overflow-auto h-[76vh] scrollbar-thin min-w-[100%]">
-                        <MessagesList handleChat={handleChat} isChat={isChat} />
+                        <MessagesList />
                     </div>
 
                     <div className="overflow-auto h-[76vh] scrollbar-thin min-w-[100%]">
@@ -70,8 +65,6 @@ const Message = ({classNameBtn}) => {
                         <Faq />
                     </div>
             </div>
-
-            <Chat isChat={isChat} handleChat={handleChat} />
         
         </div>
 
