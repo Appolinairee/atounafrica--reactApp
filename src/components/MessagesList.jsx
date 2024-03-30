@@ -14,19 +14,23 @@ const MessagesList = () => {
    const [firstUserId, setFirstUserId] = useState();
 
    const handleChat = (firstUserId, secondUserId) => {
+      setIsChat(!isChat);
       setFirstUserId(firstUserId);
       setSecondUserId(secondUserId);
-      setIsChat(!isChat);
    };
+
+   if (!LatestMessages || LatestMessages.length <= 0) {
+      return <NothingToDisplay />;
+   }
 
    return (
       <>
-         <div className="p-2 flex flex-col gap-2 pt-4">
+         <div className="p-2 flex flex-col gap-2 pt-4 relative">
             {LatestMessages?.length > 0 ? (
-               LatestMessages.map((message, index) => (
+               LatestMessages.map((user, index) => (
                   <MessageListElement
-                     key={index + message.name}
-                     element={message}
+                     key={user.id}
+                     element={user}
                      handleChat={handleChat}
                   />
                ))
@@ -38,7 +42,6 @@ const MessagesList = () => {
                <ImSpinner2 className="animate-spin mx-auto text-[1.5rem] my-4" />
             )}
          </div>
-
 
          <Chat
             isChat={isChat}

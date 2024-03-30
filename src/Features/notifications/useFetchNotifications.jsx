@@ -8,7 +8,7 @@ export const useFetchNotifications = () => {
    const [Notifications, setNotifications] = useState([]);
 
    const { isLoading, isError } = useQuery(
-      "products",
+      "notifications",
 
       async () => {
          const response = await axios.get(

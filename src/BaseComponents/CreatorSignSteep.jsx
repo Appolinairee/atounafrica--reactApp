@@ -1,34 +1,7 @@
-import { LuCheckCircle } from "react-icons/lu";
-import { CiEdit } from "react-icons/ci";
-import { GoPlusCircle } from "react-icons/go";
-import { MdShoppingCart } from "react-icons/md";
 import { useState } from "react";
 
-const CreatorSignSteep = ({state, handleState}) => {
+const CreatorSignSteep = ({state, handleState,  Steps}) => {
    const [steep, setSteep] = useState(state);
-
-   const Steps = [
-      {
-         name: "Accords",
-         number: "1",
-         icon: <LuCheckCircle />,
-      },
-      {
-         name: "Informations",
-         number: "2",
-         icon: <CiEdit />,
-      },
-      {
-         name: "Configuration",
-         number: "3",
-         icon: <MdShoppingCart />,
-      },
-      {
-         name: "Produit",
-         number: "4",
-         icon: <GoPlusCircle />,
-      },
-   ];
 
    return (
       <div className="flex relative items-center justify-center max-w-[500px] m-auto gap-2 mt-8 md:w-[80%] md:mx-auto xs:w-[95%] xs:mt-4">

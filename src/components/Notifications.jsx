@@ -69,6 +69,8 @@ const Notifications = ({ handleNotification, notificationState }) => {
 
    const Messages = [];
 
+   console.log(Notifications, Notifications.length);
+
    return (
       <div
          className={`fixed top-0 right-0 h-full w-full bg-transparent ${
@@ -142,7 +144,7 @@ const Notifications = ({ handleNotification, notificationState }) => {
 
             <div className="border-solid  max-h-[83vh] mt-[88px] border-x-0 border-y-[.5px] border-dark/5 min-h-[70vh] overflow-y-auto scrollbar-thin">
                {!notificationType ? (
-                  Notifications.length === 0 ? (
+                  Notifications.length <= 0 ? (
                      <NothingToDisplay text="Aucune notification" />
                   ) : (
                      Notifications.map(

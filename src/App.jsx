@@ -45,12 +45,13 @@ const App = () => {
                <Route path="/api/auth/password/reset" element={<ResetPass />} />
 
                {/* Product */}
-               <Route path="/research" element={<ProductResult />} />
-               <Route path="/categories" element={<CategoriesPages />} />
                <Route path="/order" element={<ProductPresentation />} />
                <Route path="/payment" element={<ProductPayment />} />
                <Route path="/deliever" element={<ProductDeliever />} />
                <Route path="/reception" element={<ProductReceive />} />
+               
+               <Route path="/research" element={<ProductResult />} />
+               <Route path="/categories" element={<CategoriesPages />} />
 
                {/* Profils */}
                <Route path="/profil" element={<Profil />} />

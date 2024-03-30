@@ -14,7 +14,9 @@ const Chat = ({ isChat, handleChat, firstUserId, secondUserId }) => {
    const overflowRef = useRef(null);
    const [page, setPage] = useState(1);
    const user = useSelector((state) => state.auth.user);
-   const anotherUserId = firstUserId === user.id ? secondUserId : firstUserId;
+
+
+   const anotherUserId = (firstUserId === user?.id) ? secondUserId : firstUserId;
    const token = localStorage.getItem("token");
    const [willFetchNext, setWillFetchNext] = useState(true);
 
@@ -77,20 +79,17 @@ const Chat = ({ isChat, handleChat, firstUserId, secondUserId }) => {
       ["messages", page],
 
       async () => {
-         const response = await axios.get(`messages/users/${anotherUserId}`, {
+         const response = await axios.get(`messages/user/${anotherUserId}`, {
             headers: {
                Authorization: `Bearer ${token}`,
                "Content-Type": "application/json",
             },
             retry: { retries: 0 },
          });
-
          return response;
       },
       {
          onSuccess: (response) => {
-            console.log(response);
-
             if (page === 1) {
                setMessages(response.data.data);
             } else {
@@ -117,6 +116,12 @@ const Chat = ({ isChat, handleChat, firstUserId, secondUserId }) => {
          overflowRef.current.scrollTop = overflowRef.current.clientHeight;
       }
    }, []);
+
+   if (isError || !anotherUserId) {
+      return <p>Une erreur est survenue</p>;
+   }
+
+
 
    return (
       <div
@@ -150,8 +155,8 @@ const Chat = ({ isChat, handleChat, firstUserId, secondUserId }) => {
             ref={overflowRef}
             className="absolute p-2 bottom-0 w-full h-[82%] mb-14 mt-18 left-0 overflow-auto scrollbar-track-transparent scrollbar-thumb-dark/40 hover:scrollbar-thumb-dark  scrollbar-thin bg-transparent"
          >
-            {Messages.map((message, index) => (
-               <div key={index + message.message}>
+            {messages.map((message, index) => (
+               <div key={message?.id} >
                   <ChatUnit message={message} />
                </div>
             ))}

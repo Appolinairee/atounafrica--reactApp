@@ -8,7 +8,7 @@ export const useFetchLatestMessages = () => {
    const [LatestMessages, setLatestMessages] = useState([]);
 
    const { isLoading, isError } = useQuery(
-      "products",
+      "messages",
 
       async () => {
          const response = await axios.get(
@@ -26,7 +26,6 @@ export const useFetchLatestMessages = () => {
       },
       {
          onSuccess: (response) => {
-            console.log(response);
             setLatestMessages(response.data.data);
          },
          onError: (error) => {
