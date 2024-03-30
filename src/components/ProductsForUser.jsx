@@ -17,6 +17,8 @@ import ProcessAtoun from "./ProcessAtoun";
 import Newsletter from "./Newsletter";
 import Creators from "./Creator/Creators";
 import { ImSpinner6 } from "react-icons/im";
+import MediaPaginator from "./MediaPaginator";
+import AffiliationCard from "./AffiliationCard";
 
 const ProductsPacket = ({ Products, slicePosition, showAffiliationPopUp }) => {
 
@@ -264,56 +266,6 @@ const ProductsForUser = () => {
                setSelectedAffiliationLink={setSelectedAffiliationLink}
             />
          )}
-      </div>
-   );
-};
-
-const AffiliationCard = ({ affiliateLink, setSelectedAffiliationLink }) => {
-   const [hidder, setHidder] = useState(true);
-
-   const handleAffiliationLink = () => {
-      setHidder(!hidder);
-      setSelectedAffiliationLink(!hidder);
-   };
-
-   return (
-      <div>
-         <ScrollBarHider
-            hidden={hidder}
-            handleSearchState={handleAffiliationLink}
-            className="!z-40"
-         />
-
-         <div className="!z-50 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-light">
-            <p>
-               C'est le moment de gagner plus. Copier et partager ce lien pour
-               faire 10% de commission
-            </p>
-
-            {affiliateLink}
-         </div>
-      </div>
-   );
-};
-
-const MediaPaginator = ({ length }) => {
-   return (
-      <div className="flex items-center w-fit gap-1 *:cursor-pointer font-bold absolute !bottom-[15px] left-1/2 -translate-x-1/2 bg-light/80 shadow-boxShadow1 p-[2px] px-[5px] rounded-[5px]">
-         <MdKeyboardArrowLeft className="text-[16px] border-solid border-dark/50 rounded-full p-[0px] px-[0px] border-[1px] duration-75 hover:border-transparent hover:bg-primary hover:text-light xs:text-[22px] large:border-light " />
-         <div className="flex gap-[2px]">
-            {Array.from({ length }, (_, index) => (
-               <span
-                  key={index}
-                  className={`relative p-[3px] border-solid border-dark/60 border-[1px] rounded-full  ${
-                     index === 0
-                        ? "bg-primary px-[6px] border-transparent rounded-lg "
-                        : ""
-                  }`}
-               ></span>
-            ))}
-         </div>
-
-         <MdKeyboardArrowRight className="text-[16px] border-solid border-dark/50 rounded-full p-[0px] px-[0px] border-[1px] duration-75 hover:border-transparent hover:bg-primary hover:text-light xs:text-[22px] large:border-light" />
       </div>
    );
 };

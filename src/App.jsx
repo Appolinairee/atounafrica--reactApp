@@ -22,6 +22,7 @@ import CreatorDashboard from "./components/CreatorComponents/CreatorDashboard";
 import VerifyEmail from "./pages/account/VerifyEmail";
 import { useSelector } from "react-redux";
 import useFetchUser from "./Hooks/useFetchUser";
+import OrderProcess from "./components/OrderProcess";
 
 
 const App = () => {
@@ -45,6 +46,7 @@ const App = () => {
                <Route path="/api/auth/password/reset" element={<ResetPass />} />
 
                {/* Product */}
+               <Route path="/commande" element={<OrderProcess />} />
                <Route path="/order" element={<ProductPresentation />} />
                <Route path="/payment" element={<ProductPayment />} />
                <Route path="/deliever" element={<ProductDeliever />} />
