@@ -21,7 +21,6 @@ import MediaPaginator from "./MediaPaginator";
 import AffiliationCard from "./AffiliationCard";
 
 const ProductsPacket = ({ Products, slicePosition, showAffiliationPopUp }) => {
-
    return (
       <div className="grid grid-cols-3 w-full gap-x-20 gap-y-6 px-sectionPadding my-2 py-10 bg-light lg:grid-cols-2 md:!grid-cols-1 xs:py-6 xs:gap-6">
          {Products &&
@@ -41,6 +40,7 @@ const ProductsPacket = ({ Products, slicePosition, showAffiliationPopUp }) => {
                      comments_count,
                      is_liked,
                      affiliation_link,
+                     slug_name,
                   },
                   index
                ) => (
@@ -48,7 +48,6 @@ const ProductsPacket = ({ Products, slicePosition, showAffiliationPopUp }) => {
                      className="w-full productShadow rounded-xl p-[0.8rem] max-w-[400px] m-auto"
                      key={index + id}
                   >
-                     
                      {creator && (
                         <Creator
                            image={
@@ -60,37 +59,40 @@ const ProductsPacket = ({ Products, slicePosition, showAffiliationPopUp }) => {
                         />
                      )}
 
-                     <div className="flex items-center  my-1">
-                        <div className="flex justify-between !items-center gap-4 text-[14px]">
-                           <p>
-                              <span className="text-[17px] font-medium">
-                                 {current_price}
-                              </span>{" "}
-                              Fcfa
-                           </p>
+                     <span> Hey{slug_name} </span>
 
-                           {old_price && (
-                              <p className="decoration-primary line-through">
-                                 {old_price} Fcfa{"  "}
+                     
+
+                     <Link to={`/produit/${slug_name}`}>
+                        <div className="flex items-center  my-1">
+                           <div className="flex justify-between !items-center gap-4 text-[14px]">
+                              <p>
+                                 <span className="text-[17px] font-medium">
+                                    {current_price}
+                                 </span>{" "}
+                                 Fcfa
                               </p>
-                           )}
+
+                              {old_price && (
+                                 <p className="decoration-primary line-through">
+                                    {old_price} Fcfa{"  "}
+                                 </p>
+                              )}
+                           </div>
+
+                           <Link className="bg-primary text-light  font-medium p-[3px] px-[6px] rounded-lg text-[14px]">
+                              Commander
+                           </Link>
                         </div>
 
-                        <Link className="bg-primary text-light  font-medium p-[3px] px-[6px] rounded-lg text-[14px]">
-                           Commander
-                        </Link>
-                     </div>
-
-                     <div className="flex items-center justify-between">
-                        <p className="text-[15px]">{title}</p>
-                     </div>
-
-                     <Link>
+                        <div className="flex items-center justify-between">
+                           <p className="text-[15px]">{title}</p>
+                        </div>
                         <div className="w-full h-auto rounded-xl overflow-hidden my-3  relative border-solid border-[1px] border-dark/5">
                            <img
                               className="w-auto h-[250px] mx-auto"
                               src={
-                                 (medias && medias[0]?.link)
+                                 medias && medias[0]?.link
                                     ? process.env.REACT_APP_API_URL +
                                       "storage/" +
                                       medias[0].link
@@ -112,13 +114,13 @@ const ProductsPacket = ({ Products, slicePosition, showAffiliationPopUp }) => {
                            productId={id}
                         />
 
-                        <div>
+                        <Link to={`/produit/${slug_name}`}>
                            <p>
                               <BsChatQuote />
                            </p>
 
                            <p>Avis {comments_count}</p>
-                        </div>
+                        </Link>
 
                         <div
                            onClick={() =>
@@ -199,9 +201,7 @@ const ProductsForUser = () => {
          }
       };
 
-      if (willFetchNext)
-         scrollFetch();
-
+      if (willFetchNext) scrollFetch();
    }, [scrollPosition, sectionOffset]);
 
    const showAffiliationPopUp = (affiliationLink) => {

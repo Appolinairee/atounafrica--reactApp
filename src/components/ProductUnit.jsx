@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Creator from "./Creator/Creator";
 import LikeButton from "../BaseComponents/LikeButton";
 import { BsChatQuote } from "react-icons/bs";
@@ -9,6 +9,8 @@ import AffiliationCard from "./AffiliationCard";
 import Image from "../assets/photos(exemples)/OIP (3).jpg";
 import ProfilImageGenerator from "../BaseComponents/ProfilImageGenerator";
 import { FaCheckCircle } from "react-icons/fa";
+import Button from "./Button/Button";
+import { IoArrowForward } from "react-icons/io5";
 
 const ProductUnit = ({
    id,
@@ -24,7 +26,7 @@ const ProductUnit = ({
    medias_count,
    comments,
    caracteristics,
-}) => {
+}, userId) => {
    const [selectedAffiliationLink, setSelectedAffiliationLink] =
       useState(false);
    const [mediaState, setMediaState] = useState(0);
@@ -33,8 +35,6 @@ const ProductUnit = ({
    const characteristicsArray = caracteristics
       ? caracteristics.split(":::")
       : null;
-
-   console.log(characteristicsArray);
 
    const showAffiliationPopUp = (affiliationLink) => {
       setSelectedAffiliationLink(affiliationLink);
@@ -125,7 +125,7 @@ const ProductUnit = ({
             </Link>
 
             <div className="flex w-fit justify-center overflow-x-auto gap-[5px]">
-               {medias &&
+               {medias && medias.length > 0 &&
                   medias.map((media, index) => (
                      <MediaUnit
                         media={media}
@@ -235,7 +235,8 @@ const ProductUnit = ({
                   </div>
                ) : (
                   <div className="!border-red-700 my-4">
-                     {characteristicsArray && characteristicsArray.length > 0 ? (
+                     {characteristicsArray &&
+                     characteristicsArray.length > 0 ? (
                         characteristicsArray?.map((caracteristic, index) => (
                            <div className="flex items-center w-fit gap-2">
                               <FaCheckCircle className="text-[14px]" />
@@ -249,6 +250,12 @@ const ProductUnit = ({
                )}
             </div>
          </div>
+
+         <Button
+            buttonClass="button fixedButton"
+            buttonContent="Commandez"
+            buttonIcon={<IoArrowForward />}
+         />
       </>
    );
 };

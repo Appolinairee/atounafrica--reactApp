@@ -1,8 +1,11 @@
 ## Commande || Product
-    ## Product
-    ## Paiement
-    ## livraison
-    ## review
+    ## Product: 
+        -filter les commentaires qui ne dépasse pas 4 lettres, 
+        -en revenant sur les produits sur l'accueil, il y a un problème d'affichage à régler
+
+    ## Paiement: include kkiapay, define design for order (to present), payment
+    ## livraison: define deadlines
+    ## review: demand view
 
 ## Messages
     # messages pagination

@@ -7,7 +7,6 @@ import NavBar from "./components/navBar/NavBar";
 import Home from "./pages/Home";
 import ProductResult from "./components/ProductResults/ProductResult";
 import CategoriesPages from "./components/CategoriesPage.jsx/CategoriesPages";
-import ProductPresentation from "./components/ProductPresentation/ProductPresentation";
 import ProductPayment from "./components/ProductPayment/ProductPayment";
 import ProductDeliever from "./components/ProductDelivering/ProductDelievering";
 import ProductReceive from "./components/ProductReceive/ProductReceive";
@@ -46,8 +45,8 @@ const App = () => {
                <Route path="/api/auth/password/reset" element={<ResetPass />} />
 
                {/* Product */}
-               <Route path="/commande" element={<OrderProcess />} />
-               <Route path="/order" element={<ProductPresentation />} />
+               <Route path="/commande/" element={<OrderProcess />} />
+               <Route path="/produit/:slug_name" element={<OrderProcess />} />
                <Route path="/payment" element={<ProductPayment />} />
                <Route path="/deliever" element={<ProductDeliever />} />
                <Route path="/reception" element={<ProductReceive />} />
