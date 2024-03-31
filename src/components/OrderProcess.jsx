@@ -23,22 +23,22 @@ const CreatorSign = () => {
 
    const Steps = [
       {
-         name: "Accords",
+         name: "Commande",
          number: "1",
          icon: <LuCheckCircle />,
       },
       {
-         name: "Informations",
+         name: "Avis Livraison",
          number: "2",
          icon: <CiEdit />,
       },
       {
-         name: "Configuration",
+         name: "Paiement",
          number: "3",
          icon: <MdShoppingCart />,
       },
       {
-         name: "Produit",
+         name: "Avis",
          number: "4",
          icon: <GoPlusCircle />,
       },
