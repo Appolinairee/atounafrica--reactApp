@@ -1,9 +1,5 @@
 import { useState } from "react";
 import CreatorSignSteep from "../BaseComponents/CreatorSignSteep";
-import CreatorRules from "../components/CreatorRules";
-import CreatorForm from "../components/CreatorForm";
-import CreatorConfiguration from "../components/CreatorConfiguration"
-import UpdateProduct from "../components/CreatorComponents/UpdateProduct";
 
 import { LuCheckCircle } from "react-icons/lu";
 import { CiEdit } from "react-icons/ci";
@@ -18,6 +14,8 @@ import LoadingButton from "../BaseComponents/LoadingButton";
 import ProductUnit from "./ProductUnit";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { RiSecurePaymentFill } from "react-icons/ri";
+import { FaTruckFast } from "react-icons/fa6";
 
 const CreatorSign = () => {
    const [state, setState] = useState(0);
@@ -34,22 +32,22 @@ const CreatorSign = () => {
       {
          name: "Commande",
          number: "1",
-         icon: <LuCheckCircle />,
-      },
-      {
-         name: "Avis Livraison",
-         number: "2",
-         icon: <CiEdit />,
+         icon: <MdShoppingCart />,
       },
       {
          name: "Paiement",
+         number: "2",
+         icon: <RiSecurePaymentFill />,
+      },
+      {
+         name: "Avis Livraison",
          number: "3",
-         icon: <MdShoppingCart />,
+         icon: <FaTruckFast />,
       },
       {
          name: "Avis",
          number: "4",
-         icon: <GoPlusCircle />,
+         icon: <CiEdit />,
       },
    ];
 

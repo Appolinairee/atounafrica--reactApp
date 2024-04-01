@@ -12,21 +12,24 @@ import { FaCheckCircle } from "react-icons/fa";
 import Button from "./Button/Button";
 import { IoArrowForward } from "react-icons/io5";
 
-const ProductUnit = ({
-   id,
-   title,
-   old_price,
-   current_price,
-   medias,
-   likes_count,
-   is_liked,
-   comments_count,
-   affiliation_link,
-   creator,
-   medias_count,
-   comments,
-   caracteristics,
-}, userId) => {
+const ProductUnit = (
+   {
+      id,
+      title,
+      old_price,
+      current_price,
+      medias,
+      likes_count,
+      is_liked,
+      comments_count,
+      affiliation_link,
+      creator,
+      medias_count,
+      comments,
+      caracteristics,
+   },
+   userId
+) => {
    const [selectedAffiliationLink, setSelectedAffiliationLink] =
       useState(false);
    const [mediaState, setMediaState] = useState(0);
@@ -109,7 +112,11 @@ const ProductUnit = ({
             <Link>
                <div className="w-full h-auto rounded-xl overflow-hidden my-3  relative border-solid border-[1px] border-dark/5">
                   {medias && (
-                     <MediaUnit media={medias[mediaState]} altText={title} />
+                     <MediaUnit
+                        media={medias[mediaState]}
+                        altText={title}
+                        index={1}
+                     />
                   )}
 
                   {medias_count > 1 && (
@@ -125,12 +132,15 @@ const ProductUnit = ({
             </Link>
 
             <div className="flex w-fit justify-center overflow-x-auto gap-[5px]">
-               {medias && medias.length > 0 &&
+               {medias &&
+                  medias.length > 0 &&
                   medias.map((media, index) => (
                      <MediaUnit
                         media={media}
                         altText={title}
-                        className={`!h-[50px] !w-auto rounded-[7px] border-solid border-dark/30 border-[1px]${
+                        index={index}
+                        handleMediaClick={handleMediaClick}
+                        className={`!h-[50px] !w-auto rounded-[7px] border-solid border-dark/30 border-[1px] cursor-pointer ${
                            mediaState === index
                               ? " border-primary border-[2px]"
                               : ""
@@ -218,25 +228,27 @@ const ProductUnit = ({
             <div className="my-4">
                {detailsState === 0 ? (
                   <div className="!border-red-700 my-4">
-                     {comments.map(
-                        ({ content, time_ago, user_name }, index) => (
-                           <div className="flex !items-start justify-center gap-2 w-fit max-w-[450px]">
-                              <ProfilImageGenerator name={user_name} />
+                     {comments &&
+                        comments
+                           .filter(
+                              ({ content }) => content && content.length >= 4
+                           )
+                           .map(({ content, time_ago, user_name }, index) => (
+                              <div className="flex !items-start justify-center gap-2 w-fit max-w-[450px]">
+                                 <ProfilImageGenerator name={user_name} />
 
-                              <div>
-                                 <p>{content}</p>
-                                 <span className="text-[12px] text-dark/70">
-                                    {time_ago}
-                                 </span>
+                                 <div>
+                                    <p>{content}</p>
+                                    <span className="text-[12px] text-dark/70">
+                                       {time_ago}
+                                    </span>
+                                 </div>
                               </div>
-                           </div>
-                        )
-                     )}
+                           ))}
                   </div>
                ) : (
                   <div className="!border-red-700 my-4">
-                     {characteristicsArray &&
-                     characteristicsArray.length > 0 ? (
+                     {characteristicsArray ? (
                         characteristicsArray?.map((caracteristic, index) => (
                            <div className="flex items-center w-fit gap-2">
                               <FaCheckCircle className="text-[14px]" />
@@ -260,11 +272,21 @@ const ProductUnit = ({
    );
 };
 
-const MediaUnit = ({ media, altText, className = "" }) => {
+const MediaUnit = ({
+   media,
+   altText,
+   className = "",
+   index,
+   handleMediaClick,
+}) => {
    return (
       <>
          {media && media.type === "video" && (
-            <video controls className={`w-auto h-[250px] mx-auto ${className}`}>
+            <video
+               controls
+               className={`w-auto h-[250px] mx-auto ${className}`}
+               onclick={() => handleMediaClick(index)}
+            >
                <source
                   src={
                      media?.link
@@ -287,6 +309,7 @@ const MediaUnit = ({ media, altText, className = "" }) => {
                      ? process.env.REACT_APP_API_URL + "storage/" + media.link
                      : Image
                }
+               onclick={() => handleMediaClick(index)}
                alt={altText}
             />
          )}

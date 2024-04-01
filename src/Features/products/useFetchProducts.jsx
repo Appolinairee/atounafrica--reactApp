@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import axios from "../../axiosConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { selectProducts, setProducts } from "./productsSlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const useFetchProducts = () => {
    const user = useSelector((state) => state.auth.user);
@@ -11,7 +11,7 @@ export const useFetchProducts = () => {
    const Products = useSelector(selectProducts).products;
    const [willFetchNext, setWillFetchNext] = useState(true);
 
-   console.log(userId)
+   console.log("Hello")
 
    const [page, setPage] = useState(1);
 
@@ -33,7 +33,6 @@ export const useFetchProducts = () => {
       {
          onSuccess: (response) => {
             if (response.data.data.length > 0) {
-               
                let newProducts = [];
                console.log(response);
 

@@ -1,18 +1,13 @@
-import Products from "../Data/Products";
-import { GoHeart } from "react-icons/go";
-import { GoHeartFill } from "react-icons/go";
 import { BsChatQuote } from "react-icons/bs";
 import { LuLink } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import Creator from "./Creator/Creator";
 import { useEffect, useState } from "react";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { useFetchProducts } from "../Features/products/useFetchProducts";
 import { useSelector } from "react-redux";
 import { selectProducts } from "../Features/products/productsSlice";
 import Image from "../assets/photos(exemples)/OIP (3).jpg";
 import LikeButton from "../BaseComponents/LikeButton";
-import ScrollBarHider from "../BaseComponents/ScrollBarHidden";
 import ProcessAtoun from "./ProcessAtoun";
 import Newsletter from "./Newsletter";
 import Creators from "./Creator/Creators";
@@ -58,10 +53,6 @@ const ProductsPacket = ({ Products, slicePosition, showAffiliationPopUp }) => {
                            name={creator.name}
                         />
                      )}
-
-                     <span> Hey{slug_name} </span>
-
-                     
 
                      <Link to={`/produit/${slug_name}`}>
                         <div className="flex items-center  my-1">
@@ -150,6 +141,8 @@ const ProductsForUser = () => {
    const [sectionOffset, setSectionOffset] = useState(0);
    const [scrollFetchNumber, setScrollFetchNumber] = useState(1);
 
+   console.log(willFetchNext, scrollFetchNumber);
+
    useEffect(() => {
       const handleScroll = () => {
          const position = window.pageYOffset;
@@ -172,6 +165,10 @@ const ProductsForUser = () => {
       };
    }, []);
 
+   console.log(
+      scrollPosition,  sectionOffset - 100 , "Hey"
+   );
+
    useEffect(() => {
       const scrollFetch = () => {
          if (
@@ -182,6 +179,7 @@ const ProductsForUser = () => {
          ) {
             handleSeeMore();
             setScrollFetchNumber(2);
+            console.log("Scroll 1", scrollFetchNumber);
          } else if (
             scrollFetchNumber === 2 &&
             scrollPosition >= sectionOffset - 100 &&
@@ -190,6 +188,7 @@ const ProductsForUser = () => {
          ) {
             handleSeeMore();
             setScrollFetchNumber(3);
+            console.log("Scroll 2", scrollFetchNumber);
          } else if (
             scrollFetchNumber === 3 &&
             scrollPosition >= sectionOffset - 100 &&
@@ -198,11 +197,21 @@ const ProductsForUser = () => {
          ) {
             handleSeeMore();
             setScrollFetchNumber(4);
+            console.log("Scroll 3", scrollFetchNumber);
          }
       };
 
-      if (willFetchNext) scrollFetch();
-   }, [scrollPosition, sectionOffset]);
+      if (willFetchNext) {
+         scrollFetch();
+      }
+   }, [
+      scrollPosition,
+      sectionOffset,
+      Products,
+      willFetchNext,
+      scrollFetchNumber,
+      handleSeeMore
+   ]);
 
    const showAffiliationPopUp = (affiliationLink) => {
       setSelectedAffiliationLink(affiliationLink);
