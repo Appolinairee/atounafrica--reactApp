@@ -1,13 +1,17 @@
-## Commande || Product
-    ## Commande: -enrégistrement de la commande et envoie de la commande
-    ## Paiement: include kkiapay, define design for order (to present), payment
+    ## Commande:
+        - enrégistrement de la commande
+    ## Paiement
+        - faire la carte de présenation de commande
+        - intégrer kkipay
+        -mettre à jour les informations
+        -attendre la réponse de la requête pour savoir si le paiement est achevé ou non
     ## livraison: define deadlines
+        -champs pour la localisation
+        -définition des prix
+        -message de validation
     ## review: demand view
-
-## Messages
-    # messages pagination
-    # send message (text and image)
-    # faqs configuration
+        -Bouton de validation de réception
+        -formulaire de commentaire sur le produit
 
 
 # Think about thiiis
@@ -15,6 +19,11 @@
     Bug: les images indicatifs (pour la pagination d'un produit) ne fonctionnent pas
     en revenant sur les produits sur l'accueil, il y a un problème d'affichage à régler
 
-Footer
-Image and Vidéo get from server origin (Priority: Hight)
-L'id de l'user n'est pas chargé avant l'établissement de la requête des produits.
+    Footer
+    Image and Vidéo get from server origin (Priority: Hight)
+    L'id de l'user n'est pas chargé avant l'établissement de la requête des produits.
+
+    ## Messages
+    # messages pagination
+    # send message (text and image)
+    # faqs configuration

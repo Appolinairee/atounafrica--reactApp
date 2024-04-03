@@ -12,11 +12,13 @@ const MessagesList = () => {
    const [isChat, setIsChat] = useState(false);
    const [secondUserId, setSecondUserId] = useState();
    const [firstUserId, setFirstUserId] = useState();
+   const [user, setUser] = useState();
 
-   const handleChat = (firstUserId, secondUserId) => {
+   const handleChat = (firstUserId, secondUserId, user) => {
       setIsChat(!isChat);
       setFirstUserId(firstUserId);
       setSecondUserId(secondUserId);
+      setUser(user)
    };
 
    if (!LatestMessages || LatestMessages.length <= 0) {
@@ -48,6 +50,7 @@ const MessagesList = () => {
             handleChat={handleChat}
             firstUserId={firstUserId}
             secondUserId={secondUserId}
+            messageUser={user}
          />
       </>
    );

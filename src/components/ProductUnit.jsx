@@ -11,30 +11,64 @@ import ProfilImageGenerator from "../BaseComponents/ProfilImageGenerator";
 import { FaCheckCircle } from "react-icons/fa";
 import Button from "./Button/Button";
 import { IoArrowForward } from "react-icons/io5";
+import { useMutation, useQueryClient } from "react-query";
+import axios from "./../axiosConfig";
 
-const ProductUnit = (
-   {
-      id,
-      title,
-      old_price,
-      current_price,
-      medias,
-      likes_count,
-      is_liked,
-      comments_count,
-      affiliation_link,
-      creator,
-      medias_count,
-      comments,
-      caracteristics,
-   },
-   userId
-) => {
+const ProductUnit = ({
+   id,
+   title,
+   old_price,
+   current_price,
+   medias,
+   likes_count,
+   is_liked,
+   comments_count,
+   affiliation_link,
+   creator,
+   medias_count,
+   comments,
+   caracteristics,
+   userId,
+   handleState,
+   setOrderData,
+}) => {
    const [selectedAffiliationLink, setSelectedAffiliationLink] =
       useState(false);
    const [mediaState, setMediaState] = useState(0);
    const [productCount, setProductCount] = useState(1);
    const [detailsState, setDetailsState] = useState(0);
+   const token = localStorage.getItem("token");
+
+   const placeOrderMutation = useMutation(
+      (formData) =>
+         axios.post("orders/items/store", formData, {
+            headers: {
+               Authorization: `Bearer ${token}`,
+               "Content-Type": "application/json",
+            },
+            retry: { retries: 0 },
+         }),
+      {
+         onSuccess: (response) => {
+            console.log(response.data.data);
+            setOrderData(response.data.data);
+            handleState(1);
+         },
+         onError: (error) => {
+            console.error("Error placing order:", error);
+         },
+      }
+   );
+
+   const handleOrder = () => {
+      const formData = {
+         product_id: id,
+         quantity: productCount,
+      };
+
+      placeOrderMutation.mutate(formData);
+   };
+
    const characteristicsArray = caracteristics
       ? caracteristics.split(":::")
       : null;
@@ -101,7 +135,7 @@ const ProductUnit = (
                </div>
 
                <Link className="bg-primary text-light  font-medium p-[3px] px-[6px] rounded-lg text-[14px]">
-                  Commander
+                  Commander ({productCount})
                </Link>
             </div>
 
@@ -179,7 +213,6 @@ const ProductUnit = (
                />
             )}
          </div>
-
          <div className="my-5">
             <p>Disponibilité: </p>
 
@@ -197,7 +230,6 @@ const ProductUnit = (
                </div>
             </div>
          </div>
-
          <div className="productDetails mt-10 relative py-4">
             <div className="absolute top-0 left-0 w-full h-[1px] bg-dark/40"></div>
 
@@ -262,12 +294,12 @@ const ProductUnit = (
                )}
             </div>
          </div>
-
-         <Button
-            buttonClass="button fixedButton"
-            buttonContent="Commandez"
-            buttonIcon={<IoArrowForward />}
-         />
+         <button
+            className="bg-primary text-light font-medium p-[3px] px-[6px] rounded-lg text-[14px]"
+            onClick={handleOrder}
+         >
+            Commander
+         </button>
       </>
    );
 };

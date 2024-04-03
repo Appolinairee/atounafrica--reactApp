@@ -8,7 +8,7 @@ const MessageListElement = ({ element, handleChat }) => {
    return (
       <div
          className="flex justify-between items-center gap-2 text-[13px] cursor-pointer border-solid border-0 border-b-[1px] w-[95%] mx-auto border-dark/5 pb-3"
-         onClick={() => handleChat(firstUserId, secondUserId)}
+         onClick={() => handleChat(firstUserId, secondUserId, element)}
       >
          <div className="max-w-[40px] h-[36px] rounded-full w-[15%] border-solid border-dark/5 border-[1px] overflow-hidden">
             {element.creator ? (

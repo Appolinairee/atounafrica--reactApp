@@ -11,8 +11,6 @@ export const useFetchProducts = () => {
    const Products = useSelector(selectProducts).products;
    const [willFetchNext, setWillFetchNext] = useState(true);
 
-   console.log("Hello")
-
    const [page, setPage] = useState(1);
 
    const perPage = 6;
@@ -34,7 +32,6 @@ export const useFetchProducts = () => {
          onSuccess: (response) => {
             if (response.data.data.length > 0) {
                let newProducts = [];
-               console.log(response);
 
                if (page === 1) {
                   newProducts = response.data.data;

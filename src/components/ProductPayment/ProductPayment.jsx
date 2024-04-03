@@ -1,56 +1,59 @@
 import "./ProductPayment.css";
-import ProductCollection from "../ProductCollection/ProductCollection";
 import Orders from "../Orders/Orders";
 import Button from "../Button/Button";
 import { FaCheckCircle } from "react-icons/fa";
 import { RiSecurePaymentFill } from "react-icons/ri";
-import SteepTitle from "../SteepTitle/SteepTitle";
 
-const ProductPayment = () => {
-  return (
-    <ProductCollection>
-       <div className="paymentsSection">
-                <SteepTitle title="Paiement à Atoun" index="2" icon={<RiSecurePaymentFill />} />
+const ProductPayment = ({ data }) => {
 
-                <div className="ordersSection">
-                    <div className="orderPaymentType flex">
-                        <p className="typeActive after">En espèce</p>
-                        <p>Par Cotisation</p>
-                    </div> 
+   const calculateTotal = () => {
+      let total = 0;
+      data.order_items.forEach(item => {
+         total += item.quantity * item.unit_price;
+      });
+      return total;
+   };
 
-                   <Orders />
+   console.log(data);
 
-                   <div className="orderPaymentDetails">
-                        <h3>Informations dur votre Paiement</h3>
-                        
-                        <ul>
-                            <li className="flex">
-                                <div className="icon"><FaCheckCircle /></div>
-                                <p>Vous Payez à Atoun en toute sécurité</p>
-                            </li>
-
-                            <li className="flex">
-                                <div className="icon"><FaCheckCircle /></div>
-                                <p>Vous recevez votre colis avant de confirmer la réception</p>
-                            </li>
-
-                            <li className="flex">
-                                <div className="icon"><FaCheckCircle /></div>
-                                <p>Nous payons à notre vendeur sous votre confirmation</p>
-                            </li>
-
-                            <li className="flex">
-                                <div className="icon"><FaCheckCircle /></div>
-                                <p>Au cas où un problème se passe, vous pouvez réclamer vos paiement</p>
-                            </li>
-                        </ul>
-                   </div>
-
-                <Button buttonClass="button fixedButton flex" buttonContent="Payer à Atoun" buttonIcon={<RiSecurePaymentFill />} />
-               </div>
+   return (
+      <div className="paymentsSection">
+         <div className="ordersSection">
+            <div className="orderPaymentType flex">
+               <p className={data.payment_type === 1 ? "typeActive after" : ""}>En espèce</p>
+               <p className={data.payment_type === 0 ? "typeActive after" : ""}>Par Cotisation</p>
             </div>
-    </ProductCollection>
-  )
-}
+
+            <Orders />
+
+            <div className="orderPaymentDetails">
+               <h3>Informations sur votre Paiement</h3>
+
+               <ul>
+                  <li className="flex">
+                     <div className="icon">
+                        <FaCheckCircle />
+                     </div>
+                     <p>Vous Payez à {data.creator_id} en toute sécurité</p>
+                  </li>
+
+                  <li className="flex">
+                     <div className="icon">
+                        <FaCheckCircle />
+                     </div>
+                     <p>Total à Payer: {calculateTotal()} Fcfa</p>
+                  </li>
+               </ul>
+            </div>
+
+            <Button
+               buttonClass="button fixedButton flex"
+               buttonContent={`Payer à ${data.creator_id}`}
+               buttonIcon={<RiSecurePaymentFill />}
+            />
+         </div>
+      </div>
+   );
+};
 
 export default ProductPayment;

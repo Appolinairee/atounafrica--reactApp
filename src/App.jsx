@@ -23,7 +23,6 @@ import { useSelector } from "react-redux";
 import useFetchUser from "./Hooks/useFetchUser";
 import OrderProcess from "./components/OrderProcess";
 
-
 const App = () => {
 
    useFetchUser();
@@ -32,7 +31,7 @@ const App = () => {
    return (
       <div>
          <BrowserRouter>
-            {/* <NavBar user={user} />  */}
+            <NavBar user={user} /> 
 
             <Routes>
                <Route path="" element={<Home />} />

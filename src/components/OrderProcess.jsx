@@ -17,10 +17,11 @@ import { useSelector } from "react-redux";
 import { RiSecurePaymentFill } from "react-icons/ri";
 import { FaTruckFast } from "react-icons/fa6";
 
-const CreatorSign = () => {
+const OrderProcess = () => {
    const [state, setState] = useState(0);
    const user = useSelector((state) => state.auth.user);
    const userId = user?.id ? "&user_id=" + user.id : "";
+   const [orderData, setOrderData] = useState([]);
 
    const handleState = (state) => {
       setState(state);
@@ -88,9 +89,9 @@ const CreatorSign = () => {
          <div className="bg-red mb-24 rounded-lg bg-light mx-[3%] p-2 ">
             <CreatorSignSteep state={state} handleState={handleState} Steps={Steps} />
 
-            {state === 0 && <ProductUnit {...Product} key={Product.id} userId={userId} />}
+            {state === 0 && <ProductUnit {...Product} key={Product.id} userId={userId} handleState={handleState} setOrderData={setOrderData} />}
 
-            {state === 1 && <ProductPayment />}
+            {state === 1 && <ProductPayment orderData={orderData} />}
 
             {state === 2 && <ProductDeliever />}
 
@@ -100,4 +101,4 @@ const CreatorSign = () => {
    );
 };
 
-export default CreatorSign;
+export default OrderProcess;

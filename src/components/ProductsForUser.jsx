@@ -141,7 +141,6 @@ const ProductsForUser = () => {
    const [sectionOffset, setSectionOffset] = useState(0);
    const [scrollFetchNumber, setScrollFetchNumber] = useState(1);
 
-   console.log(willFetchNext, scrollFetchNumber);
 
    useEffect(() => {
       const handleScroll = () => {
@@ -165,10 +164,6 @@ const ProductsForUser = () => {
       };
    }, []);
 
-   console.log(
-      scrollPosition,  sectionOffset - 100 , "Hey"
-   );
-
    useEffect(() => {
       const scrollFetch = () => {
          if (
@@ -179,7 +174,6 @@ const ProductsForUser = () => {
          ) {
             handleSeeMore();
             setScrollFetchNumber(2);
-            console.log("Scroll 1", scrollFetchNumber);
          } else if (
             scrollFetchNumber === 2 &&
             scrollPosition >= sectionOffset - 100 &&
@@ -188,7 +182,6 @@ const ProductsForUser = () => {
          ) {
             handleSeeMore();
             setScrollFetchNumber(3);
-            console.log("Scroll 2", scrollFetchNumber);
          } else if (
             scrollFetchNumber === 3 &&
             scrollPosition >= sectionOffset - 100 &&
@@ -197,7 +190,6 @@ const ProductsForUser = () => {
          ) {
             handleSeeMore();
             setScrollFetchNumber(4);
-            console.log("Scroll 3", scrollFetchNumber);
          }
       };
 
