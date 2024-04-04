@@ -1,9 +1,4 @@
-    ## Commande:
     ## Paiement
-        - faire la carte de présenation de commande
-        - intégrer kkipay
-        -mettre à jour les informations
-        -attendre la réponse de la requête pour savoir si le paiement est achevé ou non
     ## livraison: define deadlines
         -champs pour la localisation
         -définition des prix
@@ -11,6 +6,10 @@
     ## review: demand view
         -Bouton de validation de réception
         -formulaire de commentaire sur le produit
+
+Orders frontend details
+-design orders components
+-facilite switching into order state (by right or left arrow)
 
 # Think about thiiis
 
@@ -27,3 +26,5 @@
     # messages pagination
     # send message (text and image)
     # faqs configuration
+
+# verify kkiapay response answer. For moment amount is updated directly into database

@@ -26,6 +26,7 @@ export const useFetchNotifications = () => {
       },
       {
          onSuccess: (response) => {
+            console.log(response)
             setNotifications(response.data.data);
          },
          onError: (error) => {

@@ -38,7 +38,7 @@ const Notification = ({ id, message, icon, state, date, link }) => {
             state === "1"
                ? "bg-dark/5 border-light"
                : "bg-secondary/30 border-dark/5"
-         } p-2 px-5 flex gap-3 border-solid border-0 border-b-[0.5px]`}
+         } p-2 px-5 flex gap-3 w-fit border-solid border-0 border-b-[0.5px]`}
       >
          <p className="bg-primary p-2 rounded-full w-fit text-light">{icon}</p>
 
@@ -68,6 +68,8 @@ const Notifications = ({ handleNotification, notificationState }) => {
    const { isLoading, Notifications } = useFetchNotifications();
 
    const Messages = [];
+
+   console.log(Notifications)
 
    return (
       <div
@@ -101,7 +103,7 @@ const Notifications = ({ handleNotification, notificationState }) => {
                      >
                         <p>Tout</p>
 
-                        {Notifications.length !== 0 && (
+                        {Notifications?.length !== 0 && (
                            <span
                               className={`absolute top-[1.5px] right-1/4 text-[10px] px-2 py-[1px] rounded-full ${
                                  !notificationType
@@ -109,7 +111,7 @@ const Notifications = ({ handleNotification, notificationState }) => {
                                     : "bg-dark/20 text-dark/80"
                               }`}
                            >
-                              {Notifications.length}
+                              {Notifications?.length}
                            </span>
                         )}
                      </div>
@@ -124,7 +126,7 @@ const Notifications = ({ handleNotification, notificationState }) => {
                      >
                         <p>Messages</p>
 
-                        {Messages.length !== 0 && (
+                        {Messages?.length !== 0 && (
                            <span
                               className={`absolute top-[1.5px] right-6 text-[10px] px-2 py-[1px] rounded-full ${
                                  notificationType
@@ -132,7 +134,7 @@ const Notifications = ({ handleNotification, notificationState }) => {
                                     : "bg-dark/20 text-dark/80"
                               }`}
                            >
-                              {Messages.length}
+                              {Messages?.length}
                            </span>
                         )}
                      </div>
@@ -142,10 +144,10 @@ const Notifications = ({ handleNotification, notificationState }) => {
 
             <div className="border-solid  max-h-[83vh] mt-[88px] border-x-0 border-y-[.5px] border-dark/5 min-h-[70vh] overflow-y-auto scrollbar-thin">
                {!notificationType ? (
-                  Notifications.length <= 0 ? (
+                  Notifications?.length <= 0 ? (
                      <NothingToDisplay text="Aucune notification" />
                   ) : (
-                     Notifications.map(
+                    Notifications && Notifications.map(
                         (
                            { id, title, content, state, time_ago, link },
                            index

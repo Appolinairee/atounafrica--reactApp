@@ -94,7 +94,7 @@ const OrderProcess = () => {
 
             {state === 0 && <ProductUnit {...Product} key={Product.id} userId={userId} handleState={handleState} setOrderId={setOrderId} />}
 
-            {state === 1 && <ProductPayment orderId={orderId} />}
+            {state === 1 && <ProductPayment handleState={handleState} orderId={orderId} />}
 
             {state === 2 && <ProductDeliever />}
 

@@ -7,7 +7,7 @@ import { useKKiaPay } from "kkiapay-react";
 import axios from "../../axiosConfig";
 import { useMutation } from "react-query";
 
-const ProductPayment = ({ orderId }) => {
+const ProductPayment = ({ handleState, orderId }) => {
    const order = useSelector(selectOrderById(orderId));
    const [paymentMode, setPaymentMode] = useState(1);
    const user = useSelector((state) => state.auth.user);
@@ -59,11 +59,12 @@ const ProductPayment = ({ orderId }) => {
             console.error("Erreur lors de la mise à jour des détails de paiement :", error);
          },
          onSuccess: (response) => {
-            console.log(response);
             response = response.data.data;
             dispatch(updateOrders(response.data.data));
 
-            if(response.status == 2 && response.payment)
+            if(response.status == 2 && response.payment_status == 1){
+               handleState(2);
+            }
 
             console.log("Paiement réussi. Détails mis à jour avec succès.");
          },
@@ -152,7 +153,7 @@ const ProductPayment = ({ orderId }) => {
             )}
          </div>
 
-         <button onClick={openKkiapay} className="bg-primary px-8 py-4 rounded-full text-light">
+         <button onClick={successHandler} className="bg-primary px-8 py-4 rounded-full text-light">
             Effectuer le paiement
          </button>
          
