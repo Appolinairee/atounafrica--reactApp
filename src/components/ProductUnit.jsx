@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Creator from "./Creator/Creator";
 import LikeButton from "../BaseComponents/LikeButton";
 import { BsChatQuote } from "react-icons/bs";
@@ -9,12 +9,11 @@ import AffiliationCard from "./AffiliationCard";
 import Image from "../assets/photos(exemples)/OIP (3).jpg";
 import ProfilImageGenerator from "../BaseComponents/ProfilImageGenerator";
 import { FaCheckCircle } from "react-icons/fa";
-import Button from "./Button/Button";
-import { IoArrowForward } from "react-icons/io5";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation } from "react-query";
 import axios from "./../axiosConfig";
 import { useDispatch } from "react-redux";
 import { updateOrders } from "../Features/orders/ordersSlice";
+import LoadingButton from "../BaseComponents/LoadingButton";
 
 const ProductUnit = ({
    id,
@@ -43,7 +42,7 @@ const ProductUnit = ({
    const token = localStorage.getItem("token");
 
 
-   const placeOrderMutation = useMutation(
+   const{ mutate: placeOrderMutation, isLoading } = useMutation(
       (formData) =>
          axios.post("orders/items/store", formData, {
             headers: {
@@ -70,7 +69,7 @@ const ProductUnit = ({
          quantity: productCount,
       };
 
-      placeOrderMutation.mutate(formData);
+      placeOrderMutation(formData);
    };
 
    const characteristicsArray = caracteristics
@@ -298,6 +297,9 @@ const ProductUnit = ({
                )}
             </div>
          </div>
+
+         <LoadingButton loading={isLoading} />
+
          <button
             className="bg-primary text-light font-medium p-[3px] px-[6px] rounded-lg text-[14px]"
             onClick={handleOrder}
