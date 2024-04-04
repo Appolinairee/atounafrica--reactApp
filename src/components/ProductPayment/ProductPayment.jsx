@@ -1,57 +1,57 @@
-import "./ProductPayment.css";
-import Orders from "../Orders/Orders";
-import Button from "../Button/Button";
-import { FaCheckCircle } from "react-icons/fa";
-import { RiSecurePaymentFill } from "react-icons/ri";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { selectOrderById } from "../../Features/orders/ordersSlice";
+import Order from "../Order";
 
-const ProductPayment = ({ data }) => {
+const ProductPayment = ({ orderId }) => {
+   const order = useSelector(selectOrderById(orderId));
+   const [paymentMode, setPaymentMode] = useState("direct");
 
-   const calculateTotal = () => {
-      let total = 0;
-      data.order_items.forEach(item => {
-         total += item.quantity * item.unit_price;
-      });
-      return total;
+   const handlePaymentModeChange = (mode) => {
+      setPaymentMode(mode);
    };
-
-   console.log(data);
 
    return (
       <div className="paymentsSection">
-         <div className="ordersSection">
-            <div className="orderPaymentType flex">
-               <p className={data.payment_type === 1 ? "typeActive after" : ""}>En espèce</p>
-               <p className={data.payment_type === 0 ? "typeActive after" : ""}>Par Cotisation</p>
-            </div>
+         <h2>Informations sur la commande</h2>
+         <p>Numéro de commande : {order.id}</p>
+         <p>Date de création : {new Date(order.created_at).toLocaleDateString()}</p>
+         <p>Total : {order.total_amount}</p>
 
-            <Orders />
+         <hr />
 
-            <div className="orderPaymentDetails">
-               <h3>Informations sur votre Paiement</h3>
-
-               <ul>
-                  <li className="flex">
-                     <div className="icon">
-                        <FaCheckCircle />
-                     </div>
-                     <p>Vous Payez à {data.creator_id} en toute sécurité</p>
-                  </li>
-
-                  <li className="flex">
-                     <div className="icon">
-                        <FaCheckCircle />
-                     </div>
-                     <p>Total à Payer: {calculateTotal()} Fcfa</p>
-                  </li>
-               </ul>
-            </div>
-
-            <Button
-               buttonClass="button fixedButton flex"
-               buttonContent={`Payer à ${data.creator_id}`}
-               buttonIcon={<RiSecurePaymentFill />}
-            />
+         {/* Afficher les options de paiement */}
+         <div>
+            <label>
+               <input
+                  type="radio"
+                  value="direct"
+                  checked={paymentMode === "direct"}
+                  onChange={() => handlePaymentModeChange("direct")}
+               />
+               Paiement direct
+            </label>
+            <br />
+            <label>
+               <input
+                  type="radio"
+                  value="cotisation"
+                  checked={paymentMode === "cotisation"}
+                  onChange={() => handlePaymentModeChange("cotisation")}
+               />
+               Paiement par cotisation
+            </label>
          </div>
+
+         {/* Afficher les détails de chaque élément de la commande */}
+         {order.order_items.map((orderItem, index) => (
+            <div key={index}>
+               <Order orderItem={orderItem} />
+            </div>
+         ))}
+
+         {/* Bouton de paiement */}
+         <button>Procéder au paiement</button>
       </div>
    );
 };

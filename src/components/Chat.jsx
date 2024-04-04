@@ -10,6 +10,7 @@ import { useQuery } from "react-query";
 import axios from "../axiosConfig";
 import { useSelector } from "react-redux";
 import LoadingButton from "../BaseComponents/LoadingButton";
+import ServerError from "../pages/ServerError";
 
 const Chat = ({
    isChat,
@@ -123,6 +124,10 @@ const Chat = ({
          overflowRef.current.scrollTop = overflowRef.current.clientHeight;
       }
    }, []);
+
+   if(isError){
+      return <ServerError />
+   }
 
    
    return (

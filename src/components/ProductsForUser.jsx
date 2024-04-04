@@ -14,6 +14,7 @@ import Creators from "./Creator/Creators";
 import { ImSpinner6 } from "react-icons/im";
 import MediaPaginator from "./MediaPaginator";
 import AffiliationCard from "./AffiliationCard";
+import ServerError from "../pages/ServerError";
 
 const ProductsPacket = ({ Products, slicePosition, showAffiliationPopUp }) => {
    return (
@@ -208,6 +209,10 @@ const ProductsForUser = () => {
    const showAffiliationPopUp = (affiliationLink) => {
       setSelectedAffiliationLink(affiliationLink);
    };
+
+   if(isError){
+      return <ServerError />
+   }
 
    return (
       <div id="products">

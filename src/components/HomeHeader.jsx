@@ -14,6 +14,7 @@ import Overflow from "../BaseComponents/Overflow";
 import { useSelector } from "react-redux";
 import { selectPresentations } from "../Features/products/presentationsSlice";
 import { useFetchPresentations } from "../Features/products/useFetchPresentations";
+import ServerError from "../pages/ServerError";
 
 const HomeHeader = () => {
    const [currentSlide, setCurrentSlide] = useState(0);
@@ -104,6 +105,10 @@ const HomeHeader = () => {
 
       setSlide(currentSlideData);
    }, [isLoading, isError, PresentationsProducts, currentSlide]);
+
+   if(isError){
+      return <ServerError />
+   }
 
    return (
       <div className="bg-light py-2 px-sectionPadding ">

@@ -30,7 +30,7 @@ export const useFetchProducts = () => {
       },
       {
          onSuccess: (response) => {
-            if (response.data.data.length > 0) {
+            if (response.data.data?.length > 0) {
                let newProducts = [];
 
                if (page === 1) {

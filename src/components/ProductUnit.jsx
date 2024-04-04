@@ -13,6 +13,8 @@ import Button from "./Button/Button";
 import { IoArrowForward } from "react-icons/io5";
 import { useMutation, useQueryClient } from "react-query";
 import axios from "./../axiosConfig";
+import { useDispatch } from "react-redux";
+import { updateOrders } from "../Features/orders/ordersSlice";
 
 const ProductUnit = ({
    id,
@@ -30,14 +32,16 @@ const ProductUnit = ({
    caracteristics,
    userId,
    handleState,
-   setOrderData,
+   setOrderId
 }) => {
    const [selectedAffiliationLink, setSelectedAffiliationLink] =
       useState(false);
    const [mediaState, setMediaState] = useState(0);
    const [productCount, setProductCount] = useState(1);
    const [detailsState, setDetailsState] = useState(0);
+   const dispatch = useDispatch();
    const token = localStorage.getItem("token");
+
 
    const placeOrderMutation = useMutation(
       (formData) =>
@@ -50,8 +54,8 @@ const ProductUnit = ({
          }),
       {
          onSuccess: (response) => {
-            console.log(response.data.data);
-            setOrderData(response.data.data);
+            dispatch(updateOrders(response.data.data));
+            setOrderId(response.data.data.id)
             handleState(1);
          },
          onError: (error) => {

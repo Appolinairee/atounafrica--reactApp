@@ -1,9 +1,7 @@
 import { useState } from "react";
 import CreatorSignSteep from "../BaseComponents/CreatorSignSteep";
 
-import { LuCheckCircle } from "react-icons/lu";
 import { CiEdit } from "react-icons/ci";
-import { GoPlusCircle } from "react-icons/go";
 import { MdShoppingCart } from "react-icons/md";
 import ProductPayment from "./ProductPayment/ProductPayment";
 import ProductDeliever from "./ProductDelivering/ProductDelievering";
@@ -16,12 +14,13 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RiSecurePaymentFill } from "react-icons/ri";
 import { FaTruckFast } from "react-icons/fa6";
+import ServerError from "../pages/ServerError";
 
 const OrderProcess = () => {
    const [state, setState] = useState(0);
    const user = useSelector((state) => state.auth.user);
    const userId = user?.id ? "&user_id=" + user.id : "";
-   const [orderData, setOrderData] = useState([]);
+   const [orderId, setOrderId] = useState();
 
    const handleState = (state) => {
       setState(state);
@@ -84,14 +83,18 @@ const OrderProcess = () => {
       )
    }
 
+   if(isError){
+      return <ServerError />
+   }
+
    return (
       <div className="">
          <div className="bg-red mb-24 rounded-lg bg-light mx-[3%] p-2 ">
             <CreatorSignSteep state={state} handleState={handleState} Steps={Steps} />
 
-            {state === 0 && <ProductUnit {...Product} key={Product.id} userId={userId} handleState={handleState} setOrderData={setOrderData} />}
+            {state === 0 && <ProductUnit {...Product} key={Product.id} userId={userId} handleState={handleState} setOrderId={setOrderId} />}
 
-            {state === 1 && <ProductPayment orderData={orderData} />}
+            {state === 1 && <ProductPayment orderId={orderId} />}
 
             {state === 2 && <ProductDeliever />}
 
