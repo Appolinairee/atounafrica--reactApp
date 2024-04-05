@@ -8,7 +8,6 @@ import Home from "./pages/Home";
 import ProductResult from "./components/ProductResults/ProductResult";
 import CategoriesPages from "./components/CategoriesPage.jsx/CategoriesPages";
 import ProductPayment from "./components/ProductPayment/ProductPayment";
-import ProductDeliever from "./components/ProductDelivering/ProductDelievering";
 import ProductReceive from "./components/ProductReceive/ProductReceive";
 import Inscription from "./pages/account/Inscription";
 import Connexion from "./pages/account/Connexion";
@@ -31,7 +30,7 @@ const App = () => {
    return (
       <div>
          <BrowserRouter>
-            <NavBar user={user} /> 
+            {/* <NavBar user={user} />  */}
 
             <Routes>
                <Route path="" element={<Home />} />
@@ -47,7 +46,7 @@ const App = () => {
                <Route path="/commande/" element={<OrderProcess />} />
                <Route path="/produit/:slug_name" element={<OrderProcess />} />
                <Route path="/payment" element={<ProductPayment />} />
-               <Route path="/deliever" element={<ProductDeliever />} />
+               {/* <Route path="/deliever" element={<ProductDeliever />} /> */}
                <Route path="/reception" element={<ProductReceive />} />
                
                <Route path="/research" element={<ProductResult />} />

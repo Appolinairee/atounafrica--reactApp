@@ -22,7 +22,6 @@ const Chat = ({
    const overflowRef = useRef(null);
    const [page, setPage] = useState(1);
    const user = useSelector((state) => state.auth.user);
-   console.log(messageUser);
 
    const anotherUserId = firstUserId === user?.id ? secondUserId : firstUserId;
    const token = localStorage.getItem("token");

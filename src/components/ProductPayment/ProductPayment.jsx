@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectOrderById, updateOrders } from "../../Features/orders/ordersSlice";
+import {
+   selectOrderById,
+   updateOrders,
+} from "../../Features/orders/ordersSlice";
 import Order from "../Order";
-import LoadingButton from "../../BaseComponents/LoadingButton";
 import { useKKiaPay } from "kkiapay-react";
 import axios from "../../axiosConfig";
 import { useMutation } from "react-query";
+import LoadingButton from "../../BaseComponents/LoadingButton";
 
 const ProductPayment = ({ handleState, orderId }) => {
    const order = useSelector(selectOrderById(orderId));
@@ -39,30 +42,39 @@ const ProductPayment = ({ handleState, orderId }) => {
    const handleAmountInputChange = (e) => {
       const inputAmount = parseInt(e.target.value);
       if (inputAmount >= order.total_amount) {
-         setPaymentMode(1); 
-         setPaymentAmount(order.total_amount); 
+         setPaymentMode(1);
+         setPaymentAmount(order.total_amount);
       } else {
-         setPaymentMode(0); 
-         setPaymentAmount(inputAmount); 
+         setPaymentMode(0);
+         setPaymentAmount(inputAmount);
       }
    };
 
-   const { mutate: updatePaymentDetails, isLoading, isError } = useMutation(
-      (updatedDetails) => axios.put(`orders/${orderId}/payment`, updatedDetails, {
-         headers: {
-            Authorization: `Bearer ${authToken}`,
-         },
-         retry: { retries: 0 },
-      }),
+   const {
+      mutate: updatePaymentDetails,
+      isLoading,
+      isError,
+   } = useMutation(
+      (updatedDetails) =>
+         axios.put(`orders/${orderId}/payment`, updatedDetails, {
+            headers: {
+               Authorization: `Bearer ${authToken}`,
+            },
+            retry: { retries: 0 },
+         }),
       {
          onError: (error) => {
-            console.error("Erreur lors de la mise à jour des détails de paiement :", error);
+            console.error(
+               "Erreur lors de la mise à jour des détails de paiement :",
+               error
+            );
          },
          onSuccess: (response) => {
+            console.log(response, response.data, response.data.data);
             response = response.data.data;
-            dispatch(updateOrders(response.data.data));
+            dispatch(updateOrders(response));
 
-            if(response.status == 2 && response.payment_status == 1){
+            if (response.status == 2 && response.payment_status == 1) {
                handleState(2);
             }
 
@@ -153,10 +165,18 @@ const ProductPayment = ({ handleState, orderId }) => {
             )}
          </div>
 
-         <button onClick={successHandler} className="bg-primary px-8 py-4 rounded-full text-light">
+         {/* <button onClick={successHandler} className="bg-primary px-8 py-4 rounded-full text-light">
             Effectuer le paiement
-         </button>
-         
+         </button> */}
+
+         <div>
+            <LoadingButton
+               text="Effectuer le paiement"
+               loading={isLoading}
+               onClick = {successHandler}
+               className="!bg-primary px-6 py-3 rounded-[18px]"
+            />
+         </div>
       </div>
    );
 };

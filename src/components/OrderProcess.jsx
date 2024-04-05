@@ -4,7 +4,6 @@ import CreatorSignSteep from "../BaseComponents/CreatorSignSteep";
 import { CiEdit } from "react-icons/ci";
 import { MdShoppingCart } from "react-icons/md";
 import ProductPayment from "./ProductPayment/ProductPayment";
-import ProductDeliever from "./ProductDelivering/ProductDelievering";
 import ProductReceive from "./ProductReceive/ProductReceive";
 import { useQuery } from "react-query";
 import axios from "../axiosConfig";
@@ -15,6 +14,7 @@ import { useSelector } from "react-redux";
 import { RiSecurePaymentFill } from "react-icons/ri";
 import { FaTruckFast } from "react-icons/fa6";
 import ServerError from "../pages/ServerError";
+import Delievering from "./Delievering";
 
 const OrderProcess = () => {
    const [state, setState] = useState(0);
@@ -96,7 +96,7 @@ const OrderProcess = () => {
 
             {state === 1 && <ProductPayment handleState={handleState} orderId={orderId} />}
 
-            {state === 2 && <ProductDeliever />}
+            {state === 2 && <Delievering />}
 
             {state === 3 && <ProductReceive />}
          </div>

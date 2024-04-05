@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaEye } from "react-icons/fa";
 
-const Orders = ({ orderItem }) => {
+const Order = ({ orderItem }) => {
   const [cardState, setCardState] = useState(true); 
 
   return (
@@ -49,4 +49,4 @@ const Orders = ({ orderItem }) => {
   );
 };
 
-export default Orders;
+export default Order;

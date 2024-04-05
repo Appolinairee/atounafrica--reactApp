@@ -69,8 +69,6 @@ const Notifications = ({ handleNotification, notificationState }) => {
 
    const Messages = [];
 
-   console.log(Notifications)
-
    return (
       <div
          className={`fixed top-0 right-0 h-full w-full bg-transparent ${

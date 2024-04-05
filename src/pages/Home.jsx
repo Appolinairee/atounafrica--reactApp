@@ -8,10 +8,10 @@ import Creators from "../components/Creator/Creators";
 export default function Home() {
    return (
       <div>
-         <HomeHeader />
+         {/* <HomeHeader /> */}
 
          <div className="relative">
-            <CategoriesFixed className="!sticky top-4 left-0 w-full md:top-3 xs:top-2" />
+            {/* <CategoriesFixed className="!sticky top-4 left-0 w-full md:top-3 xs:top-2" /> */}
             <ProductsForUser />
          </div>
       </div>
