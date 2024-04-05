@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
    selectOrderById,
+   setError,
    updateOrders,
 } from "../../Features/orders/ordersSlice";
 import Order from "../Order";
@@ -19,6 +20,7 @@ const ProductPayment = ({ handleState, orderId }) => {
    const authToken = useSelector((state) => state.auth.authToken);
    const [errorMessage, setErrorMessage] = useState(null);
    const dispatch = useDispatch();
+   const minimumContribution = 5000;
 
    const openKkiapay = () => {
       openKkiapayWidget({
@@ -34,8 +36,11 @@ const ProductPayment = ({ handleState, orderId }) => {
 
    const handlePaymentModeChange = (mode) => {
       setPaymentMode(mode);
+
       if (mode === 1) {
          setPaymentAmount(order.total_amount);
+      }else{
+         setPaymentAmount(minimumContribution);
       }
    };
 
@@ -44,9 +49,15 @@ const ProductPayment = ({ handleState, orderId }) => {
       if (inputAmount >= order.total_amount) {
          setPaymentMode(1);
          setPaymentAmount(order.total_amount);
-      } else {
+      } else if (inputAmount >= minimumContribution) {
          setPaymentMode(0);
-         setPaymentAmount(inputAmount);
+         let amount = inputAmount ? inputAmount : minimumContribution;
+         setPaymentAmount(amount);
+      } else {
+         setPaymentAmount(minimumContribution);
+         setErrorMessage(
+            `La tranche minimale est de ${minimumContribution} Fcfa`
+         );
       }
    };
 
@@ -63,12 +74,6 @@ const ProductPayment = ({ handleState, orderId }) => {
             retry: { retries: 0 },
          }),
       {
-         onError: (error) => {
-            console.error(
-               "Erreur lors de la mise à jour des détails de paiement :",
-               error
-            );
-         },
          onSuccess: (response) => {
             console.log(response, response.data, response.data.data);
             response = response.data.data;
@@ -110,8 +115,6 @@ const ProductPayment = ({ handleState, orderId }) => {
 
          <hr />
 
-         {errorMessage && <p>{errorMessage}</p>}
-
          {/* Afficher les options de paiement */}
          <div>
             <label>
@@ -142,6 +145,8 @@ const ProductPayment = ({ handleState, orderId }) => {
             </div>
          ))}
 
+         {errorMessage && <p>{errorMessage}</p>}
+
          <div>
             {paymentMode === 1 ? (
                <div>Paiement de : {order.total_amount} Fcfa</div>
@@ -153,8 +158,8 @@ const ProductPayment = ({ handleState, orderId }) => {
                      </label>
                      <input
                         type="number"
-                        placeholder="5000"
-                        min={5000}
+                        placeholder={minimumContribution}
+                        min={minimumContribution}
                         step={1}
                         onChange={handleAmountInputChange}
                      />
@@ -173,7 +178,7 @@ const ProductPayment = ({ handleState, orderId }) => {
             <LoadingButton
                text="Effectuer le paiement"
                loading={isLoading}
-               onClick = {successHandler}
+               onClick={successHandler}
                className="!bg-primary px-6 py-3 rounded-[18px]"
             />
          </div>
@@ -182,3 +187,6 @@ const ProductPayment = ({ handleState, orderId }) => {
 };
 
 export default ProductPayment;
+
+
+

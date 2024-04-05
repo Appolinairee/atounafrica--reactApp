@@ -13,6 +13,8 @@ Orders frontend details
 
 # Think about thiiis
 
+    # tyles for components error(404, 500)
+
     En voulant utiliser nextJs, il faudrait revoir la documentation kkiapay: ('use client')
 
     Bug: les images indicatifs (pour la pagination d'un produit) ne fonctionnent pas

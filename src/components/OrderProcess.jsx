@@ -96,9 +96,9 @@ const OrderProcess = () => {
 
             {state === 1 && <ProductPayment handleState={handleState} orderId={orderId} />}
 
-            {state === 2 && <Delievering />}
+            {state === 2 && <Delievering handleState={handleState} orderId={orderId} />}
 
-            {state === 3 && <ProductReceive />}
+            {state === 3 && <ProductReceive orderId={orderId} />}
          </div>
       </div>
    );
