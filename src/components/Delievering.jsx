@@ -33,9 +33,10 @@ const DeliveryForm = ({ orderId, handleState }) => {
             console.log(response, response.data, response.data.data);
             response = response.data.data;
             dispatch(updateOrders(response));
-
+            
+            // Todo: à mettre à jour
+            handleState(3);
             if (response.status == 2) {
-               handleState(3);
             }
          },
       }
@@ -55,7 +56,8 @@ const DeliveryForm = ({ orderId, handleState }) => {
       } else {
          const dateFormat = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})$/;
          if (!dateFormat.test(shippingDate)) {
-            setMessageError("Format de date invalide. Utilisez YYYY-MM-DD HH:mm."
+            setMessageError(
+               "Format de date invalide. Utilisez YYYY-MM-DD HH:mm."
             );
             return;
          }

@@ -77,8 +77,7 @@ const OrderProcess = () => {
    if(isLoading){
       return (
          <div className="my-4">
-            <LoadingButton loading={isLoading} />
-            <p className="text-center">En cours de chargement</p>
+            <LoadingButton text="En cours de chargement" loading={isLoading} />
          </div>
       )
    }

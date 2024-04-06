@@ -187,6 +187,3 @@ const ProductPayment = ({ handleState, orderId }) => {
 };
 
 export default ProductPayment;
-
-
-

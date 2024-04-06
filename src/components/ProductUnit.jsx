@@ -31,7 +31,7 @@ const ProductUnit = ({
    caracteristics,
    userId,
    handleState,
-   setOrderId
+   setOrderId,
 }) => {
    const [selectedAffiliationLink, setSelectedAffiliationLink] =
       useState(false);
@@ -41,8 +41,7 @@ const ProductUnit = ({
    const dispatch = useDispatch();
    const token = localStorage.getItem("token");
 
-
-   const{ mutate: placeOrderMutation, isLoading } = useMutation(
+   const { mutate: placeOrderMutation, isLoading } = useMutation(
       (formData) =>
          axios.post("orders/items/store", formData, {
             headers: {
@@ -54,7 +53,7 @@ const ProductUnit = ({
       {
          onSuccess: (response) => {
             dispatch(updateOrders(response.data.data));
-            setOrderId(response.data.data.id)
+            setOrderId(response.data.data.id);
             handleState(1);
          },
          onError: (error) => {
@@ -68,6 +67,8 @@ const ProductUnit = ({
          product_id: id,
          quantity: productCount,
       };
+
+      console.log(formData, token);
 
       placeOrderMutation(formData);
    };
@@ -298,14 +299,12 @@ const ProductUnit = ({
             </div>
          </div>
 
-         <LoadingButton loading={isLoading} />
-
-         <button
-            className="bg-primary text-light font-medium p-[3px] px-[6px] rounded-lg text-[14px]"
+         <LoadingButton
+            text="Commander"
+            loading={isLoading}
             onClick={handleOrder}
-         >
-            Commander
-         </button>
+            className="bg-primary text-light font-medium p-[3px] px-[6px] rounded-lg text-[14px]"
+         />
       </>
    );
 };
@@ -323,7 +322,7 @@ const MediaUnit = ({
             <video
                controls
                className={`w-auto h-[250px] mx-auto ${className}`}
-               onclick={() => handleMediaClick(index)}
+               onClick={() => handleMediaClick(index)}
             >
                <source
                   src={
@@ -347,7 +346,7 @@ const MediaUnit = ({
                      ? process.env.REACT_APP_API_URL + "storage/" + media.link
                      : Image
                }
-               onclick={() => handleMediaClick(index)}
+               onClick={() => handleMediaClick(index)}
                alt={altText}
             />
          )}

@@ -1,15 +1,10 @@
-    ## Paiement
-    ## livraison: define deadlines
-        -champs pour la localisation
-        -définition des prix
-        -message de validation
-    ## review: demand view
+## review: demand view
         -Bouton de validation de réception
-        -formulaire de commentaire sur le produit
+        -soumission du formulaire de commentaire sur le produit
 
 Orders frontend details
--design orders components
--facilite switching into order state (by right or left arrow)
+    -design orders components
+    -facilite switching into order state (by right or left arrow)
 
 # Think about thiiis
 

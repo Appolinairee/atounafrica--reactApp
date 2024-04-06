@@ -1,43 +1,80 @@
-import ProductCollection from "../ProductCollection/ProductCollection";
-import SteepTitle from "../SteepTitle/SteepTitle";
-import "./ProductReceive.css";
-import { MdShoppingCart } from "react-icons/md";
-import Orders from "../Orders/Orders";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { selectOrderById, updateOrders } from "../../Features/orders/ordersSlice";
+import { useMutation } from "react-query";
+import axios from "../../axiosConfig";
 import Order from "../Order";
-import { useSelector } from "react-redux";
-import { selectOrderById } from "../../Features/orders/ordersSlice";
+import LoadingButton from "../../BaseComponents/LoadingButton";
 
 const ProductReceive = ({ orderId }) => {
    const order = useSelector(selectOrderById(orderId));
+   const [comments, setComments] = useState({});
+   const authToken = useSelector((state) => state.auth.authToken);
+   const dispatch = useDispatch();
+
+   // Mutation pour mettre à jour un commentaire
+   const {
+      mutate: updateCommentMutation,
+      isLoading,
+      isError,
+   } = useMutation(
+      async (payload) => {
+         const { productId, comment } = payload;
+         const response = await axios.put(
+            `comments/${productId}`,
+            { comment },
+            {
+               headers: {
+                  Authorization: `Bearer ${authToken}`,
+               },
+            }
+         );
+         return response.data.data;
+      },
+      {
+         onSuccess: (data) => {
+            dispatch(updateOrders(data));
+         },
+      }
+   );
+
+   const handleCommentChange = (productId, comment) => {
+      setComments((prevComments) => ({
+         ...prevComments,
+         [productId]: comment,
+      }));
+   };
+
+   const handleSubmitComment = (productId) => {
+      const comment = comments[productId];
+      if (comment) {
+         updateCommentMutation({ productId, comment });
+      }
+   };
 
    return (
       <div className="receiveContent">
          <div className="receiveContent">
             <div className="reception">
                <h3>Confirmer votre réception</h3>
-               <p>Détails de sous-commandes</p>
+
+               <button>Confirmer la réception</button>
+
+               <p>Vos commentaires comptent plus!</p>
                {order.order_items.map((orderItem, index) => (
                   <div key={index}>
                      <Order orderItem={orderItem} />
+                     <textarea
+                        value={comments[orderItem.product_id] || ""}
+                        onChange={(e) =>
+                           handleCommentChange(orderItem.product_id, e.target.value)
+                        }
+                        placeholder="Votre commentaire ici.."
+                     />
+
+                     <LoadingButton  text="Soumettre le commentaire" loading={isLoading} onClick={() => handleSubmitComment(orderItem.product_id)} />
                   </div>
                ))}
-            </div>
-
-            <div className="receiveForm">
-               <h4>Votre avis compte! Il est temps!</h4>
-               <form action="">
-                  <textarea
-                     name=""
-                     id=""
-                     cols="30"
-                     rows="10"
-                     placeholder="Votre avis ici.."
-                  ></textarea>
-                  <button className="button button1" type="submit">
-                     <p>Soumettre</p>
-                     <i className="fa fa-arrow-right"></i>
-                  </button>
-               </form>
             </div>
          </div>
       </div>
