@@ -11,7 +11,7 @@ import axios from "../../axiosConfig";
 import { useMutation } from "react-query";
 import LoadingButton from "../../BaseComponents/LoadingButton";
 
-const ProductPayment = ({ handleState, orderId }) => {
+const ProductPayment = ({ orderId }) => {
    const order = useSelector(selectOrderById(orderId));
    const [paymentMode, setPaymentMode] = useState(1);
    const user = useSelector((state) => state.auth.user);
@@ -80,7 +80,7 @@ const ProductPayment = ({ handleState, orderId }) => {
             dispatch(updateOrders(response));
 
             if (response.status == 2 && response.payment_status == 1) {
-               handleState(2);
+               // 
             }
 
             console.log("Paiement réussi. Détails mis à jour avec succès.");

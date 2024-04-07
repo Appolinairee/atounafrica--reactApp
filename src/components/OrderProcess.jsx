@@ -16,15 +16,10 @@ import { FaTruckFast } from "react-icons/fa6";
 import ServerError from "../pages/ServerError";
 import Delievering from "./Delievering";
 
-const OrderProcess = ({type}) => {
-   const [state, setState] = useState(0);
+const OrderProcess = ({state}) => {
    const user = useSelector((state) => state.auth.user);
    const userId = user?.id ? "?&user_id=" + user.id : "";
    const [orderId, setOrderId] = useState();
-
-   const handleState = (state) => {
-      setState(state);
-   };
 
    const { slug_name } = useParams();
 
@@ -89,13 +84,13 @@ const OrderProcess = ({type}) => {
    return (
       <div className="">
          <div className="bg-red mb-24 rounded-lg bg-light mx-[3%] p-2 ">
-            <CreatorSignSteep state={state} handleState={handleState} Steps={Steps} />
+            <CreatorSignSteep state={state} Steps={Steps} />
 
-            {state === 0 && type === "product" && <ProductUnit {...Product} key={Product.id} userId={userId} handleState={handleState} setOrderId={setOrderId} />}
+            {state === 0 && <ProductUnit {...Product} key={Product.id} userId={userId} setOrderId={setOrderId} />}
 
-            {state === 1 && <ProductPayment handleState={handleState} orderId={orderId} />}
+            {state === 1 && <ProductPayment orderId={orderId} />}
 
-            {state === 2 && <Delievering handleState={handleState} orderId={orderId} />}
+            {state === 2 && <Delievering orderId={orderId} />}
 
             {state === 3 && <ProductReceive orderId={orderId} />}
          </div>

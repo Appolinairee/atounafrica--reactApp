@@ -1,4 +1,6 @@
-process steeps as link
+process steeps as link: 
+    redirections
+    products requests for orderitem product UnicodeTranslateError
 update order views
 orders components
 
@@ -8,8 +10,7 @@ Orders frontend details
     -facilite switching into order state (by right or left arrow)
 
 # Think about thiiis
-
-    # tyles for components error(404, 500)
+    # styles for components error(404, 500)
 
     En voulant utiliser nextJs, il faudrait revoir la documentation kkiapay: ('use client')
 

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setOrders, setLoading, setError } from "../Features/orders/ordersSlice";
+import { setOrders, setLoading, setError } from "./ordersSlice";
 import axios from "../../axiosConfig";
 
 const useFetchOrders = () => {

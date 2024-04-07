@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login, setError } from "../Features/authSlice";
+import { login, setError } from "./authSlice";
 
 const useFetchUser = () => {
    const dispatch = useDispatch();

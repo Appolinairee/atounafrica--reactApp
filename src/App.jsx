@@ -19,12 +19,12 @@ import CreatorSign from "./pages/CreatorSign";
 import CreatorDashboard from "./components/CreatorComponents/CreatorDashboard";
 import VerifyEmail from "./pages/account/VerifyEmail";
 import { useSelector } from "react-redux";
-import useFetchUser from "./Hooks/useFetchUser";
+import useFetchUser from "./Features/useFetchUser";
 import OrderProcess from "./components/OrderProcess";
 import OrderGroup from "./components/OrderGroup";
+import Delievering from "./components/Delievering"
 
 const App = () => {
-
    useFetchUser();
    const user = useSelector((state) => state.auth.user);
 
@@ -44,14 +44,18 @@ const App = () => {
                <Route path="/api/auth/password/reset" element={<ResetPass />} />
 
                {/* Product */}
-               <Route path="/produit/:slug_name" element={<OrderProcess  />} />
-               <Route path="/commande/:order_id" element={<OrderProcess  />} />
-               <Route path="/achats" element={<OrderGroup  />} />
+               <Route path="/produit/:slug_name" element={<OrderProcess />} />
+               <Route path="/commande/:order_id" element={<OrderProcess state={0} />} />
+               <Route path="/commande/:order_id/paiement" element={<OrderProcess state={1} />} />
+               <Route path="/commande/:order_id/livraison" element={<OrderProcess state={2} />} />
+               <Route path="/commande/:order_id/reception" element={<OrderProcess state={3} />} />
+               
+               <Route path="/achats" element={<OrderGroup />} />
 
                <Route path="/payment" element={<ProductPayment />} />
-               {/* <Route path="/deliever" element={<ProductDeliever />} /> */}
+               <Route path="/deliever" element={<Delievering />} />
                <Route path="/reception" element={<ProductReceive />} />
-               
+
                <Route path="/research" element={<ProductResult />} />
                <Route path="/categories" element={<CategoriesPages />} />
 
