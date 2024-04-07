@@ -14,4 +14,4 @@ const LoadingButton = ({ text, loading, className, onClick }) => {
    );
 };
 
-export default LoadingButton;  
+export default LoadingButton;

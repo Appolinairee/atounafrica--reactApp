@@ -1,6 +1,7 @@
-## review: demand view
-        -Bouton de validation de réception
-        -soumission du formulaire de commentaire sur le produit
+process steeps as link
+update order views
+orders components
+
 
 Orders frontend details
     -design orders components

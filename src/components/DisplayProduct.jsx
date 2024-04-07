@@ -16,7 +16,7 @@ import { FaTruckFast } from "react-icons/fa6";
 import ServerError from "../pages/ServerError";
 import Delievering from "./Delievering";
 
-const OrderProcess = ({type}) => {
+const OrderProcess = () => {
    const [state, setState] = useState(0);
    const user = useSelector((state) => state.auth.user);
    const userId = user?.id ? "?&user_id=" + user.id : "";
@@ -91,7 +91,7 @@ const OrderProcess = ({type}) => {
          <div className="bg-red mb-24 rounded-lg bg-light mx-[3%] p-2 ">
             <CreatorSignSteep state={state} handleState={handleState} Steps={Steps} />
 
-            {state === 0 && type === "product" && <ProductUnit {...Product} key={Product.id} userId={userId} handleState={handleState} setOrderId={setOrderId} />}
+            {state === 0 && <ProductUnit {...Product} key={Product.id} userId={userId} handleState={handleState} setOrderId={setOrderId} />}
 
             {state === 1 && <ProductPayment handleState={handleState} orderId={orderId} />}
 

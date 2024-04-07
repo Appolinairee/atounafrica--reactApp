@@ -17,7 +17,11 @@ import { BiCategory } from "react-icons/bi";
 import { FaRegUser, FaUserPlus } from "react-icons/fa";
 import { FaBars } from "react-icons/fa6";
 import { MdOutlineNotifications } from "react-icons/md";
-import { LiaSignInAltSolid, LiaSignOutAltSolid, LiaTimesSolid } from "react-icons/lia";
+import {
+   LiaSignInAltSolid,
+   LiaSignOutAltSolid,
+   LiaTimesSolid,
+} from "react-icons/lia";
 import { FaShoppingCart, FaMoneyBillWave, FaChevronDown } from "react-icons/fa";
 import { useQueryClient } from "react-query";
 import axios from "axios";
@@ -91,10 +95,12 @@ export default function NavBar({ user }) {
 
                {user ? (
                   <>
-                     <div className="flex gap-3 text-[15px] border-solid rounded-2xl p-[6px] px-[12px] border-dark/20 border-[1px] large:hidden">
-                        <FaShoppingCart />
-                        Achat
-                     </div>
+                     <Link to="panier">
+                        <div className="flex gap-3 text-[15px] border-solid rounded-2xl p-[6px] px-[12px] border-dark/20 border-[1px] large:hidden">
+                           <FaShoppingCart />
+                           Achats
+                        </div>
+                     </Link>
 
                      <div className="flex gap-3 text-[15px] border-solid rounded-2xl p-[6px] px-[12px] border-dark/20 border-[1px] large:hidden">
                         <FaMoneyBillWave />
@@ -132,7 +138,7 @@ export default function NavBar({ user }) {
                   />
                </div>
 
-               {profilState && <SubMenu auth={(user) ? true : false} />}
+               {profilState && <SubMenu auth={user ? true : false} />}
 
                {profilState && (
                   <span
@@ -165,8 +171,7 @@ export default function NavBar({ user }) {
    );
 }
 
-const SubMenu = ({auth}) => {
-   
+const SubMenu = ({ auth }) => {
    const queryClient = useQueryClient();
 
    const AuthSubLinks = [
@@ -209,28 +214,27 @@ const SubMenu = ({auth}) => {
       },
    ];
 
-   const Links = (auth) ? AuthSubLinks : SubLinks ;
+   const Links = auth ? AuthSubLinks : SubLinks;
 
    const handleLogout = async () => {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       if (!token) return;
-  
+
       try {
-        await axios.post('http://127.0.0.1:8000/api/auth/logout', null, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-        });
+         await axios.post("http://127.0.0.1:8000/api/auth/logout", null, {
+            headers: {
+               Authorization: `Bearer ${token}`,
+               "Content-Type": "application/json",
+            },
+         });
 
-        localStorage.removeItem('token');
-        queryClient.clear();
-        window.location.href = '/connexion';
-
+         localStorage.removeItem("token");
+         queryClient.clear();
+         window.location.href = "/connexion";
       } catch (error) {
-        console.error('Erreur lors de la déconnexion :', error);
+         console.error("Erreur lors de la déconnexion :", error);
       }
-   }
+   };
 
    return (
       <div className="fixed !z-50 right-0 text-[14px] top-[65px] w-fit bg-white -translate-x-[60px] h-auto flex flex-col shadow-boxShadow1 items-center whitespace-nowrap rounded-xl overflow-hidden md:-right-[50px] xs:top-[60px]">
@@ -255,7 +259,6 @@ const SubMenu = ({auth}) => {
 };
 
 function SimpleMenu() {
-
    const subLinks = [
       {
          name: "Accueil",

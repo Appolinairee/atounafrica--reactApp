@@ -21,6 +21,7 @@ import VerifyEmail from "./pages/account/VerifyEmail";
 import { useSelector } from "react-redux";
 import useFetchUser from "./Hooks/useFetchUser";
 import OrderProcess from "./components/OrderProcess";
+import OrderGroup from "./components/OrderGroup";
 
 const App = () => {
 
@@ -43,8 +44,10 @@ const App = () => {
                <Route path="/api/auth/password/reset" element={<ResetPass />} />
 
                {/* Product */}
-               <Route path="/commande/" element={<OrderProcess />} />
-               <Route path="/produit/:slug_name" element={<OrderProcess />} />
+               <Route path="/produit/:slug_name" element={<OrderProcess  />} />
+               <Route path="/commande/:order_id" element={<OrderProcess  />} />
+               <Route path="/achats" element={<OrderGroup  />} />
+
                <Route path="/payment" element={<ProductPayment />} />
                {/* <Route path="/deliever" element={<ProductDeliever />} /> */}
                <Route path="/reception" element={<ProductReceive />} />
