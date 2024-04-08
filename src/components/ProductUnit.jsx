@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import Creator from "./Creator/Creator";
 import LikeButton from "../BaseComponents/LikeButton";
 import { BsChatQuote } from "react-icons/bs";
@@ -6,7 +6,6 @@ import { LuLink } from "react-icons/lu";
 import { useState } from "react";
 import MediaPaginator from "./MediaPaginator";
 import AffiliationCard from "./AffiliationCard";
-import Image from "../assets/photos(exemples)/OIP (3).jpg";
 import ProfilImageGenerator from "../BaseComponents/ProfilImageGenerator";
 import { FaCheckCircle } from "react-icons/fa";
 import { useMutation } from "react-query";
@@ -14,6 +13,7 @@ import axios from "./../axiosConfig";
 import { useDispatch } from "react-redux";
 import { updateOrders } from "../Features/orders/ordersSlice";
 import LoadingButton from "../BaseComponents/LoadingButton";
+import MediaUnit from "../BaseComponents/MediaUnit";
 
 const ProductUnit = ({
    id,
@@ -30,7 +30,6 @@ const ProductUnit = ({
    comments,
    caracteristics,
    userId,
-   handleState,
    setOrderId,
 }) => {
    const [selectedAffiliationLink, setSelectedAffiliationLink] =
@@ -40,6 +39,7 @@ const ProductUnit = ({
    const [detailsState, setDetailsState] = useState(0);
    const dispatch = useDispatch();
    const token = localStorage.getItem("token");
+   const navigate = useNavigate();
 
    const { mutate: placeOrderMutation, isLoading } = useMutation(
       (formData) =>
@@ -52,9 +52,10 @@ const ProductUnit = ({
          }),
       {
          onSuccess: (response) => {
+            console.log(response);
             dispatch(updateOrders(response.data.data));
             setOrderId(response.data.data.id);
-            handleState(1);
+            navigate(`/commande/${response.data.data.id}/paiement`);
          },
          onError: (error) => {
             console.error("Error placing order:", error);
@@ -67,8 +68,6 @@ const ProductUnit = ({
          product_id: id,
          quantity: productCount,
       };
-
-      console.log(formData, token);
 
       placeOrderMutation(formData);
    };
@@ -217,6 +216,7 @@ const ProductUnit = ({
                />
             )}
          </div>
+
          <div className="my-5">
             <p>Disponibilité: </p>
 
@@ -234,6 +234,7 @@ const ProductUnit = ({
                </div>
             </div>
          </div>
+         
          <div className="productDetails mt-10 relative py-4">
             <div className="absolute top-0 left-0 w-full h-[1px] bg-dark/40"></div>
 
@@ -305,51 +306,6 @@ const ProductUnit = ({
             onClick={handleOrder}
             className="bg-primary text-light font-medium p-[3px] px-[6px] rounded-lg text-[14px]"
          />
-      </>
-   );
-};
-
-const MediaUnit = ({
-   media,
-   altText,
-   className = "",
-   index,
-   handleMediaClick,
-}) => {
-   return (
-      <>
-         {media && media.type === "video" && (
-            <video
-               controls
-               className={`w-auto h-[250px] mx-auto ${className}`}
-               onClick={() => handleMediaClick(index)}
-            >
-               <source
-                  src={
-                     media?.link
-                        ? process.env.REACT_APP_API_URL +
-                          "storage/" +
-                          media.link
-                        : ""
-                  }
-                  type="video/mp4"
-               />
-               Your browser does not support the video tag.
-            </video>
-         )}
-
-         {media && media.type === "image" && (
-            <img
-               className={`w-auto h-[250px] mx-auto ${className}`}
-               src={
-                  media?.link
-                     ? process.env.REACT_APP_API_URL + "storage/" + media.link
-                     : Image
-               }
-               onClick={() => handleMediaClick(index)}
-               alt={altText}
-            />
-         )}
       </>
    );
 };

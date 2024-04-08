@@ -31,7 +31,7 @@ const App = () => {
    return (
       <div>
          <BrowserRouter>
-            {/* <NavBar user={user} />  */}
+            <NavBar user={user} /> 
 
             <Routes>
                <Route path="" element={<Home />} />
@@ -47,8 +47,8 @@ const App = () => {
                <Route path="/produit/:slug_name" element={<OrderProcess />} />
                <Route path="/commande/:order_id" element={<OrderProcess state={0} />} />
                <Route path="/commande/:order_id/paiement" element={<OrderProcess state={1} />} />
-               <Route path="/commande/:order_id/livraison" element={<OrderProcess state={2} />} />
-               <Route path="/commande/:order_id/reception" element={<OrderProcess state={3} />} />
+               <Route path="/commande/:orderId/livraison" element={<OrderProcess state={2} />} />
+               <Route path="/commande/:orderId/reception" element={<OrderProcess state={3} />} />
                
                <Route path="/achats" element={<OrderGroup />} />
 

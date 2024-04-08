@@ -1,36 +1,40 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setOrders, setLoading, setError } from "./ordersSlice";
+import { useQuery } from "react-query";
 import axios from "../../axiosConfig";
 
 const useFetchOrders = () => {
-   const dispatch = useDispatch();
-   const authToken = useSelector((state) => state.auth.authToken);
+    const dispatch = useDispatch();
+    const authToken = useSelector((state) => state.auth.authToken);
+   const user = useSelector((state) => state.auth.user);
+   const userId = user?.id;
 
-   const fetchOrders = async () => {
-      dispatch(setLoading());
-      try {
-         const response = await axios.get("api/orders", {
-            headers: {
-               Authorization: `Bearer ${authToken}`,
+    const { isLoading, isError } = useQuery(
+        "orders",
+        async () => {
+            dispatch(setLoading());
+            const response = await axios.get(`orders/user/${userId}`, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                },
+                retry: { retries: 2 },
+            });
+            return response;
+        },
+        {
+            onSuccess: (response) => {
+               console.log(response);
+               dispatch(setOrders(response.data.data));
             },
-            retry: { retries: 2 },
-         });
+            onError: (error) => {
+                console.error('Error fetching orders:', error);
+                dispatch(setError(error.message));
+            },
+            enabled: userId, 
+        }
+    );
 
-         dispatch(setOrders(response.data));
-      } catch (error) {
-         console.error('Error fetching orders:', error);
-         dispatch(setError(error.message));
-      }
-   };
-
-   useEffect(() => {
-      if (authToken) {
-         fetchOrders(); 
-      }
-   }, [authToken, dispatch]);
-
-   return fetchOrders;
+   return { isLoading, isError };
 };
 
 export default useFetchOrders;

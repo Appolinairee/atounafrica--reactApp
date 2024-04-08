@@ -72,7 +72,7 @@ const ProductReceive = ({ orderId }) => {
                         placeholder="Votre commentaire ici.."
                      />
 
-                     <LoadingButton  text="Soumettre le commentaire" loading={isLoading} onClick={() => handleSubmitComment(orderItem.product_id)} />
+                     <LoadingButton  text="Soumettre le commentaire" loading={isLoading} onClick={() => handleSubmitComment(orderItem.product_id)} classname="!bg-primary px-6 py-3 rounded-[18px]" />
                   </div>
                ))}
             </div>

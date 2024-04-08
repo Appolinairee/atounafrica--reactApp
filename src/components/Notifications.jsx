@@ -67,7 +67,6 @@ const Notifications = ({ handleNotification, notificationState }) => {
    const [notificationType, setNotificationType] = useState(false);
    const { isLoading, Notifications } = useFetchNotifications();
 
-   const Messages = [];
 
    return (
       <div

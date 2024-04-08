@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
    selectOrderById,
@@ -21,6 +22,7 @@ const ProductPayment = ({ orderId }) => {
    const [errorMessage, setErrorMessage] = useState(null);
    const dispatch = useDispatch();
    const minimumContribution = 5000;
+   const navigate = useNavigate();
 
    const openKkiapay = () => {
       openKkiapayWidget({
@@ -39,7 +41,7 @@ const ProductPayment = ({ orderId }) => {
 
       if (mode === 1) {
          setPaymentAmount(order.total_amount);
-      }else{
+      } else {
          setPaymentAmount(minimumContribution);
       }
    };
@@ -79,8 +81,8 @@ const ProductPayment = ({ orderId }) => {
             response = response.data.data;
             dispatch(updateOrders(response));
 
-            if (response.status == 2 && response.payment_status == 1) {
-               // 
+            if (response.status == 1 && response.payment_status == 1) {
+               navigate(`/commande/${orderId}/livraison`);
             }
 
             console.log("Paiement réussi. Détails mis à jour avec succès.");
@@ -169,10 +171,6 @@ const ProductPayment = ({ orderId }) => {
                </div>
             )}
          </div>
-
-         {/* <button onClick={successHandler} className="bg-primary px-8 py-4 rounded-full text-light">
-            Effectuer le paiement
-         </button> */}
 
          <div>
             <LoadingButton

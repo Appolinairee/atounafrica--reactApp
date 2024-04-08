@@ -25,11 +25,13 @@ import {
 import { FaShoppingCart, FaMoneyBillWave, FaChevronDown } from "react-icons/fa";
 import { useQueryClient } from "react-query";
 import axios from "axios";
+import OrderGroup from "../OrderGroup";
 
 export default function NavBar({ user }) {
    const [barState, setBarState] = useState(0);
    const [searchState, setSearchState] = useState(false);
    const [profilState, setProfilState] = useState(false);
+   const [orderState, setOrderState] = useState(false);
 
    const handleSearchState = () => {
       setSearchState(!searchState);
@@ -43,6 +45,10 @@ export default function NavBar({ user }) {
 
    const handleNotification = () => {
       setNotificationState(notificationState ? false : true);
+   };
+
+   const handleOrderState = () => {
+      setOrderState(!orderState);
    };
 
    return (
@@ -164,6 +170,11 @@ export default function NavBar({ user }) {
          <Notifications
             handleNotification={handleNotification}
             notificationState={notificationState}
+         />
+
+         <OrderGroup
+            orderState={orderState}
+            handleOrderState={handleOrderState}
          />
 
          <SimpleMenu />

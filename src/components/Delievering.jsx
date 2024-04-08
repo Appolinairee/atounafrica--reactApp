@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import Order from "./Order";
 import LoadingButton from "../BaseComponents/LoadingButton";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const DeliveryForm = ({ orderId, handleState }) => {
    const [shippingAddress, setShippingAddress] = useState("");
@@ -15,6 +16,7 @@ const DeliveryForm = ({ orderId, handleState }) => {
    const dispatch = useDispatch();
    const authToken = useSelector((state) => state.auth.authToken);
    const [errorMessage, setMessageError] = useState();
+   const navigate = useNavigate();
 
    const {
       mutate: updateDelieveringDetails,
@@ -33,9 +35,10 @@ const DeliveryForm = ({ orderId, handleState }) => {
             console.log(response, response.data, response.data.data);
             response = response.data.data;
             dispatch(updateOrders(response));
-            
+
             // Todo: à mettre à jour
-            handleState(3);
+            navigate(`/commande/${orderId}/reception`);
+
             if (response.status == 2) {
             }
          },

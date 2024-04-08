@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import axios from "../../axiosConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { selectProducts, setProducts } from "./productsSlice";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const useFetchProducts = () => {
    const user = useSelector((state) => state.auth.user);
