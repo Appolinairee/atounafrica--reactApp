@@ -46,4 +46,6 @@ export const selectOrderById = (orderId) =>
 
 export const { setOrders, setLoading, setError, updateOrders } =
    ordersSlice.actions;
+export const selectOrders = (state) => state.orders.orders;
+
 export default ordersSlice.reducer;

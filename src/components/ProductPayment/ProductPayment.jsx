@@ -77,15 +77,12 @@ const ProductPayment = ({ orderId }) => {
          }),
       {
          onSuccess: (response) => {
-            console.log(response, response.data, response.data.data);
             response = response.data.data;
             dispatch(updateOrders(response));
 
             if (response.status == 1 && response.payment_status == 1) {
                navigate(`/commande/${orderId}/livraison`);
             }
-
-            console.log("Paiement réussi. Détails mis à jour avec succès.");
          },
       }
    );

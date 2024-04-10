@@ -52,7 +52,6 @@ const ProductUnit = ({
          }),
       {
          onSuccess: (response) => {
-            console.log(response);
             dispatch(updateOrders(response.data.data));
             setOrderId(response.data.data.id);
             navigate(`/commande/${response.data.data.id}/paiement`);

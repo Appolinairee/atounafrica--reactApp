@@ -51,7 +51,6 @@ const OrderProcess = ({ state = 0 }) => {
    ];
 
    const [Product, setProduct] = useState({});
-   console.log(slug_name, isOrderRoute, state);
 
    const { isLoading, isError } = useQuery(
       `product`,

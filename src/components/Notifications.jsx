@@ -38,21 +38,24 @@ const Notification = ({ id, message, icon, state, date, link }) => {
             state === "1"
                ? "bg-dark/5 border-light"
                : "bg-secondary/30 border-dark/5"
-         } p-2 px-5 flex gap-3 w-fit border-solid border-0 border-b-[0.5px]`}
+         } p-2 px-5 flex gap-3 w-full border-solid border-0 border-b-[0.5px]`}
       >
-         <p className="bg-primary p-2 rounded-full w-fit text-light">{icon}</p>
+         <div className="flex items-center w-fit">
+            <p className="bg-primary p-2 rounded-full w-fit text-light">
+               {icon}
+            </p>
 
-         <div className="font-medium">
-            <p className="text-[13px]">{message}</p>
-            <span className="text-[12px]">{date}</span>
+            <div className="font-medium">
+               <p className="text-[13px]">{message}</p>
+               <span className="text-[12px]">{date}</span>
+            </div>
          </div>
       </Link>
    );
 };
 
 const IconFromLink = ({ link }) => {
-
-   if (link?.includes("/produit")){
+   if (link?.includes("/produit")) {
       return <FaShoppingCart />;
    } else if (link?.includes("/utilisateur")) {
       return <FaUserPlus />;
@@ -67,6 +70,7 @@ const Notifications = ({ handleNotification, notificationState }) => {
    const [notificationType, setNotificationType] = useState(false);
    const { isLoading, Notifications } = useFetchNotifications();
 
+   const Messages = [];
 
    return (
       <div
@@ -144,7 +148,8 @@ const Notifications = ({ handleNotification, notificationState }) => {
                   Notifications?.length <= 0 ? (
                      <NothingToDisplay text="Aucune notification" />
                   ) : (
-                    Notifications && Notifications.map(
+                     Notifications &&
+                     Notifications.map(
                         (
                            { id, title, content, state, time_ago, link },
                            index

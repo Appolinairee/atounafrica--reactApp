@@ -30,7 +30,7 @@ const useFetchOrders = () => {
                 console.error('Error fetching orders:', error);
                 dispatch(setError(error.message));
             },
-            enabled: userId, 
+            enabled: !!userId, 
         }
     );
 

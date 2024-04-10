@@ -101,12 +101,13 @@ export default function NavBar({ user }) {
 
                {user ? (
                   <>
-                     <Link to="panier">
-                        <div className="flex gap-3 text-[15px] border-solid rounded-2xl p-[6px] px-[12px] border-dark/20 border-[1px] large:hidden">
-                           <FaShoppingCart />
-                           Achats
-                        </div>
-                     </Link>
+                     <div
+                        className="flex gap-3 text-[15px] border-solid rounded-2xl p-[6px] px-[12px] border-dark/20 border-[1px] large:hidden"
+                        onClick={handleOrderState}
+                     >
+                        <FaShoppingCart />
+                        Achats
+                     </div>
 
                      <div className="flex gap-3 text-[15px] border-solid rounded-2xl p-[6px] px-[12px] border-dark/20 border-[1px] large:hidden">
                         <FaMoneyBillWave />
@@ -122,7 +123,7 @@ export default function NavBar({ user }) {
 
                      <div className="flex gap-3 text-[15px] border-solid rounded-2xl p-[6px] px-[12px] border-dark/20 border-[1px] large:hidden">
                         <FaShoppingCart />
-                        Achat
+                        Achats
                      </div>
                   </>
                )}
@@ -163,14 +164,14 @@ export default function NavBar({ user }) {
             </div>
          </nav>
 
-         <Message classNameBtn="!fixed bottom-2 right-2 xs:right-3" />
+         {/* <Message classNameBtn="!fixed bottom-2 right-2 xs:right-3" /> */}
 
          <Menu barState={barState} handleBar={handleBar} />
 
-         <Notifications
+         {/* <Notifications
             handleNotification={handleNotification}
             notificationState={notificationState}
-         />
+         /> */}
 
          <OrderGroup
             orderState={orderState}
