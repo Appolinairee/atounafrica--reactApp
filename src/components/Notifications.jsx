@@ -143,7 +143,7 @@ const Notifications = ({ handleNotification, notificationState }) => {
                </div>
             </div>
 
-            <div className="border-solid  max-h-[83vh] mt-[88px] border-x-0 border-y-[.5px] border-dark/5 min-h-[70vh] overflow-y-auto scrollbar-thin">
+            <div className="border-solid max-h-[83vh] mt-[88px] border-x-0 border-y-[.5px] border-dark/5 min-h-[70vh] overflow-y-auto scrollbar-thin">
                {!notificationType ? (
                   Notifications?.length <= 0 ? (
                      <NothingToDisplay text="Aucune notification" />
