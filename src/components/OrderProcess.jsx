@@ -1,75 +1,51 @@
 import { useState } from "react";
 import CreatorSignSteep from "../BaseComponents/CreatorSignSteep";
-
-import { CiEdit } from "react-icons/ci";
-import { MdShoppingCart } from "react-icons/md";
 import ProductPayment from "./ProductPayment/ProductPayment";
 import ProductReceive from "./ProductReceive/ProductReceive";
 import { useQuery } from "react-query";
 import axios from "../axiosConfig";
 import LoadingButton from "../BaseComponents/LoadingButton";
-import ProductUnit from "./ProductUnit";
-import { useParams, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RiSecurePaymentFill } from "react-icons/ri";
-import { FaTruckFast } from "react-icons/fa6";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import ServerError from "../pages/ServerError";
 import Delievering from "./Delievering";
+import Steps from "../utils/stepsConstants";
+import { selectOrderById, updateOrders } from "../Features/orders/ordersSlice";
+import Order from "./Order";
+import OrderItems from "./OrderItems";
 
 const OrderProcess = ({ state = 0 }) => {
    const user = useSelector((state) => state.auth.user);
    const userId = user?.id ? "?&user_id=" + user.id : "";
-   const { slug_name, order_id } = useParams();
-   const [orderId, setOrderId] = useState(order_id);
-
-   // Utilisez useLocation pour obtenir l'URL actuelle
-   const location = useLocation();
-   const isOrderRoute = location.pathname.includes("commande");
-
-   const Steps = [
-      {
-         name: "Commande",
-         number: "1",
-         icon: <MdShoppingCart />,
-         link: ``,
-      },
-      {
-         name: "Paiement",
-         number: "2",
-         icon: <RiSecurePaymentFill />,
-      },
-      {
-         name: "Avis Livraison",
-         number: "3",
-         icon: <FaTruckFast />,
-      },
-      {
-         name: "Avis",
-         number: "4",
-         icon: <CiEdit />,
-      },
-   ];
-
-   const [Product, setProduct] = useState({});
+   const { order_id } = useParams();
+   const authToken = useSelector((state) => state.auth.authToken);
+   const dispatch = useDispatch();
+   const [order, setOrder] = useState(useSelector(selectOrderById(order_id)));
 
    const { isLoading, isError } = useQuery(
       `product`,
       async () => {
-         const response = await axios.get(`products/${slug_name + userId}`, {
+         const response = await axios.get(`orders/${order_id}`, {
+            headers: {
+               Authorization: `Bearer ${authToken}`,
+            },
             retry: { retries: 0 },
          });
          return response;
       },
       {
-         enabled: !isOrderRoute && state === 0,
          onSuccess: (response) => {
-            setProduct(response.data.data);
+            console.log(response);
+            response = response.data.data;
+            dispatch(updateOrders(response));
+            setOrder(response);
          },
          onError: (error) => {
             console.log(error);
          },
       }
    );
+
 
    if (isLoading) {
       return (
@@ -88,24 +64,22 @@ const OrderProcess = ({ state = 0 }) => {
    }
 
    return (
-      <div className="">
+      <div className="flex !items-start gap-4">
+         <div>
+            <Order order={order} delieveringStatus={true} />
+            {state}
+         </div>
+
          <div className="bg-red mb-24 rounded-lg bg-light mx-[3%] p-2 ">
             <CreatorSignSteep state={state} Steps={Steps} />
 
-            {state === 0 && !isOrderRoute && (
-               <ProductUnit
-                  {...Product}
-                  key={Product.id}
-                  userId={userId}
-                  setOrderId={setOrderId}
-               />
-            )}
+            {state === 0 && !isLoading && <OrderItems orderId={order_id} />}
 
-            {state === 1 && <ProductPayment orderId={orderId} />}
+            {state === 1 && <ProductPayment orderId={order_id} />}
 
-            {state === 2 && <Delievering orderId={orderId} />}
+            {state === 2 && <Delievering orderId={order_id} />}
 
-            {state === 3 && <ProductReceive orderId={orderId} />}
+            {state === 3 && <ProductReceive orderId={order_id} />}
          </div>
       </div>
    );

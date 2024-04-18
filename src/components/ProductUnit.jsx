@@ -1,4 +1,4 @@
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Creator from "./Creator/Creator";
 import LikeButton from "../BaseComponents/LikeButton";
 import { BsChatQuote } from "react-icons/bs";
@@ -8,38 +8,42 @@ import MediaPaginator from "./MediaPaginator";
 import AffiliationCard from "./AffiliationCard";
 import ProfilImageGenerator from "../BaseComponents/ProfilImageGenerator";
 import { FaCheckCircle } from "react-icons/fa";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import axios from "./../axiosConfig";
 import { useDispatch } from "react-redux";
 import { updateOrders } from "../Features/orders/ordersSlice";
 import LoadingButton from "../BaseComponents/LoadingButton";
 import MediaUnit from "../BaseComponents/MediaUnit";
+import ServerError from "../pages/ServerError";
 
-const ProductUnit = ({
-   id,
-   title,
-   old_price,
-   current_price,
-   medias,
-   likes_count,
-   is_liked,
-   comments_count,
-   affiliation_link,
-   creator,
-   medias_count,
-   comments,
-   caracteristics,
-   userId,
-   setOrderId,
-}) => {
-   const [selectedAffiliationLink, setSelectedAffiliationLink] =
-      useState(false);
+const ProductUnit = ({ slug_name, userId }) => {
+   const [selectedAffiliationLink, setSelectedAffiliationLink] = useState(false);
    const [mediaState, setMediaState] = useState(0);
    const [productCount, setProductCount] = useState(1);
    const [detailsState, setDetailsState] = useState(0);
    const dispatch = useDispatch();
    const token = localStorage.getItem("token");
    const navigate = useNavigate();
+
+   const [Product, setProduct] = useState({});
+
+   const { loading, isError } = useQuery(
+      `product`,
+      async () => {
+         const response = await axios.get(`products/${slug_name + userId}`, {
+            retry: { retries: 0 },
+         });
+         return response;
+      },
+      {
+         onSuccess: (response) => {
+            setProduct(response.data.data);
+         },
+         onError: (error) => {
+            console.log(error);
+         },
+      }
+   );
 
    const { mutate: placeOrderMutation, isLoading } = useMutation(
       (formData) =>
@@ -53,7 +57,6 @@ const ProductUnit = ({
       {
          onSuccess: (response) => {
             dispatch(updateOrders(response.data.data));
-            setOrderId(response.data.data.id);
             navigate(`/commande/${response.data.data.id}/paiement`);
          },
          onError: (error) => {
@@ -61,6 +64,7 @@ const ProductUnit = ({
          },
       }
    );
+
 
    const handleOrder = () => {
       const formData = {
@@ -70,6 +74,55 @@ const ProductUnit = ({
 
       placeOrderMutation(formData);
    };
+
+
+   if (loading) {
+      return (
+         <div className="my-4">
+            <LoadingButton
+               text="En cours de chargement"
+               loading={isLoading}
+               className="!text-dark"
+            />
+         </div>
+      );
+   }
+
+   if (isError) {
+      return <ServerError />;
+   }
+
+   let id,
+      creator,
+      medias,
+      medias_count,
+      title,
+      likes_count,
+      is_liked,
+      comments_count,
+      affiliation_link,
+      current_price,
+      old_price,
+      comments,
+      caracteristics;
+
+   if (Product) {
+      ({
+         id,
+         creator,
+         medias,
+         medias_count,
+         title,
+         likes_count,
+         is_liked,
+         comments_count,
+         affiliation_link,
+         caracteristics,
+         current_price,
+         old_price,
+         comments,
+      } = Product);
+   }
 
    const characteristicsArray = caracteristics
       ? caracteristics.split(":::")
@@ -233,7 +286,7 @@ const ProductUnit = ({
                </div>
             </div>
          </div>
-         
+
          <div className="productDetails mt-10 relative py-4">
             <div className="absolute top-0 left-0 w-full h-[1px] bg-dark/40"></div>
 

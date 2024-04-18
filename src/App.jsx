@@ -23,6 +23,7 @@ import useFetchUser from "./Features/useFetchUser";
 import OrderProcess from "./components/OrderProcess";
 import OrderGroup from "./components/OrderGroup";
 import Delievering from "./components/Delievering"
+import ProductOrder from "./components/ProductOrder";
 
 const App = () => {
    useFetchUser();
@@ -44,7 +45,7 @@ const App = () => {
                <Route path="/api/auth/password/reset" element={<ResetPass />} />
 
                {/* Product */}
-               <Route path="/produit/:slug_name" element={<OrderProcess />} />
+               <Route path="/produit/:slug_name" element={<ProductOrder />} />
                <Route path="/commande/:order_id" element={<OrderProcess state={0} />} />
                <Route path="/commande/:order_id/paiement" element={<OrderProcess state={1} />} />
                <Route path="/commande/:orderId/livraison" element={<OrderProcess state={2} />} />
