@@ -15,9 +15,11 @@ import { updateOrders } from "../Features/orders/ordersSlice";
 import LoadingButton from "../BaseComponents/LoadingButton";
 import MediaUnit from "../BaseComponents/MediaUnit";
 import ServerError from "../pages/ServerError";
+import OrderItemChange from "../BaseComponents/Orders/OrderItemChange";
 
 const ProductUnit = ({ slug_name, className, type }) => {
-   const [selectedAffiliationLink, setSelectedAffiliationLink] = useState(false);
+   const [selectedAffiliationLink, setSelectedAffiliationLink] =
+      useState(false);
    const [mediaState, setMediaState] = useState(0);
    const [productCount, setProductCount] = useState(1);
    const [detailsState, setDetailsState] = useState(0);
@@ -32,9 +34,12 @@ const ProductUnit = ({ slug_name, className, type }) => {
    const { loading, isError } = useQuery(
       `product`,
       async () => {
-         const response = await axios.get(`products/${slug_name + userIdRequestParam}`, {
-            retry: { retries: 0 },
-         });
+         const response = await axios.get(
+            `products/${slug_name + userIdRequestParam}`,
+            {
+               retry: { retries: 0 },
+            }
+         );
          return response;
       },
       {
@@ -67,7 +72,6 @@ const ProductUnit = ({ slug_name, className, type }) => {
       }
    );
 
-
    const handleOrder = () => {
       const formData = {
          product_id: id,
@@ -77,7 +81,6 @@ const ProductUnit = ({ slug_name, className, type }) => {
       placeOrderMutation(formData);
    };
 
-   
    const updateOrder = () => {
       const formData = {
          product_id: id,
@@ -86,7 +89,6 @@ const ProductUnit = ({ slug_name, className, type }) => {
 
       placeOrderMutation(formData);
    };
-
 
    if (loading || !Product) {
       return (
@@ -160,18 +162,12 @@ const ProductUnit = ({ slug_name, className, type }) => {
       setMediaState(state);
    };
 
-   const handleProductCount = (type) => {
-      if (!type && productCount > 1) {
-         setProductCount(productCount - 1);
-      }
-
-      if (type) {
-         setProductCount(productCount + 1);
-      }
-   };
-
    return (
       <div className={`${className} mx-auto`}>
+         {type !== "order" && (
+            <OrderItemChange productCount={productCount} setProductCount={setProductCount} current_price={current_price} />
+         )}
+
          <div
             className={`w-full productShadow rounded-xl p-[0.8rem] max-w-[460px] m-auto`}
             key={id}
@@ -200,7 +196,6 @@ const ProductUnit = ({ slug_name, className, type }) => {
                      </p>
                   )}
                </div>
-
             </div>
 
             <div className="flex items-center justify-between">
@@ -278,24 +273,6 @@ const ProductUnit = ({ slug_name, className, type }) => {
             )}
          </div>
 
-         <div className="my-5">
-            <p>Disponibilité: </p>
-
-            <div className="flex items-end my-3 justify-between">
-               <div className="flex gap-2 *:border-solid *:border-dark/40 *:rounded-full *:px-2 *:border-[1px] *:text-[15px] *:cursor-pointer">
-                  <span onClick={() => handleProductCount(false)}>-</span>
-                  <span>0 {productCount}</span>
-                  <span onClick={() => handleProductCount(true)}>+</span>
-               </div>
-
-               <div className="productPrice">
-                  <p>
-                     Total: <b>{current_price * productCount}</b> Fcfa
-                  </p>
-               </div>
-            </div>
-         </div>
-
          <div className="productDetails mt-10 relative py-4">
             <div className="absolute top-0 left-0 w-full h-[1px] bg-dark/40"></div>
 
@@ -361,11 +338,10 @@ const ProductUnit = ({ slug_name, className, type }) => {
             </div>
          </div>
 
-
          <LoadingButton
-            text={ type === "order" ? "Mettre à jour" : "Commander"}
+            text={type === "order" ? "Mettre à jour" : "Commander"}
             loading={isLoading}
-            onClick={type === "order" ? updateOrder : handleOrder }
+            onClick={type === "order" ? updateOrder : handleOrder}
             className="bg-primary text-light font-medium p-[3px] px-[6px] rounded-lg text-[14px]"
          />
       </div>

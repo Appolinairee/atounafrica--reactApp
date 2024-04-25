@@ -19,9 +19,15 @@ const OrderProcess = ({ state = 0 }) => {
    const authToken = useSelector((state) => state.auth.authToken);
    const dispatch = useDispatch();
    const [order, setOrder] = useState(useSelector(selectOrderById(order_id)));
+   const [orderId, setOrderId] = useState(order_id);
+
+   useEffect(() => {
+      setOrderId(order_id);
+   }, [order_id]);
 
    const { isLoading, isError } = useQuery(
-      `order-${order_id}`,
+      [`order-${order_id}`, orderId],
+
       async () => {
          const response = await axios.get(`orders/${order_id}`, {
             headers: {
@@ -33,6 +39,7 @@ const OrderProcess = ({ state = 0 }) => {
       },
       {
          onSuccess: (response) => {
+            console.log(response);
             response = response.data.data;
             dispatch(updateOrders(response));
             setOrder(response);
@@ -42,12 +49,12 @@ const OrderProcess = ({ state = 0 }) => {
          },
          enabled: !order || (order && !order.order_items),
       },
+      [order_id]
    );
 
-   useEffect(() => {
-      setIsLoadingOrderId(!order);
-   }, [order_id]);
-
+   // useEffect(() => {
+   //    setIsLoadingOrderId(!order);
+   // }, [order_id]);
 
    if (isLoading) {
       return (
@@ -67,14 +74,12 @@ const OrderProcess = ({ state = 0 }) => {
 
    return (
       <div className="flex !items-start gap-4">
-         <div>
+         <div className="bg-red mb-24 rounded-lg bg-light mx-[3%] p-2 ">
+            <CreatorSignSteep state={state} Steps={Steps} />
             <Order order={order} delieveringStatus={true} />
-            {state}
          </div>
 
          <div className="bg-red mb-24 rounded-lg bg-light mx-[3%] p-2 ">
-            <CreatorSignSteep state={state} Steps={Steps} />
-
             {state === 0 && !isLoading && <OrderItems orderId={order_id} />}
 
             {state === 1 && <ProductPayment orderId={order_id} />}

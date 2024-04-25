@@ -1,21 +1,20 @@
+!!!Next
 delete order
-
 update orderItem
 delete orderItem
 
-process steeps as link: 
-    redirections
-    products requests for orderitem product UnicodeTranslateError
-update order views
-orders components
+
+Activer ou désactiver les boutons de <Steep /> en fonction du statut de la commande
+Quand le paramètre id de la commande change (useParams), il faudrait que la page se mette à jour directement.
 
 
 
-Orders frontend details
+
+# Think about thiiis
+    # Orders frontend details
     -design orders components
     -facilite switching into order state (by right or left arrow)
 
-# Think about thiiis
     # styles for components error(404, 500)
 
     En voulant utiliser nextJs, il faudrait revoir la documentation kkiapay: ('use client')
