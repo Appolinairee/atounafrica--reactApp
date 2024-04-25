@@ -18,8 +18,8 @@ import Delievering from "./Delievering";
 
 const OrderProcess = () => {
    const [state, setState] = useState(0);
-   const user = useSelector((state) => state.auth.user);
-   const userId = user?.id ? "?&user_id=" + user.id : "";
+   const userId = useSelector((state) => state.auth.userId);
+   const userIdRequestParam = userId ? "?&user_id=" + userId : "";
    const [orderId, setOrderId] = useState();
 
    const handleState = (state) => {
@@ -57,7 +57,7 @@ const OrderProcess = () => {
       `product`,
       async () => {
          const response = await axios.get(
-            `products/${slug_name + userId}`,
+            `products/${slug_name + userIdRequestParam}`,
             {
                retry: { retries: 0 },
             }

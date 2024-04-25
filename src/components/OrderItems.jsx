@@ -1,23 +1,25 @@
 import { useSelector } from "react-redux";
 import { selectOrderById } from "../Features/orders/ordersSlice";
 import ProductUnit from "./ProductUnit";
+import { type } from "@testing-library/user-event/dist/type";
 
 const OrderItems = ({orderId}) => {
-   const order = useSelector((state) => state.orders.orders);
-   const user = useSelector((state) => state.auth.user);
-   const userId = user?.id ? "?&user_id=" + user.id : "";
-   console.log(order);
+   const order = useSelector(selectOrderById(parseInt(orderId, 10)));
+//    const userId = useSelector((state) => state.auth.userId);
 
     return (
         <div>
             {
-                order?.order_items.map(({id, slug_name, }) => (
+                order?.order_items?.map(({id, slug_name, }, index) => (
                     <div key={id}>
                         <div>
+                            <h3>Produit {index + 1} de votre commande</h3>
+                            <hr />
                             
+                            <p>Supprimer</p>
                         </div>
 
-                        <ProductUnit slug_name={slug_name} userId={userId} />
+                        <ProductUnit slug_name={slug_name} className="!w-[90%]" type="order" />
                     </div>
                 ))
             }

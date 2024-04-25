@@ -5,8 +5,7 @@ import { selectProducts, setProducts } from "./productsSlice";
 import { useState } from "react";
 
 export const useFetchProducts = () => {
-   const user = useSelector((state) => state.auth.user);
-   const userId = user?.id ? "&user_id=" + user.id : "";
+   const userId = "?user_id=" + useSelector((state) => state.auth.userId);
    const dispatch = useDispatch();
    const Products = useSelector(selectProducts).products;
    const [willFetchNext, setWillFetchNext] = useState(true);

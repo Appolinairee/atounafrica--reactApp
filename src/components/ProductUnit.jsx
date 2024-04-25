@@ -10,13 +10,13 @@ import ProfilImageGenerator from "../BaseComponents/ProfilImageGenerator";
 import { FaCheckCircle } from "react-icons/fa";
 import { useMutation, useQuery } from "react-query";
 import axios from "./../axiosConfig";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateOrders } from "../Features/orders/ordersSlice";
 import LoadingButton from "../BaseComponents/LoadingButton";
 import MediaUnit from "../BaseComponents/MediaUnit";
 import ServerError from "../pages/ServerError";
 
-const ProductUnit = ({ slug_name, userId }) => {
+const ProductUnit = ({ slug_name, className, type }) => {
    const [selectedAffiliationLink, setSelectedAffiliationLink] = useState(false);
    const [mediaState, setMediaState] = useState(0);
    const [productCount, setProductCount] = useState(1);
@@ -24,13 +24,15 @@ const ProductUnit = ({ slug_name, userId }) => {
    const dispatch = useDispatch();
    const token = localStorage.getItem("token");
    const navigate = useNavigate();
+   const userId = useSelector((state) => state.auth.userId);
+   const userIdRequestParam = userId ? "?&user_id=" + userId : "";
 
    const [Product, setProduct] = useState({});
 
    const { loading, isError } = useQuery(
       `product`,
       async () => {
-         const response = await axios.get(`products/${slug_name + userId}`, {
+         const response = await axios.get(`products/${slug_name + userIdRequestParam}`, {
             retry: { retries: 0 },
          });
          return response;
@@ -75,8 +77,18 @@ const ProductUnit = ({ slug_name, userId }) => {
       placeOrderMutation(formData);
    };
 
+   
+   const updateOrder = () => {
+      const formData = {
+         product_id: id,
+         quantity: productCount,
+      };
 
-   if (loading) {
+      placeOrderMutation(formData);
+   };
+
+
+   if (loading || !Product) {
       return (
          <div className="my-4">
             <LoadingButton
@@ -159,9 +171,9 @@ const ProductUnit = ({ slug_name, userId }) => {
    };
 
    return (
-      <>
+      <div className={`${className} mx-auto`}>
          <div
-            className="w-full productShadow rounded-xl p-[0.8rem] max-w-[460px] m-auto"
+            className={`w-full productShadow rounded-xl p-[0.8rem] max-w-[460px] m-auto`}
             key={id}
          >
             {creator && (
@@ -189,9 +201,6 @@ const ProductUnit = ({ slug_name, userId }) => {
                   )}
                </div>
 
-               <Link className="bg-primary text-light  font-medium p-[3px] px-[6px] rounded-lg text-[14px]">
-                  Commander ({productCount})
-               </Link>
             </div>
 
             <div className="flex items-center justify-between">
@@ -352,13 +361,14 @@ const ProductUnit = ({ slug_name, userId }) => {
             </div>
          </div>
 
+
          <LoadingButton
-            text="Commander"
+            text={ type === "order" ? "Mettre à jour" : "Commander"}
             loading={isLoading}
-            onClick={handleOrder}
+            onClick={type === "order" ? updateOrder : handleOrder }
             className="bg-primary text-light font-medium p-[3px] px-[6px] rounded-lg text-[14px]"
          />
-      </>
+      </div>
    );
 };
 

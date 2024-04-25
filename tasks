@@ -1,8 +1,14 @@
+delete order
+
+update orderItem
+delete orderItem
+
 process steeps as link: 
     redirections
     products requests for orderitem product UnicodeTranslateError
 update order views
 orders components
+
 
 
 Orders frontend details

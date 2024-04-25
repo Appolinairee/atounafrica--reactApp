@@ -40,7 +40,7 @@ const Notification = ({ id, message, icon, state, date, link }) => {
                : "bg-secondary/30 border-dark/5"
          } p-2 px-5 flex gap-3 w-full border-solid border-0 border-b-[0.5px]`}
       >
-         <div className="flex items-center w-fit">
+         <div className="flex items-center w-fit gap-4">
             <p className="bg-primary p-2 rounded-full w-fit text-light">
                {icon}
             </p>

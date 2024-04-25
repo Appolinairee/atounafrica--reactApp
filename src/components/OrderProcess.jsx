@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CreatorSignSteep from "../BaseComponents/CreatorSignSteep";
 import ProductPayment from "./ProductPayment/ProductPayment";
 import ProductReceive from "./ProductReceive/ProductReceive";
@@ -15,15 +15,13 @@ import Order from "./Order";
 import OrderItems from "./OrderItems";
 
 const OrderProcess = ({ state = 0 }) => {
-   const user = useSelector((state) => state.auth.user);
-   const userId = user?.id ? "?&user_id=" + user.id : "";
    const { order_id } = useParams();
    const authToken = useSelector((state) => state.auth.authToken);
    const dispatch = useDispatch();
    const [order, setOrder] = useState(useSelector(selectOrderById(order_id)));
 
    const { isLoading, isError } = useQuery(
-      `product`,
+      `order-${order_id}`,
       async () => {
          const response = await axios.get(`orders/${order_id}`, {
             headers: {
@@ -35,7 +33,6 @@ const OrderProcess = ({ state = 0 }) => {
       },
       {
          onSuccess: (response) => {
-            console.log(response);
             response = response.data.data;
             dispatch(updateOrders(response));
             setOrder(response);
@@ -43,8 +40,13 @@ const OrderProcess = ({ state = 0 }) => {
          onError: (error) => {
             console.log(error);
          },
-      }
+         enabled: !order || (order && !order.order_items),
+      },
    );
+
+   useEffect(() => {
+      setIsLoadingOrderId(!order);
+   }, [order_id]);
 
 
    if (isLoading) {

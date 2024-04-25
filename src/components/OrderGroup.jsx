@@ -14,9 +14,8 @@ import Order from "./Order";
 const OrderGroup = ({ orderState, handleOrderState }) => {
    const dispatch = useDispatch();
    const authToken = useSelector((state) => state.auth.authToken);
-   const user = useSelector((state) => state.auth.user);
-   const userId = user?.id;
    const orders = useSelector(selectOrders);
+   const userId = useSelector((state) => state.auth.userId);
 
    const fetchOrders = async () => {
       dispatch(setLoading());
