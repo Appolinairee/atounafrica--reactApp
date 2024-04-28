@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
    selectOrderById,
-   setError,
    updateOrders,
 } from "../../Features/orders/ordersSlice";
 import Order from "../Order";
@@ -17,51 +16,15 @@ const ProductPayment = ({ orderId }) => {
    const [paymentMode, setPaymentMode] = useState(1);
    const user = useSelector((state) => state.auth.user);
    const { openKkiapayWidget, addKkiapayListener } = useKKiaPay();
-   const [paymentAmount, setPaymentAmount] = useState(order.total_amount);
+
+   console.log(order, order.id, order.total_amount)
+
    const authToken = useSelector((state) => state.auth.authToken);
    const [errorMessage, setErrorMessage] = useState(null);
    const dispatch = useDispatch();
    const minimumContribution = 5000;
    const navigate = useNavigate();
-
-   const openKkiapay = () => {
-      openKkiapayWidget({
-         amount: paymentAmount,
-         api_key: process.env.REACT_APP_KKIAPAY_API_KEY,
-         sandbox: true,
-         fullname: user.name,
-         name: user.name,
-         email: user.email,
-         phone: "97000000",
-      });
-   };
-
-   const handlePaymentModeChange = (mode) => {
-      setPaymentMode(mode);
-
-      if (mode === 1) {
-         setPaymentAmount(order.total_amount);
-      } else {
-         setPaymentAmount(minimumContribution);
-      }
-   };
-
-   const handleAmountInputChange = (e) => {
-      const inputAmount = parseInt(e.target.value);
-      if (inputAmount >= order.total_amount) {
-         setPaymentMode(1);
-         setPaymentAmount(order.total_amount);
-      } else if (inputAmount >= minimumContribution) {
-         setPaymentMode(0);
-         let amount = inputAmount ? inputAmount : minimumContribution;
-         setPaymentAmount(amount);
-      } else {
-         setPaymentAmount(minimumContribution);
-         setErrorMessage(
-            `La tranche minimale est de ${minimumContribution} Fcfa`
-         );
-      }
-   };
+   const [paymentAmount, setPaymentAmount] = useState(order?.total_amount);
 
    const {
       mutate: updatePaymentDetails,
@@ -102,6 +65,45 @@ const ProductPayment = ({ orderId }) => {
       addKkiapayListener("success", successHandler);
       addKkiapayListener("failed", failureHandler);
    }, [addKkiapayListener]);
+
+   const openKkiapay = () => {
+      openKkiapayWidget({
+         amount: paymentAmount,
+         api_key: process.env.REACT_APP_KKIAPAY_API_KEY,
+         sandbox: true,
+         fullname: user.name,
+         name: user.name,
+         email: user.email,
+         phone: "97000000",
+      });
+   };
+
+   const handlePaymentModeChange = (mode) => {
+      setPaymentMode(mode);
+
+      if (mode === 1) {
+         setPaymentAmount(order?.total_amount);
+      } else {
+         setPaymentAmount(minimumContribution);
+      }
+   };
+
+   const handleAmountInputChange = (e) => {
+      const inputAmount = parseInt(e.target.value);
+      if (inputAmount >= order.total_amount) {
+         setPaymentMode(1);
+         setPaymentAmount(order.total_amount);
+      } else if (inputAmount >= minimumContribution) {
+         setPaymentMode(0);
+         let amount = inputAmount ? inputAmount : minimumContribution;
+         setPaymentAmount(amount);
+      } else {
+         setPaymentAmount(minimumContribution);
+         setErrorMessage(
+            `La tranche minimale est de ${minimumContribution} Fcfa`
+         );
+      }
+   };
 
    return (
       <div className="paymentsSection">

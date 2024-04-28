@@ -1,11 +1,5 @@
-import { useState } from "react";
-import { useQuery } from "react-query";
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import axios from "../axiosConfig";
 import ProductUnit from "./ProductUnit";
-import LoadingButton from "../BaseComponents/LoadingButton";
-import ServerError from "../pages/ServerError";
 import CreatorSignSteep from "../BaseComponents/CreatorSignSteep";
 import Steps from "../utils/stepsConstants";
 

@@ -3,6 +3,8 @@ delete order
 update orderItem
 delete orderItem
 
+orderSLice, update action payload
+
 
 Activer ou désactiver les boutons de <Steep /> en fonction du statut de la commande
 Quand le paramètre id de la commande change (useParams), il faudrait que la page se mette à jour directement.

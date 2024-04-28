@@ -55,9 +55,11 @@ export default function NavBar({ user }) {
       <div className="simpleMenu_messages pb-[78px] md:pb-[70px] ">
          <nav className="flex py-[35px] bg-light md:py-[25px]">
             <div className="flex items-center w-[40%]">
-               <div className="logo">
-                  <img src={Logo} alt="Logo d'Atoun Africa" />
-               </div>
+               <Link to="">
+                  <div className="logo">
+                     <img src={Logo} alt="Logo d'Atoun Africa" />
+                  </div>
+               </Link>
 
                <div className="navResearch w-[65%] px-2 ">
                   <form action="" className="flex relative h-[41px]">

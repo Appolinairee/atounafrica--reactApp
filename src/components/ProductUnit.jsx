@@ -81,15 +81,6 @@ const ProductUnit = ({ slug_name, className, type }) => {
       placeOrderMutation(formData);
    };
 
-   const updateOrder = () => {
-      const formData = {
-         product_id: id,
-         quantity: productCount,
-      };
-
-      placeOrderMutation(formData);
-   };
-
    if (loading || !Product) {
       return (
          <div className="my-4">
@@ -165,7 +156,11 @@ const ProductUnit = ({ slug_name, className, type }) => {
    return (
       <div className={`${className} mx-auto`}>
          {type !== "order" && (
-            <OrderItemChange productCount={productCount} setProductCount={setProductCount} current_price={current_price} />
+            <OrderItemChange
+               productCount={productCount}
+               setProductCount={setProductCount}
+               current_price={current_price}
+            />
          )}
 
          <div
@@ -338,12 +333,14 @@ const ProductUnit = ({ slug_name, className, type }) => {
             </div>
          </div>
 
-         <LoadingButton
-            text={type === "order" ? "Mettre à jour" : "Commander"}
-            loading={isLoading}
-            onClick={type === "order" ? updateOrder : handleOrder}
-            className="bg-primary text-light font-medium p-[3px] px-[6px] rounded-lg text-[14px]"
-         />
+         {type !== "order" && (
+            <LoadingButton
+               text={"Commander"}
+               loading={isLoading}
+               onClick={handleOrder}
+               className="bg-primary text-light font-medium p-[3px] px-[6px] rounded-lg text-[14px]"
+            />
+         )}
       </div>
    );
 };
