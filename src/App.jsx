@@ -24,6 +24,7 @@ import OrderProcess from "./components/OrderProcess";
 import OrderGroup from "./components/OrderGroup";
 import Delievering from "./components/Delievering"
 import ProductOrder from "./components/ProductOrder";
+import Toaster from "./BaseComponents/Toaster";
 
 const App = () => {
    useFetchUser();
@@ -68,6 +69,8 @@ const App = () => {
 
                <Route path="*" element={<Home />} />
             </Routes>
+
+            <Toaster />
          </BrowserRouter>
       </div>
    );

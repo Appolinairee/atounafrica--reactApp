@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectOrderById } from "../Features/orders/ordersSlice";
 import ProductUnit from "./ProductUnit";
 import OrderItemChange from "../BaseComponents/Orders/OrderItemChange";
@@ -6,6 +6,9 @@ import { useState } from "react";
 import LoadingButton from "../BaseComponents/LoadingButton";
 import { useMutation } from "react-query";
 import axios from "../axiosConfig";
+import Toaster from "../BaseComponents/Toaster";
+import { BsPen } from "react-icons/bs";
+import { setToasterContent } from "../Features/appSlice";
 
 const OrderItems = ({ orderId }) => {
    const order = useSelector(selectOrderById(parseInt(orderId, 10)));
@@ -27,10 +30,11 @@ const OrderItems = ({ orderId }) => {
 const OrderItem = ({ orderItem, index, orderId }) => {
    const [productCount, setProductCount] = useState(orderItem.quantity);
    const token = localStorage.getItem("token");
+   const dispatch = useDispatch();
 
    const { mutate: updateOrderItemsMutation, isLoading } = useMutation(
       (formData) =>
-         axios.put(`orders/items/${orderId}`, formData, {
+         axios.put(`orders/items/${orderItem.id}`, formData, {
             headers: {
                Authorization: `Bearer ${token}`,
                "Content-Type": "application/json",
@@ -40,6 +44,7 @@ const OrderItem = ({ orderItem, index, orderId }) => {
       {
          onSuccess: (response) => {
             console.log(response);
+            dispatch(setToasterContent('Commande mise à jour avec succès.'));
          },
          onError: (error) => {
             console.error("Error updating order items:", error);
@@ -61,6 +66,8 @@ const OrderItem = ({ orderItem, index, orderId }) => {
             <h3>Produit {index + 1} de votre commande</h3>
             <hr />
 
+            <Toaster icon={BsPen} content="commande mise à jour" />
+
             <OrderItemChange
                productCount={productCount}
                setProductCount={setProductCount}
@@ -69,7 +76,7 @@ const OrderItem = ({ orderItem, index, orderId }) => {
 
             <div>
                <div className="flex ">
-                  {orderItem.status <= 0 && (
+                  {(orderItem.status <= 0 && (productCount !== orderItem.quantity)) && (
                      <LoadingButton
                         text={"Mettre à jour"}
                         loading={isLoading}

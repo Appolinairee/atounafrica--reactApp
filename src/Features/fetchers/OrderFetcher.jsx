@@ -25,8 +25,10 @@ const OrderFetcher = ({ orderId, setOrder }) => {
       {
          onSuccess: (response) => {
             response = response.data.data;
-            dispatch(updateOrders(response));
-            setOrder(response);
+            if(response){
+               dispatch(updateOrders(response));
+               setOrder(response);
+            }
          },
          onError: (error) => {
             console.log(error);

@@ -8,7 +8,7 @@ import LoadingButton from "../BaseComponents/LoadingButton";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const DeliveryForm = ({ orderId, handleState }) => {
+const DeliveryForm = ({ orderId }) => {
    const [shippingAddress, setShippingAddress] = useState("");
    const [shippingDate, setShippingDate] = useState("");
    const [shippingContact, setShippingContact] = useState("");
@@ -17,6 +17,8 @@ const DeliveryForm = ({ orderId, handleState }) => {
    const authToken = useSelector((state) => state.auth.authToken);
    const [errorMessage, setMessageError] = useState();
    const navigate = useNavigate();
+
+   console.log(orderId);
 
    const {
       mutate: updateDelieveringDetails,

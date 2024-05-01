@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
    selectOrderById,
    updateOrders,
 } from "../../Features/orders/ordersSlice";
-import Order from "../Order";
 import { useKKiaPay } from "kkiapay-react";
 import axios from "../../axiosConfig";
 import { useMutation } from "react-query";
 import LoadingButton from "../../BaseComponents/LoadingButton";
+import Order from "../Order";
 
 const ProductPayment = ({ orderId }) => {
    const order = useSelector(selectOrderById(orderId));
@@ -17,7 +17,7 @@ const ProductPayment = ({ orderId }) => {
    const user = useSelector((state) => state.auth.user);
    const { openKkiapayWidget, addKkiapayListener } = useKKiaPay();
 
-   console.log(order, order.id, order.total_amount)
+   console.log(order, orderId)
 
    const authToken = useSelector((state) => state.auth.authToken);
    const [errorMessage, setErrorMessage] = useState(null);
@@ -105,6 +105,10 @@ const ProductPayment = ({ orderId }) => {
       }
    };
 
+   if (!order) {
+      return <p>Commande non chargée</p>
+   }
+
    return (
       <div className="paymentsSection">
          <h2>Informations sur la commande</h2>
@@ -139,13 +143,6 @@ const ProductPayment = ({ orderId }) => {
             </label>
          </div>
 
-         <p>Détails de sous-commandes</p>
-         {order.order_items.map((orderItem, index) => (
-            <div key={index}>
-               <Order orderItem={orderItem} />
-            </div>
-         ))}
-
          {errorMessage && <p>{errorMessage}</p>}
 
          <div>
@@ -170,6 +167,10 @@ const ProductPayment = ({ orderId }) => {
                </div>
             )}
          </div>
+
+         <Link to={`/commande/${orderId}`}>
+            Voir toute la commande
+         </Link>
 
          <div>
             <LoadingButton
