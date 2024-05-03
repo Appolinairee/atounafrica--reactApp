@@ -32,7 +32,7 @@ const Toaster = () => {
             setVisible(true);
             setCount(10);
         }
-    }, [content, visible]);
+    }, [content]);
 
     return (
         <>

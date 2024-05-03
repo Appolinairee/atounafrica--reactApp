@@ -34,7 +34,7 @@ const ordersSlice = createSlice({
          } else {
             state.orders.push({ id, ...updatedOrder });
          }
-      },
+      }
    },
 });
 
@@ -44,7 +44,7 @@ export const selectOrderById = (orderId) =>
       (orders) => orders.find((order) => order.id === orderId)
    );
 
-export const { setOrders, setLoading, setError, updateOrders } =
+export const { setOrders, setLoading, setError, updateOrders, updateOrderItems } =
    ordersSlice.actions;
 export const selectOrders = (state) => state.orders.orders;
 

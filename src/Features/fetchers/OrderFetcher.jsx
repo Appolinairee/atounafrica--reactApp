@@ -5,7 +5,7 @@ import { selectOrderById, updateOrders } from "../orders/ordersSlice";
 import LoadingButton from "../../BaseComponents/LoadingButton";
 import ServerError from "../../pages/ServerError";
 
-const OrderFetcher = ({ orderId, setOrder }) => {
+const OrderFetcher = ({ orderId }) => {
    const authToken = useSelector((state) => state.auth.authToken);
    const dispatch = useDispatch();
    const order = useSelector(selectOrderById(orderId));
@@ -27,7 +27,7 @@ const OrderFetcher = ({ orderId, setOrder }) => {
             response = response.data.data;
             if(response){
                dispatch(updateOrders(response));
-               setOrder(response);
+               // setOrder(response);
             }
          },
          onError: (error) => {

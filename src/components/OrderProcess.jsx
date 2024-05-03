@@ -13,13 +13,13 @@ import OrderFetcher from "../Features/fetchers/OrderFetcher";
 
 const OrderProcess = ({ state = 0 }) => {
    const { order_id } = useParams();
-   const [order, setOrder] = useState(useSelector(selectOrderById(order_id)));
-   console.log(order)
+   const order = useSelector(selectOrderById(order_id));
+   console.log(order);
 
    return (
       <>
          {(!order || (order === undefined) ) ? (
-            <OrderFetcher orderId={parseInt(order_id)} setOrder={setOrder} />
+            <OrderFetcher orderId={parseInt(order_id)} />
          ) : (
             <div className="flex !items-start gap-4">
                
