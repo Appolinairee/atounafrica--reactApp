@@ -9,7 +9,7 @@ import { useKKiaPay } from "kkiapay-react";
 import axios from "../../axiosConfig";
 import { useMutation } from "react-query";
 import LoadingButton from "../../BaseComponents/LoadingButton";
-import Order from "../Order";
+import { setToasterContent } from "../../Features/appSlice";
 
 const ProductPayment = ({ orderId }) => {
    const order = useSelector(selectOrderById(orderId));
@@ -17,9 +17,7 @@ const ProductPayment = ({ orderId }) => {
    const user = useSelector((state) => state.auth.user);
    const { openKkiapayWidget, addKkiapayListener } = useKKiaPay();
 
-   console.log(order, orderId)
-
-   const authToken = useSelector((state) => state.auth.authToken);
+   const token = useSelector((state) => state.auth.authToken);
    const [errorMessage, setErrorMessage] = useState(null);
    const dispatch = useDispatch();
    const minimumContribution = 5000;
@@ -34,7 +32,7 @@ const ProductPayment = ({ orderId }) => {
       (updatedDetails) =>
          axios.put(`orders/${orderId}/payment`, updatedDetails, {
             headers: {
-               Authorization: `Bearer ${authToken}`,
+               Authorization: `Bearer ${token}`,
             },
             retry: { retries: 0 },
          }),
@@ -105,8 +103,38 @@ const ProductPayment = ({ orderId }) => {
       }
    };
 
+   /*
+      Refund payment mutation and handles
+   */
+   const { mutate: refundPaymentMutation, isLoading: refundLoading } =
+      useMutation(
+         () =>
+            axios.put(`orders/${orderId}/refund`, {
+               headers: {
+                  Authorization: `Bearer ${token}`,
+               },
+            }),
+         {
+            onSuccess: (response) => {
+               console.log(response);
+               dispatch(
+                  setToasterContent(
+                     "Le processus de remboursment a démarré. Vous serez remboursé dans les prochianes minutes."
+                  )
+               );
+            },
+            onError: (error) => {
+               console.error("Error refund request order item:", error);
+            },
+         }
+      );
+
+   const refundPayment = () => {
+      refundPaymentMutation();
+   };
+
    if (!order) {
-      return <p>Commande non chargée</p>
+      return <p>Commande non chargée</p>;
    }
 
    return (
@@ -168,10 +196,6 @@ const ProductPayment = ({ orderId }) => {
             )}
          </div>
 
-         <Link to={`/commande/${orderId}`}>
-            Voir toute la commande
-         </Link>
-
          <div>
             <LoadingButton
                text="Effectuer le paiement"
@@ -179,6 +203,19 @@ const ProductPayment = ({ orderId }) => {
                onClick={successHandler}
                className="!bg-primary px-6 py-3 rounded-[18px]"
             />
+         </div>
+
+         <div>
+            <Link to={`/commande/${orderId}`}>Voir toute la commande</Link>
+
+            {order.amount_paid > 0 && (
+               <LoadingButton
+                  text="Se faire rembourser"
+                  loading={refundLoading}
+                  onClick={refundPayment}
+                  className="!bg-primary/75 px-2 py-2 rounded-[5px]"
+               />
+            )}
          </div>
       </div>
    );

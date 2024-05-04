@@ -1,4 +1,3 @@
-import { useState } from "react";
 import CreatorSignSteep from "../BaseComponents/CreatorSignSteep";
 import ProductPayment from "./ProductPayment/ProductPayment";
 import ProductReceive from "./ProductReceive/ProductReceive";
@@ -13,12 +12,12 @@ import OrderFetcher from "../Features/fetchers/OrderFetcher";
 
 const OrderProcess = ({ state = 0 }) => {
    const { order_id } = useParams();
-   const order = useSelector(selectOrderById(order_id));
-   console.log(order);
+   const order = useSelector(selectOrderById(parseInt(order_id, 10)));
+
 
    return (
       <>
-         {(!order || (order === undefined) ) ? (
+         {(!order || !order.order_items || (order === undefined) ) ? (
             <OrderFetcher orderId={parseInt(order_id)} />
          ) : (
             <div className="flex !items-start gap-4">
@@ -33,9 +32,9 @@ const OrderProcess = ({ state = 0 }) => {
 
                   {state === 1 && <ProductPayment orderId={parseInt(order_id)} />}
 
-                  {state === 2 && <Delievering orderId={order_id} />}
+                  {state === 2 && <Delievering orderId={parseInt(order_id)} />}
 
-                  {state === 3 && <ProductReceive orderId={order_id} />}
+                  {state === 3 && <ProductReceive orderId={parseInt(order_id)} />}
                </div>
             </div>
          )}

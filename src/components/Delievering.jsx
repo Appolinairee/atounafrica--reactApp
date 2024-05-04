@@ -12,13 +12,14 @@ const DeliveryForm = ({ orderId }) => {
    const [shippingAddress, setShippingAddress] = useState("");
    const [shippingDate, setShippingDate] = useState("");
    const [shippingContact, setShippingContact] = useState("");
+
    const order = useSelector(selectOrderById(orderId));
    const dispatch = useDispatch();
-   const authToken = useSelector((state) => state.auth.authToken);
+   const token = useSelector((state) => state.auth.authToken);
    const [errorMessage, setMessageError] = useState();
    const navigate = useNavigate();
 
-   console.log(orderId);
+   console.log(orderId, order);
 
    const {
       mutate: updateDelieveringDetails,
@@ -28,7 +29,7 @@ const DeliveryForm = ({ orderId }) => {
       (data) =>
          axios.post(`orders/${orderId}`, data, {
             headers: {
-               Authorization: `Bearer ${authToken}`,
+               Authorization: `Bearer ${token}`,
             },
             retry: { retries: 0 },
          }),
@@ -38,7 +39,7 @@ const DeliveryForm = ({ orderId }) => {
             response = response.data.data;
             dispatch(updateOrders(response));
 
-            // Todo: à mettre à jour
+
             navigate(`/commande/${orderId}/reception`);
 
             if (response.status == 2) {
@@ -87,11 +88,6 @@ const DeliveryForm = ({ orderId }) => {
    return (
       <div>
          <p>Détails de sous-commandes</p>
-         {order.order_items.map((orderItem, index) => (
-            <div key={index}>
-               <Order orderItem={orderItem} />
-            </div>
-         ))}
 
          <h2>Vos informations sur la livraison</h2>
 

@@ -1,7 +1,9 @@
-!!!Next
-delete order
-update orderItem
-delete orderItem
+To fix: 
+- delete order: bad response
+- refund payment: unauthenticated (Styles de la commande aux différents états)
+
+Next
+
 
 orderSLice, update action payload
 

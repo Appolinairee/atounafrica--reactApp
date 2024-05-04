@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
+   deleteOrder,
    selectOrderById,
-   updateOrderItems,
    updateOrders,
 } from "../Features/orders/ordersSlice";
 import ProductUnit from "./ProductUnit";
@@ -25,15 +25,23 @@ const OrderItems = ({ orderId }) => {
                orderItem={orderItem}
                index={index}
                orderId={orderId}
+               orderItemsNumber={order.order_items.length}
+               isAmountPaid={order.amount_paid > 0}
             />
          ))}
       </div>
    );
 };
 
-const OrderItem = ({ orderItem, index, orderId }) => {
+const OrderItem = ({
+   orderItem,
+   index,
+   orderId,
+   orderItemsNumber,
+   isAmountPaid,
+}) => {
    const [productCount, setProductCount] = useState(orderItem.quantity);
-   const token = localStorage.getItem("token");
+   const token = useSelector((state) => state.auth.authToken);
    const dispatch = useDispatch();
 
    const { mutate: updateOrderItemsMutation, isLoading: updateLoading } =
@@ -50,7 +58,6 @@ const OrderItem = ({ orderItem, index, orderId }) => {
             onSuccess: (response) => {
                let data = response.data.data;
                if (data) {
-                  console.log(data)
                   dispatch(updateOrders(data));
                   dispatch(
                      setToasterContent("Commande mise à jour avec succès.")
@@ -73,8 +80,22 @@ const OrderItem = ({ orderItem, index, orderId }) => {
             }),
          {
             onSuccess: (response) => {
-               console.log(response);
-               dispatch(setToasterContent("Commande supprimée avec succès."));
+               if (orderItemsNumber === 1) {
+                  dispatch(deleteOrder(orderId));
+                  dispatch(
+                     setToasterContent("La commande est supprimée avec succès.")
+                  );
+               } else {
+                  let data = response.data.data;
+                  if (data) {
+                     dispatch(updateOrders(data));
+                     dispatch(
+                        setToasterContent(
+                           "Un article de la commande a été supprimé."
+                        )
+                     );
+                  }
+               }
             },
             onError: (error) => {
                console.error("Error deleting order item:", error);
@@ -120,12 +141,14 @@ const OrderItem = ({ orderItem, index, orderId }) => {
                         />
                      )}
 
-                  <LoadingButton
-                     text="Suppression"
-                     loading={deleteLoading}
-                     onClick={deleteOrderItem}
-                     className="bg-primary text-light font-medium p-[3px] px-[6px] rounded-lg text-[14px]"
-                  />
+                  {!isAmountPaid && (
+                     <LoadingButton
+                        text="Suppression"
+                        loading={deleteLoading}
+                        onClick={deleteOrderItem}
+                        className="bg-primary text-light font-medium p-[3px] px-[6px] rounded-lg text-[14px]"
+                     />
+                  )}
                </div>
             </div>
          </div>
