@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import axios from "../../axiosConfig";
+import axios from "../../services/axiosConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { selectProducts, setProducts } from "./productsSlice";
 import { useState } from "react";
@@ -20,9 +20,6 @@ export const useFetchProducts = () => {
       async () => {
          const response = await axios.get(
             `products?perPage=${perPage}&page=${page + userId}`,
-            {
-               retry: { retries: 0 },
-            }
          );
 
          return response;

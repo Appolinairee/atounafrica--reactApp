@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useMutation } from "react-query";
-import axios from "../axiosConfig";
+import axios from "../services/axiosConfig";
 import { selectOrderById, updateOrders } from "../Features/orders/ordersSlice";
 import { useSelector } from "react-redux";
-import Order from "./Order";
 import LoadingButton from "../BaseComponents/LoadingButton";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -27,12 +26,7 @@ const DeliveryForm = ({ orderId }) => {
       isError,
    } = useMutation(
       (data) =>
-         axios.post(`orders/${orderId}`, data, {
-            headers: {
-               Authorization: `Bearer ${token}`,
-            },
-            retry: { retries: 0 },
-         }),
+         axios.post(`orders/${orderId}`, data),
       {
          onSuccess: (response) => {
             console.log(response, response.data, response.data.data);

@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import axios from "../../axiosConfig";
+import axios from "../../services/axiosConfig";
 import { useState } from "react";
 
 export const useFetchLatestMessages = () => {
@@ -12,14 +12,7 @@ export const useFetchLatestMessages = () => {
 
       async () => {
          const response = await axios.get(
-            `messages/users`,
-            {
-               headers: {
-                  Authorization: `Bearer ${token}`,
-                  'Content-Type': 'application/json',
-                },
-               retry: { retries: 0 },
-            }
+            `messages/users`
          );
 
          return response;

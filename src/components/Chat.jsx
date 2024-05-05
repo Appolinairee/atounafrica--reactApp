@@ -7,7 +7,7 @@ import { SiCoinmarketcap } from "react-icons/si";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { useRef, useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import axios from "../axiosConfig";
+import axios from "../services/axiosConfig";
 import { useSelector } from "react-redux";
 import LoadingButton from "../BaseComponents/LoadingButton";
 import ServerError from "../pages/ServerError";
@@ -86,13 +86,7 @@ const Chat = ({
       ["messages", page],
 
       async () => {
-         const response = await axios.get(`messages/user/${anotherUserId}`, {
-            headers: {
-               Authorization: `Bearer ${token}`,
-               "Content-Type": "application/json",
-            },
-            retry: { retries: 0 },
-         });
+         const response = await axios.get(`messages/user/${anotherUserId}`);
          return response;
       },
       {

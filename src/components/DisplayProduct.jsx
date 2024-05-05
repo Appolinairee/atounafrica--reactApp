@@ -6,7 +6,7 @@ import { MdShoppingCart } from "react-icons/md";
 import ProductPayment from "./ProductPayment/ProductPayment";
 import ProductReceive from "./ProductReceive/ProductReceive";
 import { useQuery } from "react-query";
-import axios from "../axiosConfig";
+import axios from "../services/axiosConfig";
 import LoadingButton from "../BaseComponents/LoadingButton";
 import ProductUnit from "./ProductUnit";
 import { useParams } from "react-router-dom";

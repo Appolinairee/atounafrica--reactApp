@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import axios from "../../axiosConfig";
+import axios from "../../services/axiosConfig";
 import { useState } from "react";
 
 export const useFetchNotifications = () => {
@@ -13,13 +13,6 @@ export const useFetchNotifications = () => {
       async () => {
          const response = await axios.get(
             `notifications`,
-            {
-               headers: {
-                  Authorization: `Bearer ${token}`,
-                  'Content-Type': 'application/json',
-                },
-               retry: { retries: 0 },
-            }
          );
 
          return response;

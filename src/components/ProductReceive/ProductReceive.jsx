@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectOrderById, updateOrders } from "../../Features/orders/ordersSlice";
 import { useMutation } from "react-query";
-import axios from "../../axiosConfig";
+import axios from "../../services/axiosConfig";
 import Order from "../Order";
 import LoadingButton from "../../BaseComponents/LoadingButton";
 
@@ -23,11 +23,6 @@ const ProductReceive = ({ orderId }) => {
          const response = await axios.put(
             `comments/${productId}`,
             { comment },
-            {
-               headers: {
-                  Authorization: `Bearer ${authToken}`,
-               },
-            }
          );
          return response.data.data;
       },

@@ -7,14 +7,13 @@ import {
 } from "react-icons/lia";
 import { Link } from "react-router-dom";
 import { useMutation } from "react-query";
-import axios from "../axiosConfig";
-import { useDispatch, useSelector } from "react-redux";
+import axios from "../services/axiosConfig";
+import { useDispatch } from "react-redux";
 import { setToasterContent } from "../Features/appSlice";
 import LoadingButton from "../BaseComponents/LoadingButton";
 
-const Order = ({ order, delieveringStatus = false }) => {
+const Order = ({ order, delieveringStatus = false, handleOrderState }) => {
    const [moreState, setMoreState] = useState(delieveringStatus);
-   const token = useSelector((state) => state.auth.authToken);
    const dispatch = useDispatch();
 
    console.log(order)
@@ -69,11 +68,8 @@ const Order = ({ order, delieveringStatus = false }) => {
 
    const { mutate: deleteOrderMutation, isLoading: deleteLoading } =
       useMutation(
-         () =>
-            axios.delete(`orders/${id}`, {
-               headers: {
-                  Authorization: `Bearer ${token}`,
-               },
+            () => axios.delete(`orders/${id}`, {
+               retry: { retries: 0 },
             }),
          {
             onSuccess: (response) => {
@@ -194,7 +190,7 @@ const Order = ({ order, delieveringStatus = false }) => {
                )}
             </p>
 
-            <Link to={`/commande/${id}`} className="w-full">
+            <Link to={`/commande/${id}`} className="w-full" onClick={handleOrderState}>
                <button
                   className="border-solid border-[2px] border-dark/10 p-1 rounded-md w-full"
                >
@@ -202,7 +198,7 @@ const Order = ({ order, delieveringStatus = false }) => {
                </button>
             </Link>
 
-            <Link to={activeLink} className="w-full">
+            <Link to={activeLink} className="w-full" onClick={handleOrderState}>
                <button
                   className="rounded-md w-full border-solid border-[2px] border-primary bg-primary whitespace-nowrap p-1 text-light font-medium"
                >

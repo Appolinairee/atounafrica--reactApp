@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import axios from "../../axiosConfig";
+import axios from "../../services/axiosConfig";
 import { useDispatch } from "react-redux";
 import { setPresentations } from "./presentationsSlice";
 

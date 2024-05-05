@@ -27,8 +27,8 @@ import ProductOrder from "./components/ProductOrder";
 import Toaster from "./BaseComponents/Toaster";
 
 const App = () => {
-   useFetchUser();
    const user = useSelector((state) => state.auth.user);
+   useFetchUser();
 
    return (
       <div>

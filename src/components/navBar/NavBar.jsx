@@ -24,7 +24,7 @@ import {
 } from "react-icons/lia";
 import { FaShoppingCart, FaMoneyBillWave, FaChevronDown } from "react-icons/fa";
 import { useQueryClient } from "react-query";
-import axios from "axios";
+import axios from "../../services/axiosConfig";
 import OrderGroup from "../OrderGroup";
 
 export default function NavBar({ user }) {
@@ -170,10 +170,10 @@ export default function NavBar({ user }) {
 
          <Menu barState={barState} handleBar={handleBar} />
 
-         {/* <Notifications
+         <Notifications
             handleNotification={handleNotification}
             notificationState={notificationState}
-         /> */}
+         />
 
          <OrderGroup
             orderState={orderState}
@@ -235,12 +235,7 @@ const SubMenu = ({ auth }) => {
       if (!token) return;
 
       try {
-         await axios.post("http://127.0.0.1:8000/api/auth/logout", null, {
-            headers: {
-               Authorization: `Bearer ${token}`,
-               "Content-Type": "application/json",
-            },
-         });
+         await axios.post("auth/logout", null);
 
          localStorage.removeItem("token");
          queryClient.clear();

@@ -9,7 +9,7 @@ import AffiliationCard from "./AffiliationCard";
 import ProfilImageGenerator from "../BaseComponents/ProfilImageGenerator";
 import { FaCheckCircle } from "react-icons/fa";
 import { useMutation, useQuery } from "react-query";
-import axios from "./../axiosConfig";
+import axios from "../services/axiosConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { updateOrders } from "../Features/orders/ordersSlice";
 import LoadingButton from "../BaseComponents/LoadingButton";

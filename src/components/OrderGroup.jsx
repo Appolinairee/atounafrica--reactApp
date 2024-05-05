@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ScrollBarHider from "../BaseComponents/ScrollBarHidden";
 import { selectOrders, setOrders } from "../Features/orders/ordersSlice";
-import axios from "../axiosConfig";
+import axios from "../services/axiosConfig";
 import { setError, setLoading } from "../Features/authSlice";
 import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +13,6 @@ import Order from "./Order";
 
 const OrderGroup = ({ orderState, handleOrderState }) => {
    const dispatch = useDispatch();
-   const authToken = useSelector((state) => state.auth.authToken);
    const orders = useSelector(selectOrders);
    const userId = useSelector((state) => state.auth.userId);
 
@@ -21,9 +20,6 @@ const OrderGroup = ({ orderState, handleOrderState }) => {
       dispatch(setLoading());
       try {
          const response = await axios.get(`orders/user/${userId}`, {
-            headers: {
-               Authorization: `Bearer ${authToken}`,
-            },
             retry: { retries: 2 },
          });
 

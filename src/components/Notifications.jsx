@@ -7,7 +7,7 @@ import { useFetchNotifications } from "../Features/notifications/useFetchNotific
 import { FaShoppingCart, FaUserPlus } from "react-icons/fa";
 import { MdOutlineNotifications } from "react-icons/md";
 import { Link } from "react-router-dom";
-import axios from "../axiosConfig";
+import axios from "../services/axiosConfig";
 
 const Notification = ({ id, message, icon, state, date, link }) => {
    const authToken = localStorage.getItem("token");
@@ -19,9 +19,7 @@ const Notification = ({ id, message, icon, state, date, link }) => {
                `notifications/${id}`,
                {},
                {
-                  headers: {
-                     Authorization: `Bearer ${authToken}`,
-                  },
+                  retry: { retries: 3 },
                }
             );
          } catch (error) {

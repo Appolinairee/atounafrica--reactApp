@@ -6,7 +6,7 @@ import {
    updateOrders,
 } from "../../Features/orders/ordersSlice";
 import { useKKiaPay } from "kkiapay-react";
-import axios from "../../axiosConfig";
+import axios from "../../services/axiosConfig";
 import { useMutation } from "react-query";
 import LoadingButton from "../../BaseComponents/LoadingButton";
 import { setToasterContent } from "../../Features/appSlice";
@@ -30,12 +30,7 @@ const ProductPayment = ({ orderId }) => {
       isError,
    } = useMutation(
       (updatedDetails) =>
-         axios.put(`orders/${orderId}/payment`, updatedDetails, {
-            headers: {
-               Authorization: `Bearer ${token}`,
-            },
-            retry: { retries: 0 },
-         }),
+         axios.put(`orders/${orderId}/payment`, updatedDetails),
       {
          onSuccess: (response) => {
             response = response.data.data;
@@ -109,11 +104,7 @@ const ProductPayment = ({ orderId }) => {
    const { mutate: refundPaymentMutation, isLoading: refundLoading } =
       useMutation(
          () =>
-            axios.put(`orders/${orderId}/refund`, {
-               headers: {
-                  Authorization: `Bearer ${token}`,
-               },
-            }),
+            axios.put(`orders/${orderId}/refund`),
          {
             onSuccess: (response) => {
                console.log(response);

@@ -9,7 +9,7 @@ import OrderItemChange from "../BaseComponents/Orders/OrderItemChange";
 import { useState } from "react";
 import LoadingButton from "../BaseComponents/LoadingButton";
 import { useMutation } from "react-query";
-import axios from "../axiosConfig";
+import axios from "../services/axiosConfig";
 import Toaster from "../BaseComponents/Toaster";
 import { BsPen } from "react-icons/bs";
 import { setToasterContent } from "../Features/appSlice";
@@ -47,13 +47,7 @@ const OrderItem = ({
    const { mutate: updateOrderItemsMutation, isLoading: updateLoading } =
       useMutation(
          (formData) =>
-            axios.put(`orders/items/${orderItem.id}`, formData, {
-               headers: {
-                  Authorization: `Bearer ${token}`,
-                  "Content-Type": "application/json",
-               },
-               retry: { retries: 0 },
-            }),
+            axios.put(`orders/items/${orderItem.id}`, formData),
          {
             onSuccess: (response) => {
                let data = response.data.data;
@@ -123,34 +117,36 @@ const OrderItem = ({
 
             <Toaster icon={BsPen} content="Commande mise à jour" />
 
-            <OrderItemChange
-               productCount={productCount}
-               setProductCount={setProductCount}
-               current_price={orderItem.temporal_price}
-            />
+            {!isAmountPaid && (
+               <>
+                  <OrderItemChange
+                     productCount={productCount}
+                     setProductCount={setProductCount}
+                     current_price={orderItem.temporal_price}
+                  />
 
-            <div>
-               <div className="flex">
-                  {orderItem.status <= 0 &&
-                     productCount !== orderItem.quantity && (
+                  <div>
+                     <div className="flex">
+                        {orderItem.status <= 0 &&
+                           productCount !== orderItem.quantity && (
+                              <LoadingButton
+                                 text="Mettre à jour"
+                                 loading={updateLoading}
+                                 onClick={updateOrder}
+                                 className="bg-primary text-light font-medium p-[3px] px-[6px] rounded-lg text-[14px]"
+                              />
+                           )}
+
                         <LoadingButton
-                           text="Mettre à jour"
-                           loading={updateLoading}
-                           onClick={updateOrder}
+                           text="Suppression"
+                           loading={deleteLoading}
+                           onClick={deleteOrderItem}
                            className="bg-primary text-light font-medium p-[3px] px-[6px] rounded-lg text-[14px]"
                         />
-                     )}
-
-                  {!isAmountPaid && (
-                     <LoadingButton
-                        text="Suppression"
-                        loading={deleteLoading}
-                        onClick={deleteOrderItem}
-                        className="bg-primary text-light font-medium p-[3px] px-[6px] rounded-lg text-[14px]"
-                     />
-                  )}
-               </div>
-            </div>
+                     </div>
+                  </div>
+               </>
+            )}
          </div>
 
          <ProductUnit

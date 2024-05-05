@@ -1,11 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setOrders, setLoading, setError } from "./ordersSlice";
 import { useQuery } from "react-query";
-import axios from "../../axiosConfig";
+import axios from "../../services/axiosConfig";
 
 const useFetchOrders = () => {
    const dispatch = useDispatch();
-   const authToken = useSelector((state) => state.auth.authToken);
    const userId = "?user_id=" + useSelector((state) => state.auth.userId);
 
 
@@ -13,12 +12,7 @@ const useFetchOrders = () => {
       "orders",
       async () => {
          dispatch(setLoading());
-         const response = await axios.get(`orders/user/${userId}`, {
-            headers: {
-               Authorization: `Bearer ${authToken}`,
-            },
-            retry: { retries: 2 },
-         });
+         const response = await axios.get(`orders/user/${userId}`);
          return response;
       },
       {
