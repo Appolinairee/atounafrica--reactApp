@@ -36,11 +36,19 @@ const ordersSlice = createSlice({
          }
       },
       deleteOrder: (state, action) => {
-         const indexToRemove = state.orders.findIndex(
-            (order) => order.id === action.payload
+         const orderIdToDelete = action.payload;
+         state.orders = state.orders.filter(
+            (order) => order.id !== orderIdToDelete
          );
-         if (indexToRemove !== -1) {
-            state.orders.splice(indexToRemove, 1);
+      },
+
+      makeOrderRefund: (state, action) => {
+         const orderIdToRefund = action.payload;
+         const orderIndex = state.orders.findIndex(
+            (order) => order.id === orderIdToRefund
+         );
+         if (orderIndex !== -1) {
+            state.orders[orderIndex].refund = 1;
          }
       },
    },
@@ -58,7 +66,8 @@ export const {
    setError,
    updateOrders,
    updateOrderItems,
-   deleteOrder
+   deleteOrder,
+   makeOrderRefund,
 } = ordersSlice.actions;
 export const selectOrders = (state) => state.orders.orders;
 

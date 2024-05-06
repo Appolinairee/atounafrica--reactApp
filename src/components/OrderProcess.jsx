@@ -23,7 +23,9 @@ const OrderProcess = ({ state = 0 }) => {
             <div className="flex !items-start gap-4">
                
                <div className="bg-red mb-24 rounded-lg bg-light mx-[3%] p-2 ">
-                  <CreatorSignSteep state={state} Steps={Steps} />
+                  {
+                     order.refund === 0 && <CreatorSignSteep state={state} Steps={Steps} />
+                  }
                   <Order order={order} delieveringStatus={true} />
                </div>
 

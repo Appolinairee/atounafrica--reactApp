@@ -6,17 +6,12 @@ import {
    LiaChevronCircleUpSolid,
 } from "react-icons/lia";
 import { Link } from "react-router-dom";
-import { useMutation } from "react-query";
-import axios from "../services/axiosConfig";
-import { useDispatch } from "react-redux";
-import { setToasterContent } from "../Features/appSlice";
 import LoadingButton from "../BaseComponents/LoadingButton";
+import { useDeleteOrder } from "../services/Order";
 
 const Order = ({ order, delieveringStatus = false, handleOrderState }) => {
    const [moreState, setMoreState] = useState(delieveringStatus);
-   const dispatch = useDispatch();
-
-   console.log(order)
+   const { deleteOrderService, deleteLoading } = useDeleteOrder();
 
    const {
       id,
@@ -66,25 +61,6 @@ const Order = ({ order, delieveringStatus = false, handleOrderState }) => {
    const expressiveAction = actionMap[status] || actionMap.default;
    const activeLink = linkMap[status] || linkMap.default;
 
-   const { mutate: deleteOrderMutation, isLoading: deleteLoading } =
-      useMutation(
-            () => axios.delete(`orders/${id}`, {
-               retry: { retries: 0 },
-            }),
-         {
-            onSuccess: (response) => {
-               dispatch(deleteOrder(id));
-               dispatch(setToasterContent("Commande supprimée avec succès."));
-            },
-            onError: (error) => {
-               console.error("Error deleting order item:", error);
-            },
-         }
-      );
-
-   const deleteOrder = () => {
-      deleteOrderMutation();
-   };
 
    return (
       <div className="w-[95%] mx-auto border-dark/20 rounded-[10px] p-2 mb-6 shadow-boxShadow1 cursor-pointer">
@@ -178,7 +154,8 @@ const Order = ({ order, delieveringStatus = false, handleOrderState }) => {
             </div>
          )}
 
-         <div className="flex mt-4 gap-2 text-[14px]">
+         {
+            order.refund === 0 && <div className="flex mt-4 gap-2 text-[14px]">
             <p
                className="text-[15px] bg-dark/10 p-2 rounded-lg hover:bg-dark/20 transition-all cursor-pointer"
                onClick={() => setMoreState(!moreState)}
@@ -206,12 +183,13 @@ const Order = ({ order, delieveringStatus = false, handleOrderState }) => {
                </button>
             </Link>
          </div>
+         }
 
          {order.amount_paid <= 0 && (
             <LoadingButton
                text="Suppression"
                loading={deleteLoading}
-               onClick={deleteOrder}
+               onClick={() => deleteOrderService(id)}
                className="bg-primary text-light font-medium p-[3px] px-[6px] rounded-lg text-[14px]"
             />
          )}

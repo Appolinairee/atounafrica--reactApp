@@ -67,11 +67,7 @@ const OrderItem = ({
    const { mutate: deleteOrderItemMutation, isLoading: deleteLoading } =
       useMutation(
          () =>
-            axios.delete(`orders/items/${orderItem.id}`, {
-               headers: {
-                  Authorization: `Bearer ${token}`,
-               },
-            }),
+            axios.delete(`orders/items/${orderItem.id}`),
          {
             onSuccess: (response) => {
                if (orderItemsNumber === 1) {

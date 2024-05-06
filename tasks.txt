@@ -1,13 +1,13 @@
-To fix: 
-- delete order: bad response
-- refund payment: unauthenticated (Styles de la commande aux différents états)
+- become creator
+- create product
+- update informations
+- delete creator
 
-Next
+- update product
+- delete product 
 
 
-orderSLice, update action payload
-
-
+Review: delieverind services and point_of_view update
 Activer ou désactiver les boutons de <Steep /> en fonction du statut de la commande
 Quand le paramètre id de la commande change (useParams), il faudrait que la page se mette à jour directement.
 

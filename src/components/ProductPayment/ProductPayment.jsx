@@ -9,15 +9,15 @@ import { useKKiaPay } from "kkiapay-react";
 import axios from "../../services/axiosConfig";
 import { useMutation } from "react-query";
 import LoadingButton from "../../BaseComponents/LoadingButton";
-import { setToasterContent } from "../../Features/appSlice";
+import { useRefundPayment } from "../../services/Order";
 
 const ProductPayment = ({ orderId }) => {
    const order = useSelector(selectOrderById(orderId));
    const [paymentMode, setPaymentMode] = useState(1);
    const user = useSelector((state) => state.auth.user);
    const { openKkiapayWidget, addKkiapayListener } = useKKiaPay();
+   const { refundPayment, refundLoading } = useRefundPayment(orderId);
 
-   const token = useSelector((state) => state.auth.authToken);
    const [errorMessage, setErrorMessage] = useState(null);
    const dispatch = useDispatch();
    const minimumContribution = 5000;
@@ -27,7 +27,6 @@ const ProductPayment = ({ orderId }) => {
    const {
       mutate: updatePaymentDetails,
       isLoading,
-      isError,
    } = useMutation(
       (updatedDetails) =>
          axios.put(`orders/${orderId}/payment`, updatedDetails),
@@ -98,31 +97,6 @@ const ProductPayment = ({ orderId }) => {
       }
    };
 
-   /*
-      Refund payment mutation and handles
-   */
-   const { mutate: refundPaymentMutation, isLoading: refundLoading } =
-      useMutation(
-         () =>
-            axios.put(`orders/${orderId}/refund`),
-         {
-            onSuccess: (response) => {
-               console.log(response);
-               dispatch(
-                  setToasterContent(
-                     "Le processus de remboursment a démarré. Vous serez remboursé dans les prochianes minutes."
-                  )
-               );
-            },
-            onError: (error) => {
-               console.error("Error refund request order item:", error);
-            },
-         }
-      );
-
-   const refundPayment = () => {
-      refundPaymentMutation();
-   };
 
    if (!order) {
       return <p>Commande non chargée</p>;
@@ -203,7 +177,7 @@ const ProductPayment = ({ orderId }) => {
                <LoadingButton
                   text="Se faire rembourser"
                   loading={refundLoading}
-                  onClick={refundPayment}
+                  onClick={() => refundPayment(orderId)}
                   className="!bg-primary/75 px-2 py-2 rounded-[5px]"
                />
             )}
