@@ -1,11 +1,5 @@
-import { Link, useNavigate } from "react-router-dom";
-import Creator from "./Creator/Creator";
-import LikeButton from "../BaseComponents/LikeButton";
-import { BsChatQuote } from "react-icons/bs";
-import { LuLink } from "react-icons/lu";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import MediaPaginator from "./MediaPaginator";
-import AffiliationCard from "./AffiliationCard";
 import ProfilImageGenerator from "../BaseComponents/ProfilImageGenerator";
 import { FaCheckCircle } from "react-icons/fa";
 import { useMutation, useQuery } from "react-query";
@@ -13,18 +7,15 @@ import axios from "../services/axiosConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { updateOrders } from "../Features/orders/ordersSlice";
 import LoadingButton from "../BaseComponents/LoadingButton";
-import MediaUnit from "../BaseComponents/MediaUnit";
 import ServerError from "../pages/ServerError";
 import OrderItemChange from "../BaseComponents/Orders/OrderItemChange";
+import ProductInformations from "./Product/ProductInformations";
+import { updateProduct } from "../Features/products/productsSlice";
 
 const ProductUnit = ({ slug_name, className, type }) => {
-   const [selectedAffiliationLink, setSelectedAffiliationLink] =
-      useState(false);
-   const [mediaState, setMediaState] = useState(0);
    const [productCount, setProductCount] = useState(1);
    const [detailsState, setDetailsState] = useState(0);
    const dispatch = useDispatch();
-   const token = localStorage.getItem("token");
    const navigate = useNavigate();
    const userId = useSelector((state) => state.auth.userId);
    const userIdRequestParam = userId ? "?&user_id=" + userId : "";
@@ -35,15 +26,13 @@ const ProductUnit = ({ slug_name, className, type }) => {
       `product`,
       async () => {
          const response = await axios.get(
-            `products/${slug_name + userIdRequestParam}`,
-            {
-               retry: { retries: 0 },
-            }
+            `products/${slug_name + userIdRequestParam}`
          );
          return response;
       },
       {
          onSuccess: (response) => {
+            dispatch(updateProduct(response.data.data));
             setProduct(response.data.data);
          },
          onError: (error) => {
@@ -54,13 +43,7 @@ const ProductUnit = ({ slug_name, className, type }) => {
 
    const { mutate: placeOrderMutation, isLoading } = useMutation(
       (formData) =>
-         axios.post("orders/items/store", formData, {
-            headers: {
-               Authorization: `Bearer ${token}`,
-               "Content-Type": "application/json",
-            },
-            retry: { retries: 0 },
-         }),
+         axios.post("orders/items/store", formData),
       {
          onSuccess: (response) => {
             dispatch(updateOrders(response.data.data));
@@ -98,33 +81,15 @@ const ProductUnit = ({ slug_name, className, type }) => {
    }
 
    let id,
-      creator,
-      medias,
-      medias_count,
-      title,
-      likes_count,
-      is_liked,
-      comments_count,
-      affiliation_link,
       current_price,
-      old_price,
       comments,
       caracteristics;
 
    if (Product) {
       ({
          id,
-         creator,
-         medias,
-         medias_count,
-         title,
-         likes_count,
-         is_liked,
-         comments_count,
-         affiliation_link,
          caracteristics,
          current_price,
-         old_price,
          comments,
       } = Product);
    }
@@ -133,29 +98,9 @@ const ProductUnit = ({ slug_name, className, type }) => {
       ? caracteristics.split(":::")
       : null;
 
-   const showAffiliationPopUp = (affiliationLink) => {
-      setSelectedAffiliationLink(affiliationLink);
-   };
-
-   const handlePrevMedia = () => {
-      setMediaState((prevMedia) =>
-         prevMedia === 0 ? medias.length - 1 : prevMedia - 1
-      );
-   };
-
-   const handleNextMedia = () => {
-      setMediaState((prevMedia) =>
-         prevMedia === medias.length - 1 ? 0 : prevMedia + 1
-      );
-   };
-
-   const handleMediaClick = (state) => {
-      setMediaState(state);
-   };
-
    return (
       <div className={`${className} mx-auto`}>
-         {type !== "order" && (
+         {(type !== "order" && type !== "reception" ) && (
             <OrderItemChange
                productCount={productCount}
                setProductCount={setProductCount}
@@ -163,112 +108,11 @@ const ProductUnit = ({ slug_name, className, type }) => {
             />
          )}
 
-         <div
-            className={`w-full productShadow rounded-xl p-[0.8rem] max-w-[460px] m-auto`}
-            key={id}
-         >
-            {creator && (
-               <Creator
-                  image={
-                     process.env.REACT_APP_API_URL + "storage/" + creator.logo
-                  }
-                  name={creator.name}
-               />
-            )}
+         <ProductInformations Product={Product} />
 
-            <div className="flex items-center  my-1">
-               <div className="flex justify-between !items-center gap-4 text-[14px]">
-                  <p>
-                     <span className="text-[17px] font-medium">
-                        {current_price}
-                     </span>{" "}
-                     Fcfa
-                  </p>
 
-                  {old_price && (
-                     <p className="decoration-primary line-through">
-                        {old_price} Fcfa{"  "}
-                     </p>
-                  )}
-               </div>
-            </div>
-
-            <div className="flex items-center justify-between">
-               <p className="text-[15px]">{title}</p>
-            </div>
-
-            <Link>
-               <div className="w-full h-auto rounded-xl overflow-hidden my-3  relative border-solid border-[1px] border-dark/5">
-                  {medias && (
-                     <MediaUnit
-                        media={medias[mediaState]}
-                        altText={title}
-                        index={1}
-                     />
-                  )}
-
-                  {medias_count > 1 && (
-                     <MediaPaginator
-                        length={medias_count}
-                        handlePrevMedia={handlePrevMedia}
-                        handleNextMedia={handleNextMedia}
-                        handleMediaClick={handleMediaClick}
-                        mediaState={mediaState}
-                     />
-                  )}
-               </div>
-            </Link>
-
-            <div className="flex w-fit justify-center overflow-x-auto gap-[5px]">
-               {medias &&
-                  medias.length > 0 &&
-                  medias.map((media, index) => (
-                     <MediaUnit
-                        media={media}
-                        altText={title}
-                        index={index}
-                        handleMediaClick={handleMediaClick}
-                        className={`!h-[50px] !w-auto rounded-[7px] border-solid border-dark/30 border-[1px] cursor-pointer ${
-                           mediaState === index
-                              ? " border-primary border-[2px]"
-                              : ""
-                        }`}
-                     />
-                  ))}
-            </div>
-
-            <div className="flex mt-2 justify-start *:flex *:items-center *:gap-1 *:cursor-pointer border-solid border-0 border-t-[1px] border-dark/10 pt-[8px] xs:text-[14px]">
-               <LikeButton
-                  initialLikes={likes_count}
-                  isLiked={is_liked}
-                  productId={id}
-               />
-
-               <div>
-                  <p>
-                     <BsChatQuote />
-                  </p>
-
-                  <p>Avis {comments_count}</p>
-               </div>
-
-               <div onClick={() => showAffiliationPopUp(affiliation_link)}>
-                  <p>
-                     <LuLink />
-                  </p>
-                  <p>Affiliation</p>
-               </div>
-            </div>
-
-            {selectedAffiliationLink && (
-               <AffiliationCard
-                  affiliateLink={selectedAffiliationLink}
-                  setSelectedAffiliationLink={setSelectedAffiliationLink}
-               />
-            )}
-         </div>
-
-         <div className="productDetails mt-10 relative py-4">
+         {
+            type !== "reception" && <div className="productDetails mt-10 relative py-4">
             <div className="absolute top-0 left-0 w-full h-[1px] bg-dark/40"></div>
 
             <div className="flex *:cursor-pointer w-fit gap-10">
@@ -332,8 +176,9 @@ const ProductUnit = ({ slug_name, className, type }) => {
                )}
             </div>
          </div>
+         }
 
-         {type !== "order" && (
+         {(type !== "order" && type !== "reception" ) && (
             <LoadingButton
                text={"Commander"}
                loading={isLoading}

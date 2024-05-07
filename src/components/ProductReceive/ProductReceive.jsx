@@ -1,37 +1,14 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { selectOrderById, updateOrders } from "../../Features/orders/ordersSlice";
-import { useMutation } from "react-query";
-import axios from "../../services/axiosConfig";
-import Order from "../Order";
+import { useSelector } from "react-redux";
+import { selectOrderById } from "../../Features/orders/ordersSlice";
 import LoadingButton from "../../BaseComponents/LoadingButton";
+import { useCommentProduct } from "../../services/ProductsService";
+import ProductUnit from "../ProductUnit";
 
 const ProductReceive = ({ orderId }) => {
    const order = useSelector(selectOrderById(orderId));
    const [comments, setComments] = useState({});
-   const authToken = useSelector((state) => state.auth.authToken);
-   const dispatch = useDispatch();
-
-   // Mutation pour mettre à jour un commentaire
-   const {
-      mutate: updateCommentMutation,
-      isLoading,
-      isError,
-   } = useMutation(
-      async (payload) => {
-         const { productId, comment } = payload;
-         const response = await axios.put(
-            `comments/${productId}`,
-            { comment },
-         );
-         return response.data.data;
-      },
-      {
-         onSuccess: (data) => {
-            dispatch(updateOrders(data));
-         },
-      }
-   );
+   const { updateProductCommandService, isLoading } = useCommentProduct();
 
    const handleCommentChange = (productId, comment) => {
       setComments((prevComments) => ({
@@ -42,8 +19,8 @@ const ProductReceive = ({ orderId }) => {
 
    const handleSubmitComment = (productId) => {
       const comment = comments[productId];
-      if (comment) {
-         updateCommentMutation({ productId, comment });
+      if (comment && comment.length > 4) {
+         updateProductCommandService({ productId, comment });
       }
    };
 
@@ -56,18 +33,19 @@ const ProductReceive = ({ orderId }) => {
                <button>Confirmer la réception</button>
 
                <p>Vos commentaires comptent plus!</p>
-               {order.order_items.map((orderItem, index) => (
+               {order?.order_items.map((orderItem, index) => (
                   <div key={index}>
-                     <Order orderItem={orderItem} />
+                     <ProductUnit slug_name={orderItem.slug_name} type="reception" />
                      <textarea
                         value={comments[orderItem.product_id] || ""}
                         onChange={(e) =>
                            handleCommentChange(orderItem.product_id, e.target.value)
                         }
+                        required
                         placeholder="Votre commentaire ici.."
                      />
 
-                     <LoadingButton  text="Soumettre le commentaire" loading={isLoading} onClick={() => handleSubmitComment(orderItem.product_id)} classname="!bg-primary px-6 py-3 rounded-[18px]" />
+                     <LoadingButton  text="Soumettre le commentaire" loading={isLoading} onClick={() => handleSubmitComment(orderItem.product_id)} />
                   </div>
                ))}
             </div>

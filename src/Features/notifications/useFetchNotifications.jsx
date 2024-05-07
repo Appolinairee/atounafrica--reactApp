@@ -3,8 +3,6 @@ import axios from "../../services/axiosConfig";
 import { useState } from "react";
 
 export const useFetchNotifications = () => {
-
-   const token = localStorage.getItem('token');
    const [Notifications, setNotifications] = useState([]);
 
    const { isLoading, isError } = useQuery(
@@ -25,6 +23,7 @@ export const useFetchNotifications = () => {
          onError: (error) => {
             console.log(error);
          },
+         enabled: !Notifications
       }
    );
 

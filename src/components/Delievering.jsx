@@ -1,46 +1,17 @@
 import React, { useState } from "react";
-import { useMutation } from "react-query";
-import axios from "../services/axiosConfig";
-import { selectOrderById, updateOrders } from "../Features/orders/ordersSlice";
-import { useSelector } from "react-redux";
 import LoadingButton from "../BaseComponents/LoadingButton";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useUpdateOrder } from "../services/Order";
+import { selectOrderById } from "../Features/orders/ordersSlice";
+import { useSelector } from "react-redux";
 
 const DeliveryForm = ({ orderId }) => {
    const [shippingAddress, setShippingAddress] = useState("");
    const [shippingDate, setShippingDate] = useState("");
    const [shippingContact, setShippingContact] = useState("");
-
-   const order = useSelector(selectOrderById(orderId));
-   const dispatch = useDispatch();
-   const token = useSelector((state) => state.auth.authToken);
    const [errorMessage, setMessageError] = useState();
-   const navigate = useNavigate();
+   const order = useSelector(selectOrderById(orderId));
 
-   console.log(orderId, order);
-
-   const {
-      mutate: updateDelieveringDetails,
-      isLoading,
-      isError,
-   } = useMutation(
-      (data) =>
-         axios.post(`orders/${orderId}`, data),
-      {
-         onSuccess: (response) => {
-            console.log(response, response.data, response.data.data);
-            response = response.data.data;
-            dispatch(updateOrders(response));
-
-
-            navigate(`/commande/${orderId}/reception`);
-
-            if (response.status == 2) {
-            }
-         },
-      }
-   );
+   const {updateOrderService, isLoading} = useUpdateOrder(orderId);
 
    const handleSubmit = (e) => {
       e.preventDefault();
@@ -61,18 +32,23 @@ const DeliveryForm = ({ orderId }) => {
             );
             return;
          }
+
+        if (new Date(shippingDate) <= new Date()) {
+            setMessageError("La date de livraison doit être dans le futur.");
+            return;
+        }
       }
 
       const contactFormat = /^\d{8}$/;
       if (!shippingContact || shippingContact.length === 0) {
          setMessageError("Contact de livraison requis.");
          return;
-      } else if (!contactFormat.test(shippingContact)) {
+      } else if (!contactFormat.test(shippingContact) || shippingContact.length < 8) {
          setMessageError("Le contact de livraison doit contenir 8 chiffres.");
+         return;
       }
 
-      // Si aucune erreur, envoyer la mutation
-      updateDelieveringDetails({
+      updateOrderService({
          shipping_address: shippingAddress,
          shipping_date: shippingDate,
          shipping_contact: shippingContact,
@@ -93,7 +69,7 @@ const DeliveryForm = ({ orderId }) => {
             <input
                type="text"
                id="shippingAddress"
-               value={shippingAddress}
+               value={order.shipping_address ? order.shipping_address : ""}
                required
                onChange={(e) => setShippingAddress(e.target.value)}
             />
@@ -103,11 +79,10 @@ const DeliveryForm = ({ orderId }) => {
             <label htmlFor="shippingDate">
                Spécifiez votre date de livraison
             </label>
-
             <input
                type="datetime-local"
                id="shippingDate"
-               value={shippingDate}
+               value={order.shipping_date ? order.shipping_date.slice(0, -1) : ""}
                required
                onChange={(e) => setShippingDate(e.target.value)}
             />
@@ -119,7 +94,7 @@ const DeliveryForm = ({ orderId }) => {
             <input
                type="text"
                id="shippingContact"
-               value={shippingContact}
+               value={order.shipping_contact ? order.shipping_contact : ""}
                required
                onChange={(e) => setShippingContact(e.target.value)}
             />
