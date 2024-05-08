@@ -24,15 +24,15 @@ const ordersSlice = createSlice({
          state.error = action.payload;
       },
       updateOrders: (state, action) => {
-         const { id, ...updatedOrder } = action.payload;
-         const existingOrderIndex = state.orders.findIndex(
-            (order) => order.id === id
+         const updatedOrder = action.payload;
+         const existingOrderIndex = state.orders?.findIndex(
+            (order) => order.id === updatedOrder.id
          );
-
+      
          if (existingOrderIndex !== -1) {
-            state.orders[existingOrderIndex] = { id, ...updatedOrder };
+            state.orders[existingOrderIndex] = updatedOrder;
          } else {
-            state.orders.push({ id, ...updatedOrder });
+            state.orders.push(updatedOrder);
          }
       },
       deleteOrder: (state, action) => {
@@ -41,7 +41,6 @@ const ordersSlice = createSlice({
             (order) => order.id !== orderIdToDelete
          );
       },
-
       makeOrderRefund: (state, action) => {
          const orderIdToRefund = action.payload;
          const orderIndex = state.orders.findIndex(
@@ -49,6 +48,13 @@ const ordersSlice = createSlice({
          );
          if (orderIndex !== -1) {
             state.orders[orderIndex].refund = 1;
+         }
+      },
+      updateOrderStatusAction: (state, action) => {
+         const { orderId, status } = action.payload;
+         const orderToUpdate = state.orders.find((order) => order.id === orderId);
+         if (orderToUpdate) {
+            orderToUpdate.status = status;
          }
       },
    },
@@ -68,6 +74,7 @@ export const {
    updateOrderItems,
    deleteOrder,
    makeOrderRefund,
+   updateOrderStatusAction,
 } = ordersSlice.actions;
 export const selectOrders = (state) => state.orders.orders;
 

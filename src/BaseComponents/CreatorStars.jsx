@@ -5,9 +5,9 @@ const CreatorStars = ({ number }) => {
       const stars = [];
       const filledStars = Math.min(number, 5);
 
-      for (let i = 0; i < filledStars; i++) stars.push(<BsStarFill className="text-primary" />);
+      for (let i = 0; i < filledStars; i++) stars.push(<BsStarFill className="text-primary" key={i} />);
 
-      for (let i = filledStars; i < 5; i++) stars.push(<BsStar className="text-dark/20" />);
+      for (let i = filledStars; i < 5; i++) stars.push(<BsStar className="text-dark/20" key={i} />);
 
       return stars;
    };

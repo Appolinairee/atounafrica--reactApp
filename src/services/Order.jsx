@@ -2,7 +2,7 @@ import { useMutation } from "react-query";
 import axios from "../services/axiosConfig";
 import { useDispatch } from "react-redux";
 import { setToasterContent } from "../Features/appSlice";
-import { deleteOrder, makeOrderRefund, updateOrders } from "../Features/orders/ordersSlice";
+import { deleteOrder, makeOrderRefund, updateOrderStatusAction, updateOrders } from "../Features/orders/ordersSlice";
 import { useNavigate } from "react-router-dom";
 
 export const useUpdateOrder = (orderId) => {
@@ -18,7 +18,6 @@ export const useUpdateOrder = (orderId) => {
          axios.post(`orders/${orderId}`, data),
       {
          onSuccess: (response) => {
-            console.log(response, response.data, response.data.data);
             response = response.data.data;
             dispatch(updateOrders(response));
 
@@ -29,7 +28,7 @@ export const useUpdateOrder = (orderId) => {
             }
          },
          onError: (error) => {
-            console.error("Error when updated odrer:", error);
+            console.error("Error when updated order:", error);
          },
       }
    );
@@ -38,7 +37,35 @@ export const useUpdateOrder = (orderId) => {
       updateOrderMutation(data);
    };
 
-   return { updateOrderService, isLoading };
+   return { updateOrderService, updateLoading: isLoading };
+};
+
+export const useUpdateOrderStatus = (orderId) => {
+   const dispatch = useDispatch();
+
+   const {
+      mutate: updateOrderMutation,
+      isLoading,
+   } = useMutation(
+      (data) =>
+         axios.post(`orders/${orderId}`, data),
+      {
+         onSuccess: (response) => {
+            response = response.data.data;
+            dispatch(updateOrderStatusAction({ orderId, status: 4 }));
+            setToasterContent("Confirmation de réception pris en compte.");
+         },
+         onError: (error) => {
+            console.error("Error when updated order:", error);
+         },
+      }
+   );
+
+   const updateOrderStatusService = (data) => {
+      updateOrderMutation(data);
+   };
+
+   return { updateOrderStatusService, updateLoading: isLoading };
 };
 
 export const useDeleteOrder = () => {

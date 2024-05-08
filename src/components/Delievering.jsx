@@ -11,7 +11,7 @@ const DeliveryForm = ({ orderId }) => {
    const [errorMessage, setMessageError] = useState();
    const order = useSelector(selectOrderById(orderId));
 
-   const {updateOrderService, isLoading} = useUpdateOrder(orderId);
+   const {updateOrderService, updateLoading} = useUpdateOrder(orderId);
 
    const handleSubmit = (e) => {
       e.preventDefault();
@@ -102,7 +102,7 @@ const DeliveryForm = ({ orderId }) => {
 
             <LoadingButton
                text="Soumettre les informations"
-               loading={isLoading}
+               loading={updateLoading}
                className="!bg-primary px-6 py-3 rounded-[18px]"
             />
          </form>
