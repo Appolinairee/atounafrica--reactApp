@@ -22,7 +22,7 @@ export const useUpdateOrder = (orderId) => {
             dispatch(updateOrders(response));
 
             navigate(`/commande/${orderId}/reception`);
-            setToasterContent("Commande mise à jour avec succès.");
+            dispatch(setToasterContent("Commande mise à jour avec succès."));
 
             if (response.status == 2) {
             }
@@ -53,7 +53,7 @@ export const useUpdateOrderStatus = (orderId) => {
          onSuccess: (response) => {
             response = response.data.data;
             dispatch(updateOrderStatusAction({ orderId, status: 4 }));
-            setToasterContent("Confirmation de réception pris en compte.");
+            dispatch(setToasterContent("Confirmation de réception pris en compte."));
          },
          onError: (error) => {
             console.error("Error when updated order:", error);
@@ -75,7 +75,7 @@ export const useDeleteOrder = () => {
       (id) => axios.delete(`orders/${id}`),
       {
          onSuccess: (response, id) => {
-            setToasterContent("Commande supprimée avec succès.");
+            dispatch(setToasterContent("Commande supprimée avec succès."));
             dispatch(deleteOrder(id));
          },
          onError: (error) => {

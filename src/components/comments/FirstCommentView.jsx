@@ -11,14 +11,19 @@ export const FirstViewComment = ({ orderItem }) => {
       setComment(e.target.value);
    };
 
-   const handleSubmitComment = async () => {
+   const handleSubmitComment = (e) => {
+      e.preventDefault();
+
       if (comment && comment.length > 4) {
-         await createCommentService({
+         createCommentService({
             productId: orderItem.product_id,
             content: { content: comment },
          });
+         setComment("");
       }
    };
+
+   console.log(isLoading);
 
    return (
       <div>
@@ -28,6 +33,7 @@ export const FirstViewComment = ({ orderItem }) => {
             <label htmlFor="">Votre premier avis sur le commentaire.</label>
             <textarea
                onChange={handleCommentChange}
+               value={comment}
                required
                placeholder="Votre commentaire ici.."
             />

@@ -10,11 +10,12 @@ import AffiliationCard from "../AffiliationCard";
 
 const ProductInformations = (Product) => {
    const [mediaState, setMediaState] = useState(0);
-   const [selectedAffiliationLink, setSelectedAffiliationLink] = useState(false);
+   const [selectedAffiliationLink, setSelectedAffiliationLink] =
+      useState(false);
 
    const showAffiliationPopUp = (affiliationLink) => {
       setSelectedAffiliationLink(affiliationLink);
-   }
+   };
 
    const handlePrevMedia = () => {
       setMediaState((prevMedia) =>
@@ -122,17 +123,19 @@ const ProductInformations = (Product) => {
             {medias &&
                medias.length > 0 &&
                medias.map((media, index) => (
-                  <MediaUnit
-                     media={media}
-                     altText={title}
-                     index={index}
-                     handleMediaClick={handleMediaClick}
-                     className={`!h-[50px] !w-auto rounded-[7px] border-solid border-dark/30 border-[1px] cursor-pointer ${
-                        mediaState === index
-                           ? " border-primary border-[2px]"
-                           : ""
-                     }`}
-                  />
+                  <div key={index}>
+                     <MediaUnit
+                        media={media}
+                        altText={title}
+                        index={index}
+                        handleMediaClick={handleMediaClick}
+                        className={`!h-[50px] !w-auto rounded-[7px] border-solid border-dark/30 border-[1px] cursor-pointer ${
+                           mediaState === index
+                              ? " border-primary border-[2px]"
+                              : ""
+                        }`}
+                     />
+                  </div>
                ))}
          </div>
 

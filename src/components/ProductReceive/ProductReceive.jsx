@@ -20,7 +20,7 @@ const ProductReceive = ({ orderId }) => {
                   text="Confirmation de réception"
                   loading={updateLoading}
                   onClick={() => updateOrderStatusService({ status: 4 })}
-                  className="bg-primary text-light font-medium p-[3px] px-[6px] rounded-lg text-[14px]"
+                  classNasme="bg-primary text-light font-medium p-[3px] px-[6px] rounded-lg text-[14px]"
                />
 
                <p>Vos commentaires comptent plus!</p>

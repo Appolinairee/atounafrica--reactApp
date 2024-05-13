@@ -14,8 +14,7 @@ export const productsSlice = createSlice({
         },
         updateProduct: (state, action) => {
             const updatedProduct = action.payload;
-            console.log(updatedProduct);
-            const existingProductIndex = state.products?.findIndex(product => product.id === updatedProduct.id);
+            const existingProductIndex = state.products.products?.findIndex ? state.products.products?.findIndex(product => product.id === updatedProduct.id): -1;
             if (existingProductIndex !== -1) {
                 state.products[existingProductIndex] = updatedProduct;
             } else {
